@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
     moduleId: module.id,
-    selector: 'app-fallout',
-    templateUrl: 'fallout.component.html'
+    selector: 'app-resolutions',
+    templateUrl: 'resolutions.component.html'
 })
 
-export class FalloutComponent implements OnInit {
+export class ResolutionsComponent implements OnInit {
     constructor() { }
 
     ngOnInit() { }
