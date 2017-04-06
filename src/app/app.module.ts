@@ -6,19 +6,24 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './controllers/common/header/header.component';
 import { DashboardComponent } from './controllers/dashboard/dashboard.component';
-import { ChartComponent } from './controllers/common/chart/chart.component';
+import { BarChartComponent } from './controllers/common/charts/bar-chart/bar-chart.component';
+import { DoughnutChartComponent } from './controllers/common/charts/doughnut-chart/doughnut-chart.component';
+
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		HeaderComponent,
 		DashboardComponent,
-		ChartComponent
+		BarChartComponent,
+		DoughnutChartComponent
 	],
 	imports: [
 		BrowserModule,
 		FormsModule,
-		HttpModule
+		HttpModule,
+		ChartsModule //valor-ng2-charts
 	],
 	providers: [],
 	bootstrap: [AppComponent]
