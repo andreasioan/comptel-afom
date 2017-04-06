@@ -8,8 +8,10 @@ import { HeaderComponent } from './controllers/common/header/header.component';
 import { DashboardComponent } from './controllers/dashboard/dashboard.component';
 import { BarChartComponent } from './controllers/common/charts/bar-chart/bar-chart.component';
 import { DoughnutChartComponent } from './controllers/common/charts/doughnut-chart/doughnut-chart.component';
+import { FalloutComponent } from './controllers/fallout/fallout.component';
 
 import { ChartsModule } from 'ng2-charts';
+import { routing } from './app.routing';
 
 @NgModule({
 	declarations: [
@@ -17,12 +19,14 @@ import { ChartsModule } from 'ng2-charts';
 		HeaderComponent,
 		DashboardComponent,
 		BarChartComponent,
-		DoughnutChartComponent
+		DoughnutChartComponent,
+		FalloutComponent
 	],
 	imports: [
 		BrowserModule,
 		FormsModule,
 		HttpModule,
+		routing, // Router
 		ChartsModule //valor-ng2-charts
 	],
 	providers: [],
