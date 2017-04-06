@@ -12,7 +12,7 @@ export class BarChartComponent implements OnInit {
     ngOnInit() { }
 
     barChartOptions: any = {
-        scaleShowVerticalLines: false,
+        scaleShowVerticalLines: true,
         responsive: true
     };
     barChartLabels: string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
@@ -31,19 +31,7 @@ export class BarChartComponent implements OnInit {
         return (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256));
     }
 
-    // events
-    chartClicked(e: any): void {
-        console.log(e);
-    }
-
-    chartHovered(e: any): void {
-        console.log(e);
-    }
-
     rand() {
         return Math.round(Math.random() * 100);
     }
 }
-
-
-// var hue = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';

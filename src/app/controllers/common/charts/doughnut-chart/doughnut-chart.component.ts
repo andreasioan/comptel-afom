@@ -19,13 +19,4 @@ export class DoughnutChartComponent implements OnInit {
     rand(){
         return Math.floor(Math.random() * 1000 - 1);
     }
-
-    // events
-    public chartClicked(e: any): void {
-        console.log(e);
-    }
-
-    public chartHovered(e: any): void {
-        console.log(e);
-    }
 }
