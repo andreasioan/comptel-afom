@@ -9,6 +9,7 @@ import { DashboardComponent } from './controllers/dashboard/dashboard.component'
 import { BarChartComponent } from './controllers/common/charts/bar-chart/bar-chart.component';
 import { DoughnutChartComponent } from './controllers/common/charts/doughnut-chart/doughnut-chart.component';
 import { FalloutComponent } from './controllers/fallout/fallout.component';
+import { ResolutionComponent } from './controllers/resolution/resolution.component';
 
 import { ChartsModule } from 'ng2-charts';
 import { routing } from './app.routing';
@@ -20,7 +21,8 @@ import { routing } from './app.routing';
 		DashboardComponent,
 		BarChartComponent,
 		DoughnutChartComponent,
-		FalloutComponent
+		FalloutComponent,
+		ResolutionComponent
 	],
 	imports: [
 		BrowserModule,

@@ -8,13 +8,13 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Comptel AFOM</a>
+			<a class="navbar-brand" [routerLink]="['']">Comptel AFOM</a>
 		</div>
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li class="active"><a [routerLink]="['']">Dashboard</a></li>
-				<li><a [routerLink]="['fallout']">Fallouts</a></li>
-				<li><a [routerLink]="['resolution']">Resolutions</a></li>
+				<li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['']">Dashboard</a></li>
+				<li routerLinkActive="active"><a [routerLink]="['fallout']">Fallouts</a></li>
+				<li routerLinkActive="active"><a [routerLink]="['resolution']">Resolutions</a></li>
 			</ul>
 		</div>
 	</div>
