@@ -1,0 +1,12 @@
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th *ngFor="let heading of headings">{{heading}}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let row of rows">
+			<td *ngIf="tableType === 'fallout'" *ngFor="let heading of headings">{{row.}}</td>
+		</tr>
+	</tbody>
+</table>
