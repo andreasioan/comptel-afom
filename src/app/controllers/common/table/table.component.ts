@@ -26,27 +26,5 @@ export class TableComponent implements OnInit {
         else if (this.tableType == 'resolution') {
             this.headings = resolutionHeadings
         }
-
-        //TODO: add proper rows input
-        this.rows = [
-            new Fallout(
-                "AFOM00001",
-                "ORDERMANAGER",
-                "ORDERMANAGER59037",
-                "ERROR4181",
-                "13/03/17 18:04",
-                "24/03/17 18:04",
-                "CREATED"
-            ),
-            new Fallout(
-                "AFOM00003",
-                "ORDERMANAGER",
-                "ORDERMANAGER13048",
-                "ERROR9646",
-                "13/03/17 12:10",
-                "24/03/17 12:10",
-                "STARTED"
-            )
-        ];
     }
 }

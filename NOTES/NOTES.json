@@ -1,37 +1,93 @@
-// passing table data
-
+// Data from /api/dashboard
 {
-	"Heading Data": [
-		"one",
-		"twp",
-		"three"
+	"falloutData": [{
+			"ID": "AFOM00001",
+			"Source": "ORDERMANAGER",
+			"SourceFalloutID": "ORDERMANAGER59037",
+			"ErrorCode": "ERROR4181",
+			"CreationTimestamp": "13/03/17 18:04",
+			"DueDate": "24/03/17 18:04",
+			"Status": "CREATED",
+			"ADDITIONALDATA": [{
+					"ID": 1,
+					"FalloutID": "AFOM00001",
+					"Name": "CUSTOMER ID",
+					"Value": "'CUST00039869'"
+				},
+				{
+					"ID": 2,
+					"FalloutID": "AFOM00001",
+					"Name": "ERROR DESCRIPTION",
+					"Value": "'Response received from system abc not expected.'"
+				},
+				{
+					"ID": 3,
+					"FalloutID": "AFOM00001",
+					"Name": "ACCESS TYPE",
+					"Value": "'FTTN'"
+				},
+				{
+					"ID": 4,
+					"FalloutID": "AFOM00001",
+					"Name": "ORDER ID",
+					"Value": "'ORD00092533'"
+				}
+			]
+		},
+		{
+			"ID": "AFOM00002",
+			"Source": "ORDERMANAGER",
+			"SourceFalloutID": "ORDERMANAGER99401",
+			"ErrorCode": "ERROR3880",
+			"CreationTimestamp": "15/03/17 12:44",
+			"DueDate": "26/03/17 12:44",
+			"Status": "CLOSED-SUCCESSFUL",
+			"ADDITIONALDATA": [{
+					"ID": 5,
+					"FalloutID": "AFOM00002",
+					"Name": "ORDER ID",
+					"Value": "'ORD00040857'"
+				},
+				{
+					"ID": 6,
+					"FalloutID": "AFOM00002",
+					"Name": "CUSTOMER ID",
+					"Value": "'CUST00099499'"
+				},
+				{
+					"ID": 7,
+					"FalloutID": "AFOM00002",
+					"Name": "ERROR DESCRIPTION",
+					"Value": "'Message to system XYZ timed out.'"
+				},
+				{
+					"ID": 8,
+					"FalloutID": "AFOM00002",
+					"Name": "ACCESS TYPE",
+					"Value": "'HFC'"
+				}
+			]
+		}
 	],
-	"table data": [{
-			"ID": "'AFOM00001'",
-			"Source": "'ORDERMANAGER''",
-			"SourceFalloutID": "'ORDERMANAGER59037'",
-			"ErrorCode": "'ERROR4181'",
-			"CreationTimestamp": "'13/03/17 18:04'",
-			"DueDate": "'24/03/17 18:04'",
-			"Status": "'CREATED'"
+	"resolutionData": [{
+			"ID": 1,
+			"FalloutID": "AFOM00001",
+			"ActionID": "ACT006",
+			"SourceSystem": "HFC-SRI",
+			"CreationTimestamp": "25/03/17 11:24",
+			"DueDate": "27/03/17 11:24",
+			"Status": "CLOSED-SUCCESSFUL",
+			"RetryCount": null
 		},
 		{
-			"ID": "'AFOM00002'",
-			"Source": "'ORDERMANAGER'",
-			"SourceFalloutID": "'ORDERMANAGER99401'",
-			"ErrorCode": "'ERROR3880'",
-			"CreationTimestamp": "'15/03/17 12:44'",
-			"DueDate": "'26/03/17 12:44'",
-			"Status": "'CLOSED-SUCCESSFUL'"
-		},
-		{
-			"ID": "'AFOM00003'",
-			"Source": "'ORDERMANAGER'",
-			"SourceFalloutID": "'ORDERMANAGER13048'",
-			"ErrorCode": "'ERROR9646'",
-			"CreationTimestamp": "'13/03/17 12:10'",
-			"DueDate": "'24/03/17 12:10'",
-			"Status": "'STARTED'"
+			"ID": 2,
+			"FalloutID": "AFOM00002",
+			"ActionID": "ACT007",
+			"SourceSystem": "PNI",
+			"CreationTimestamp": "25/03/17 08:17",
+			"DueDate": "27/03/17 08:17",
+			"Status": "ERROR",
+			"RetryCount": null
 		}
 	]
 }
