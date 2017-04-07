@@ -1,5 +1,37 @@
 // passing table data
 
 {
-    
+	"Heading Data": [
+		"one",
+		"twp",
+		"three"
+	],
+	"table data": [{
+			"ID": "'AFOM00001'",
+			"Source": "'ORDERMANAGER''",
+			"SourceFalloutID": "'ORDERMANAGER59037'",
+			"ErrorCode": "'ERROR4181'",
+			"CreationTimestamp": "'13/03/17 18:04'",
+			"DueDate": "'24/03/17 18:04'",
+			"Status": "'CREATED'"
+		},
+		{
+			"ID": "'AFOM00002'",
+			"Source": "'ORDERMANAGER'",
+			"SourceFalloutID": "'ORDERMANAGER99401'",
+			"ErrorCode": "'ERROR3880'",
+			"CreationTimestamp": "'15/03/17 12:44'",
+			"DueDate": "'26/03/17 12:44'",
+			"Status": "'CLOSED-SUCCESSFUL'"
+		},
+		{
+			"ID": "'AFOM00003'",
+			"Source": "'ORDERMANAGER'",
+			"SourceFalloutID": "'ORDERMANAGER13048'",
+			"ErrorCode": "'ERROR9646'",
+			"CreationTimestamp": "'13/03/17 12:10'",
+			"DueDate": "'24/03/17 12:10'",
+			"Status": "'STARTED'"
+		}
+	]
 }
