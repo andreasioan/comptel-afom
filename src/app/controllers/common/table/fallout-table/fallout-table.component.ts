@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
     moduleId: module.id,
-    selector: 'aoo-fallout-table',
+    selector: 'app-fallout-table',
     templateUrl: 'fallout-table.component.html'
 })
 
