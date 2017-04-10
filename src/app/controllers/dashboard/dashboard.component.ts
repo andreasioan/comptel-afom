@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Fallout } from '../common/models/fallout.model';
-import { FALLOUTS } from '../common/seed/fallouts.seed';
+import { Resolution }from '../common/models/resolution.model';
+
+
 
 @Component({
     moduleId: module.id,
@@ -10,8 +12,6 @@ import { FALLOUTS } from '../common/seed/fallouts.seed';
 })
 
 export class DashboardComponent implements OnInit {
-    falloutRows: Fallout[] = FALLOUTS;
-
     constructor() { }
 
     ngOnInit() { }

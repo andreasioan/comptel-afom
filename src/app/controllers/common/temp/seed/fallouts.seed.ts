@@ -1,4 +1,4 @@
-import { Fallout } from '../models/fallout.model';
+import { Fallout } from '../../models/fallout.model';
 
 export const FALLOUTS: Fallout[] = [
 	new Fallout(
