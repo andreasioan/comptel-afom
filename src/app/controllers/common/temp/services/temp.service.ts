@@ -12,11 +12,48 @@ export class TempService {
     falloutRows: Fallout[] = FALLOUTS;
     resolutionRows: Resolution[] = RESOLUTIONS;
 
-    getFallouts() {
 
+    // FALLOUTS
+    getFallouts() {
+        this.sortFallouts(this.falloutRows);
+        return this.falloutRows.slice(0, 5);
     }
 
-    getResolutions() {
+    sortFallouts(fallouts: Fallout[]) {
+        fallouts.sort(function (a, b) {
+            var falloutA = a.ID.toUpperCase();
+            var falloutB = b.ID.toUpperCase();
 
+            if (falloutA > falloutB) {
+                return -1
+            } else if (falloutA < falloutB) {
+                return 1
+            } else {
+                return 0;
+            }
+        });
+    }
+
+    getAllFallouts() {
+        this.sortFallouts(this.falloutRows);
+        return this.falloutRows.slice();
+    }
+
+
+    // RESOLUTIONS
+    getResolutions() {
+        this.sortResolutions(this.resolutionRows);
+        return this.resolutionRows.slice(0, 5);
+    }
+
+    sortResolutions(resolutions: Resolution[]) {
+        resolutions.sort(function (a, b) {
+            return a.ID + b.ID;
+        });
+    }
+
+    getAllResolutions() {
+        this.sortResolutions(this.resolutionRows);
+        return this.resolutionRows.slice();
     }
 }

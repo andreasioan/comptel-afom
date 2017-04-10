@@ -12,6 +12,8 @@ import { FalloutsComponent } from './controllers/fallouts/fallouts.component';
 import { ResolutionsComponent } from './controllers/resolutions/resolutions.component';
 import { TableComponent } from './controllers/common/table/table.component';
 
+import { TempService } from './controllers/common/temp/services/temp.service';
+
 import { ChartsModule } from 'ng2-charts';
 import { routing } from './app.routing';
 
@@ -33,7 +35,9 @@ import { routing } from './app.routing';
 		routing, // Router
 		ChartsModule //valor-ng2-charts
 	],
-	providers: [],
+	providers: [
+		TempService
+	],
 	bootstrap: [AppComponent]
 })
 

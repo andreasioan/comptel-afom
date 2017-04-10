@@ -1,13 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 
+import { FalloutsService } from './fallouts.service';
+
+import { Fallout } from '../common/models/fallout.model';
+
 @Component({
     moduleId: module.id,
     selector: 'app-fallouts',
-    templateUrl: 'fallouts.component.html'
+    templateUrl: 'fallouts.component.html',
+    providers: [FalloutsService]
 })
 
 export class FalloutsComponent implements OnInit {
-    constructor() { }
+    falloutRows: Fallout[];
 
-    ngOnInit() { }
+    constructor(private falloutsService: FalloutsService) { }
+
+    ngOnInit() {
+        this.falloutRows = this.falloutsService.getFallouts();
+    }
 }

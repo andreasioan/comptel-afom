@@ -1,6 +1,6 @@
 export class Resolution {
     constructor(
-        public ID: Number,
+        public ID: number,
         public FalloutID: String,
         public ActionID: String,
         public SourceSystem: String,
