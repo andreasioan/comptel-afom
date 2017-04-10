@@ -14,7 +14,6 @@ import { TableComponent } from './controllers/common/table/table.component';
 
 import { ChartsModule } from 'ng2-charts';
 import { routing } from './app.routing';
-import { Service } from './controllers/common/temp/service.service';
 
 @NgModule({
 	declarations: [
@@ -34,7 +33,7 @@ import { Service } from './controllers/common/temp/service.service';
 		routing, // Router
 		ChartsModule //valor-ng2-charts
 	],
-	providers: [Service],
+	providers: [],
 	bootstrap: [AppComponent]
 })
 
