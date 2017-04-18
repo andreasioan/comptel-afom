@@ -3,48 +3,53 @@
 		<h1>Dashboard <small>{{showDate}}</small></h1>
 	</div>
 </div>
-<div class="row">
-	<div class="col-sm-6">
-		<div class="row">
-			<div class="col-xs-12">
-				<h3>Statistics</h3>
-				<p class="lead">
-					Fallouts: <strong>32,581</strong><br> Resolutions: <strong>23,129</strong><br> Unresolved fallouts: <strong>8,612</strong><br>Fallouts:
-					<strong>32,581</strong><br> Fallouts: <strong>32,581</strong>
-				</p>
+<div *ngIf="pageLoaded">
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="row">
+				<div class="col-xs-12">
+					<h3>Statistics</h3>
+					<p class="lead">
+						Fallouts: <strong>32,581</strong><br> Resolutions: <strong>23,129</strong><br> Unresolved fallouts: <strong>8,612</strong><br>Fallouts:
+						<strong>32,581</strong><br> Fallouts: <strong>32,581</strong>
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<h3>Fallouts | Resolutions</h3>
+					<app-bar-chart></app-bar-chart>
+				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-xs-12">
-				<h3>Fallouts | Resolutions</h3>
-				<app-bar-chart></app-bar-chart>
-			</div>
+		<div class="col-sm-6">
+			<h3>Fallout types</h3>
+			<app-doughnut-chart></app-doughnut-chart>
 		</div>
 	</div>
-	<div class="col-sm-6">
-		<h3>Fallout types</h3>
-		<app-doughnut-chart></app-doughnut-chart>
-	</div>
-</div>
-<hr>
-<div class="row">
-	<div class="col-sm-12">
-		<h2>
-			<span>Fallouts</span>
-			<button [routerLink]="['fallouts']" class='btn btn-default pull-right'>View more</button>
-		</h2>
-		<app-table [tableType]="'fallout'" [rows]="falloutRows" ></app-table>
-	</div>
-</div>
-<hr>
+	<hr>
 
-<div class="row">
-	<div class="col-sm-12">
-		<h2>
-			<span>Resolutions</span>
-			<button [routerLink]="['resolutions']" class='btn btn-default pull-right'>View more</button>
-		</h2>
-		<app-table [tableType]="'resolution'" [rows]="resolutionRows"></app-table>
+	<div class="row">
+		<div class="col-sm-12">
+			<h2>
+				<span>Fallouts</span>
+				<button [routerLink]="['fallouts']" class='btn btn-default pull-right'>View more</button>
+			</h2>
+			<app-table [tableType]="'fallout'" [rows]="falloutRows"></app-table>
+		</div>
 	</div>
+	<hr>
+	<div class="row">
+		<div class="col-sm-12">
+			<h2>
+				<span>Resolutions</span>
+				<button [routerLink]="['resolutions']" class='btn btn-default pull-right'>View more</button>
+			</h2>
+			<app-table [tableType]="'resolution'" [rows]="resolutionRows"></app-table>
+		</div>
+	</div>
+	<hr>
 </div>
-<hr>
+<div *ngIf="!pageLoaded">
+	<app-loading></app-loading>
+</div>

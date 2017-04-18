@@ -3,8 +3,13 @@
 		<h1>Resolutions</h1>
 	</div>
 </div>
-<div class="row">
-	<div class="col-xs-12">
-		<app-table [tableType]="'resolution'" [rows]="resolutionRows"></app-table>
+<div *ngIf="resolutionsLoaded">
+	<div class="row">
+		<div class="col-xs-12">
+			<app-table [tableType]="'resolution'" [rows]="resolutionRows"></app-table>
+		</div>
 	</div>
+</div>
+<div *ngIf="!resolutionsLoaded">
+	<app-loading></app-loading>
 </div>

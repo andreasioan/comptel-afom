@@ -13,10 +13,15 @@ import { Resolution } from '../common/models/resolution.model';
 
 export class ResolutionsComponent implements OnInit {
     resolutionRows: Resolution[];
+    resolutionsLoaded: boolean = false;
 
     constructor(private resolutionService: ResolutionsService) { }
 
-    ngOnInit() { 
-        this.resolutionRows = this.resolutionService.getResolutions();
+    ngOnInit() {
+        this.resolutionService.getResolutions()
+        .subscribe((resolutions: Resolution[]) => {
+            this.resolutionRows = resolutions;
+            this.resolutionsLoaded = true;
+        });
     }
 }

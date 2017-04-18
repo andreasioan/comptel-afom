@@ -11,10 +11,13 @@ import { DoughnutChartComponent } from './controllers/common/charts/doughnut-cha
 import { FalloutsComponent } from './controllers/fallouts/fallouts.component';
 import { ResolutionsComponent } from './controllers/resolutions/resolutions.component';
 import { TableComponent } from './controllers/common/table/table.component';
+import { LoadingComponent } from './controllers/common/loading/loading.component';
 
 import { TempService } from './controllers/common/temp/services/temp.service';
 
 import { ChartsModule } from 'ng2-charts';
+import { ModalModule } from 'ngx-bootstrap';
+
 import { routing } from './app.routing';
 
 @NgModule({
@@ -26,14 +29,16 @@ import { routing } from './app.routing';
 		DoughnutChartComponent,
 		FalloutsComponent,
 		ResolutionsComponent,
-		TableComponent
+		TableComponent,
+		LoadingComponent
 	],
 	imports: [
 		BrowserModule,
 		FormsModule,
 		HttpModule,
 		routing, // Router
-		ChartsModule //valor-ng2-charts
+		ChartsModule, //valor-ng2-charts
+		ModalModule.forRoot() //valor-ng2-modal
 	],
 	providers: [
 		TempService

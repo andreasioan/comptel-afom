@@ -13,10 +13,15 @@ import { Fallout } from '../common/models/fallout.model';
 
 export class FalloutsComponent implements OnInit {
     falloutRows: Fallout[];
+    falloutsLoaded: boolean = false;
 
     constructor(private falloutsService: FalloutsService) { }
 
     ngOnInit() {
-        this.falloutRows = this.falloutsService.getFallouts();
+        this.falloutsService.getFallouts()
+            .subscribe((fallouts: Fallout[]) => {
+                this.falloutRows = fallouts
+                this.falloutsLoaded = true;
+            });
     }
 }
