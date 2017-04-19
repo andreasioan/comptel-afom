@@ -4,15 +4,13 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/Rx'
 
-import { TempService } from '../common/temp/services/temp.service';
-
 import { Fallout } from '../common/models/fallout.model';
 
 @Injectable()
 export class FalloutsService {
     fallouts: Fallout[];
 
-    constructor(private tempService: TempService, private http: Http) { }
+    constructor(private http: Http) { }
 
     getFallouts() {
         return this.http.get('https://afom.hickey.io/rest/public.fallout_master')

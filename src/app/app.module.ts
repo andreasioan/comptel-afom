@@ -13,8 +13,6 @@ import { ResolutionsComponent } from './controllers/resolutions/resolutions.comp
 import { TableComponent } from './controllers/common/table/table.component';
 import { LoadingComponent } from './controllers/common/loading/loading.component';
 
-import { TempService } from './controllers/common/temp/services/temp.service';
-
 import { ChartsModule } from 'ng2-charts';
 import { ModalModule } from 'ngx-bootstrap';
 
@@ -41,7 +39,6 @@ import { routing } from './app.routing';
 		ModalModule.forRoot() //valor-ng2-modal
 	],
 	providers: [
-		TempService
 	],
 	bootstrap: [AppComponent]
 })

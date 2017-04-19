@@ -4,8 +4,6 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/Rx';
 
-import { TempService } from '../common/temp/services/temp.service';
-
 import { Fallout } from '../common/models/fallout.model';
 import { Resolution } from '../common/models/resolution.model';
 
@@ -15,14 +13,7 @@ export class DashboardService {
     falloutRows: Fallout[];
     resolutionsRows: Resolution[];
 
-    constructor(private tempService: TempService, private http: Http) {
-        this.startup();
-    }
-
-    startup() {
-        this.falloutRows = this.tempService.getFallouts();
-        this.resolutionsRows = this.tempService.getResolutions();
-    }
+    constructor(private http: Http) { }
 
     getFallouts() {
         return this.http.get('https://afom.hickey.io/rest/public.fallout_master')

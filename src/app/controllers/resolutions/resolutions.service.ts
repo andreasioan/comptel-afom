@@ -4,15 +4,13 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/Rx';
 
-import { TempService } from '../common/temp/services/temp.service';
-
 import { Resolution } from '../common/models/resolution.model';
 
 @Injectable()
 export class ResolutionsService {
     resolutions: Resolution[];
 
-    constructor(private tempService: TempService, private http: Http) { }
+    constructor(private http: Http) { }
 
     getResolutions() {
         return this.http.get('https://afom.hickey.io/rest/public.resolution_action_orchestration')
