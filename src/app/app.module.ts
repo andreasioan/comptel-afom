@@ -14,7 +14,8 @@ import { TableComponent } from './controllers/common/table/table.component';
 import { LoadingComponent } from './controllers/common/loading/loading.component';
 
 import { ChartsModule } from 'ng2-charts';
-import { ModalModule } from 'ngx-bootstrap';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 import { routing } from './app.routing';
 
@@ -36,7 +37,8 @@ import { routing } from './app.routing';
 		HttpModule,
 		routing, // Router
 		ChartsModule, //valor-ng2-charts
-		ModalModule.forRoot() //valor-ng2-modal
+		ModalModule.forRoot(), //valor-ng2-modal
+		CollapseModule.forRoot()
 	],
 	providers: [
 	],

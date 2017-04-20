@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-				aria-controls="navbar">
+			    aria-controls="navbar" (click)="isCollapsed = !isCollapsed">
 			<span class="sr-only">Toggle navigation</span>
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
@@ -10,11 +10,11 @@
 			</button>
 			<a class="navbar-brand" [routerLink]="['']">Comptel AFOM</a>
 		</div>
-		<div id="navbar" class="collapse navbar-collapse">
+		<div id="navbar" class="collapse navbar-collapse navbar-right" [collapse]="isCollapsed">
 			<ul class="nav navbar-nav">
-				<li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['']">Dashboard</a></li>
-				<li routerLinkActive="active"><a [routerLink]="['fallouts']">Fallouts</a></li>
-				<li routerLinkActive="active"><a [routerLink]="['resolutions']">Resolutions</a></li>
+				<li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['']" (click)="isCollapsed = !isCollapsed">Dashboard</a></li>
+				<li routerLinkActive="active"><a [routerLink]="['fallouts']" (click)="isCollapsed = !isCollapsed">Fallouts</a></li>
+				<li routerLinkActive="active"><a [routerLink]="['resolutions']" (click)="isCollapsed = !isCollapsed">Resolutions</a></li>
 			</ul>
 		</div>
 	</div>

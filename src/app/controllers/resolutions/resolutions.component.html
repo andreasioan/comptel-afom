@@ -1,15 +1,15 @@
-<div class="row">
-	<div class="col-xs-12">
-		<h1>Resolutions</h1>
-	</div>
-</div>
-<div *ngIf="resolutionsLoaded">
+<div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<app-table [tableType]="'resolution'" [rows]="resolutionRows"></app-table>
+			<h1>Resolutions</h1>
 		</div>
 	</div>
-</div>
-<div *ngIf="!resolutionsLoaded">
-	<app-loading></app-loading>
+	<div *ngIf="resolutionsLoaded">
+		<div class="row">
+			<div class="col-xs-12">
+				<app-table [tableType]="'resolution'" [rows]="resolutionRows"></app-table>
+			</div>
+		</div>
+	</div>
+	<app-loading *ngIf="!resolutionsLoaded"></app-loading>
 </div>

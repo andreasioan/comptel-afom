@@ -11,4 +11,14 @@ export class HeaderComponent implements OnInit {
     constructor() { }
 
     ngOnInit() { }
+
+    public isCollapsed: boolean = true;
+
+    public collapsed(event: any): void {
+
+    }
+
+    public expanded(event: any): void {
+
+    }
 }
