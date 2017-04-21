@@ -1,46 +1,128 @@
 <div class="panel panel-primary">
-	<div class="panel-heading">
-		<div class="row">
+	<div class="panel-heading clickable" (click)="searchFilter()">
+		<!--<div class="row">
 			<div class="col-xs-6">
 				<h3 class="panel-title">Filter</h3>
 			</div>
 			<div class="col-xs-6">
 				<h3 class="panel-title">Search</h3>
 			</div>
-		</div>
+		</div>-->
+		<h3 class="panel-title">Search & Filter</h3>
 	</div>
-	<div class="panel-body">
-		<div class="row">
-			<div class="col-xs-6">
-				<ul class="nav nav-tabs">
-					<li role="presentation" class="active"><a>Order By</a></li>
-					<li role="presentation"><a>Creation Date</a></li>
-					<li role="presentation"><a>Due Date</a></li>
-                    <li role="presentation"><a>Reset</a></li>
-				</ul>
-			</div>
-			<div class="col-xs-6">
-				<form class="form-horizontal">
-					<div class="form-group">
-						<label for="searchFild" class="col-sm-3 control-label">Search</label>
-						<div class="col-sm-9">
-							<input type="text" class="form-control" id="searchFild" placeholder="Search">
+	<div id="collapseOne" class="panel-collapse collapse" [ngClass]="{'in':searchFilterCollapse}">
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-6">
+					<div class="row navTabs">
+						<div class="col-xs-12">
+							<ul class="nav nav-tabs">
+								<li role="presentation" class="clickable" [ngClass]="{'active':orderBy}"><a (click)="onOrderBy()">Order By</a></li>
+								<li role="presentation" class="clickable" [ngClass]="{'active':creationDate}"><a (click)="onCreationDate()">Creation Timestamp</a></li>
+								<li role="presentation" class="clickable" [ngClass]="{'active':dueDate}"><a (click)="onDueDate()">Due Date</a></li>
+								<li role="presentation" class="clickable" [ngClass]="{'active':reset}"><a (click)="onReset()">Reset</a></li>
+							</ul>
 						</div>
 					</div>
-					<div class="form-group">
-						<label for="inputPassword3" class="col-sm-3 control-label">In column</label>
-						<div class="col-sm-9">
-							<select class="form-control">
-                                <option value="Source Fallout ID" >Source Fallout ID</option>
-                            </select>
+                    <!--Order By-->
+					<div class="row" [hidden]="!orderBy">
+						<div class="col-xs-12">
+							<div class="form-horizontal">
+								<div class="form-group">
+									<label for="date" class="col-sm-2 control-label">Column</label>
+									<div class="col-sm-10">
+                                        <select name="" id="" class="form-control">
+                                            <option value="Source Fallout ID" >Column 1</option>
+                                            <option value="Source Fallout ID" >Column 2</option>
+                                        </select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="date" class="col-sm-2 control-label">In which order?</label>
+									<div class="col-sm-10">
+										<select name="" id="" class="form-control">
+                                            <option value="Source Fallout ID" >Ascending</option>
+                                            <option value="Source Fallout ID" >Descending</option>
+                                        </select>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-3 col-sm-9">
-							<button type="submit" class="btn btn-success">Search</button>
+					<!--End Order By-->
+					<!--Creation Date-->
+					<div class="row" [hidden]="!creationDate">
+						<div class="col-xs-12">
+							<div class="form-horizontal">
+								<div class="form-group">
+									<label for="date" class="col-sm-2 control-label">From</label>
+									<div class="col-sm-10">
+										<input type="date" class="form-control" id="date">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="date" class="col-sm-2 control-label">To</label>
+									<div class="col-sm-10">
+										<input type="date" class="form-control" id="date">
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
-				</form>
+					<!--End Creation Date-->
+					<!--Due Date-->
+					<div class="row" [hidden]="!dueDate">
+
+						<div class="col-xs-12">
+							<div class="form-horizontal">
+								<div class="form-group">
+									<label for="date" class="col-sm-2 control-label">From</label>
+									<div class="col-sm-10">
+										<input type="date" class="form-control" id="date">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="date" class="col-sm-2 control-label">To</label>
+									<div class="col-sm-10">
+										<input type="date" class="form-control" id="date">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--End Due Date-->
+					<!--Reset-->
+					<div class="row" [hidden]="!reset">
+						<div class="col-xs-12">
+							<p>Reset all search & filter options?</p>
+							<button class="btn btn-danger">Reset</button>
+						</div>
+					</div>
+					<!--End Reset-->
+				</div>
+				<div class="col-xs-6">
+					<div class="form-horizontal">
+						<div class="form-group">
+							<label for="searchFild" class="col-sm-3 control-label">Search</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="searchFild" placeholder="Search">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="selectColumn" class="col-sm-3 control-label">In column</label>
+							<div class="col-sm-9">
+								<select id="selectColumn" class="form-control">
+                                    <option value="Source Fallout ID" >Source Fallout ID</option>
+                                </select>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-3 col-sm-9">
+								<button class="btn btn-success">Apply</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
