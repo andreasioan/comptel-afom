@@ -7,6 +7,11 @@
 	<div *ngIf="falloutsLoaded">
 		<div class="row">
 			<div class="col-xs-12">
+				<app-search-filter></app-search-filter>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
 				<app-table [tableType]="'fallout'" [rows]="falloutRows"></app-table>
 			</div>
 		</div>

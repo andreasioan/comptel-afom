@@ -11,6 +11,7 @@ import { DoughnutChartComponent } from './controllers/common/charts/doughnut-cha
 import { FalloutsComponent } from './controllers/fallouts/fallouts.component';
 import { ResolutionsComponent } from './controllers/resolutions/resolutions.component';
 import { TableComponent } from './controllers/common/table/table.component';
+import { SearchFilterComponent } from './controllers/common/search-filter/search-filter.component';
 import { LoadingComponent } from './controllers/common/loading/loading.component';
 
 import { ChartsModule } from 'ng2-charts';
@@ -29,6 +30,7 @@ import { routing } from './app.routing';
 		FalloutsComponent,
 		ResolutionsComponent,
 		TableComponent,
+		SearchFilterComponent,
 		LoadingComponent
 	],
 	imports: [
