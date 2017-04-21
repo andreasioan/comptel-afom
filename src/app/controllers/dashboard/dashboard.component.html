@@ -1,33 +1,33 @@
-<div class="stats">
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1>Dashboard <small>{{showDate}}</small></h1>
+		</div>
+	</div>
+</div>
+<div class="stats" *ngIf="pageLoaded">
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-12">
-				<h1>Dashboard <small>{{showDate}}</small></h1>
+			<div class="col-sm-6">
+				<div class="row">
+					<div class="col-xs-12">
+						<h3>Statistics</h3>
+						<p class="lead">
+							Fallouts: <strong>32,581</strong><br> Resolutions: <strong>23,129</strong><br> Unresolved fallouts: <strong>8,612</strong><br>Fallouts:
+							<strong>32,581</strong><br> Fallouts: <strong>32,581</strong>
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<h3>Fallouts | Resolutions</h3>
+						<app-bar-chart></app-bar-chart>
+					</div>
+				</div>
 			</div>
-		</div>
-		<div *ngIf="pageLoaded">
-			<div class="row">
-				<div class="col-sm-6">
-					<div class="row">
-						<div class="col-xs-12">
-							<h3>Statistics</h3>
-							<p class="lead">
-								Fallouts: <strong>32,581</strong><br> Resolutions: <strong>23,129</strong><br> Unresolved fallouts: <strong>8,612</strong><br>Fallouts:
-								<strong>32,581</strong><br> Fallouts: <strong>32,581</strong>
-							</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-12">
-							<h3>Fallouts | Resolutions</h3>
-							<app-bar-chart></app-bar-chart>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6">
-					<h3>Fallout types</h3>
-					<app-doughnut-chart></app-doughnut-chart>
-				</div>
+			<div class="col-sm-6">
+				<h3>Fallout types</h3>
+				<app-doughnut-chart></app-doughnut-chart>
 			</div>
 		</div>
 	</div>
@@ -35,29 +35,31 @@
 <div class="data" *ngIf="pageLoaded">
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-12">
-				<div class="row">
-					<div class="col-sm-12">
-						<h2>
-							<span>Fallouts</span>
-							<button [routerLink]="['fallouts']" class='btn btn-default pull-right'>View more</button>
-						</h2>
-						<app-table [tableType]="'fallout'" [rows]="falloutRows"></app-table>
-					</div>
-				</div>
-				<hr>
-				<div class="row">
-					<div class="col-sm-12">
-						<h2>
-							<span>Resolutions</span>
-							<button [routerLink]="['resolutions']" class='btn btn-default pull-right'>View more</button>
-						</h2>
-						<app-table [tableType]="'resolution'" [rows]="resolutionRows"></app-table>
-					</div>
-				</div>
+			<div class="col-sm-12">
+				<h2>
+					<span>Fallouts</span>
+					<button [routerLink]="['fallouts']" class='btn btn-default pull-right'>View more</button>
+				</h2>
+				<app-table [tableType]="'fallout'" [rows]="falloutRows"></app-table>
 			</div>
 		</div>
-
+		<hr>
+		<div class="row">
+			<div class="col-sm-12">
+				<h2>
+					<span>Resolutions</span>
+					<button [routerLink]="['resolutions']" class='btn btn-default pull-right'>View more</button>
+				</h2>
+				<app-table [tableType]="'resolution'" [rows]="resolutionRows"></app-table>
+			</div>
+		</div>
 	</div>
 </div>
+<footer class="text-muted" *ngIf="pageLoaded">
+	<div class="container">
+		<p><small><a href="mailto:a.j.ioannidis@hotmail.com">Andreas Ioannidis</a> | <a href="http://www.comptel.com/">Comptel</a> &copy;
+			2017</small>
+		</p>
+	</div>
+</footer>
 <app-loading *ngIf="!pageLoaded"></app-loading>
