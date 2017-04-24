@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FalloutsService } from './fallouts.service';
 
 import { Fallout } from '../common/models/fallout.model';
+import { SearchFilter } from '../common/models/search-filter.model';
 
 @Component({
     moduleId: module.id,
@@ -23,5 +24,9 @@ export class FalloutsComponent implements OnInit {
                 this.falloutRows = fallouts
                 this.falloutsLoaded = true;
             });
+    }
+
+    onSearchFilter(searchQuery: SearchFilter) {
+        // console.log(searchQuery);
     }
 }

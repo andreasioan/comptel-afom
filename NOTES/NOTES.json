@@ -1,5 +1,35 @@
 // Data from /api/dashboard
 {
+	"statistics": {
+		"fallouts_today": 512,
+		"resolutions_today": 52,
+		"total_fallouts": 41231,
+		"total_resolutions": 4123,
+		"total_unresolved_fallouts": 1424
+	},
+	"bar_chart_data": {
+		"fallouts_data": {
+			"month_0": 141,
+			"month_1": 34,
+			"month_2": 123,
+			"month_3": 451,
+			"month_4": 123,
+			"month_5": 552
+		},
+		"resolution_data": {
+			"month_0": 141,
+			"month_1": 34,
+			"month_2": 123,
+			"month_3": 451,
+			"month_4": 123,
+			"month_5": 552
+		}
+	},
+	"pie_chart_data": {
+		"pni": 4125,
+		"com": 6512,
+		"ordermanager": 2142
+	},
 	"falloutData": [{
 			"ID": "AFOM00001",
 			"Source": "ORDERMANAGER",
@@ -94,5 +124,5 @@
 
 
 
-launch chrome without sec perms
-open -a Google\ Chrome --args --disable-web-security --user-data-dir
+// launch chrome without sec perms #macOS
+// open -a Google\ Chrome --args --disable-web-security --user-data-dir

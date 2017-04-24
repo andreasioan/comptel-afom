@@ -12,9 +12,9 @@
 		</div>
 		<div id="navbar" class="collapse navbar-collapse navbar-right" [collapse]="isCollapsed">
 			<ul class="nav navbar-nav">
-				<li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['']" (click)="isCollapsed = !isCollapsed">Dashboard</a></li>
-				<li routerLinkActive="active"><a [routerLink]="['fallouts']" (click)="isCollapsed = !isCollapsed">Fallouts</a></li>
-				<li routerLinkActive="active"><a [routerLink]="['resolutions']" (click)="isCollapsed = !isCollapsed">Resolutions</a></li>
+				<li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['']" (click)="isCollapsed = true"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a></li>
+				<li routerLinkActive="active"><a [routerLink]="['fallouts']" (click)="isCollapsed = true"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> Fallouts</a></li>
+				<li routerLinkActive="active"><a [routerLink]="['resolutions']" (click)="isCollapsed = true"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Resolutions</a></li>
 			</ul>
 		</div>
 	</div>

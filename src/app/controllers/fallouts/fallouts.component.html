@@ -7,7 +7,7 @@
 	<div *ngIf="falloutsLoaded">
 		<div class="row">
 			<div class="col-xs-12">
-				<app-search-filter></app-search-filter>
+				<app-search-filter [tableType]="'fallout'" (searchFilterQuery)="onSearchFilter($event)"></app-search-filter>
 			</div>
 		</div>
 		<div class="row">
