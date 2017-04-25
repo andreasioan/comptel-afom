@@ -22,6 +22,8 @@ export class SearchFilterComponent implements OnInit {
     reset: boolean;
     searchFilterCollapse: boolean;
 
+    date:any;
+
     formSearchFilter: SearchFilter;
 
     constructor() { }
@@ -96,6 +98,9 @@ export class SearchFilterComponent implements OnInit {
         };
         
         this.searchFilterQuery.emit(this.formSearchFilter);
+        console.log(this.date);
     }
+
+    
 
 }

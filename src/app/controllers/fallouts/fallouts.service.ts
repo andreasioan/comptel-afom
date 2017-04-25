@@ -24,5 +24,6 @@ export class FalloutsService {
                 return this.fallouts;
             })
             .catch((error: Response) => Observable.throw(error.json()));
+
     }
 }

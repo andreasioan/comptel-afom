@@ -15,6 +15,21 @@
 				<app-table [tableType]="'fallout'" [rows]="falloutRows"></app-table>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="form-inline pull-right">
+					<div class="form-group">
+						<label for="rows">Results to display: </label>
+						<select class="form-control">
+							<option value="25">25</option>
+							<option value="50">50</option>
+							<option value="100">100</option>
+							<option value="200">200</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 <app-loading *ngIf="!falloutsLoaded"></app-loading>
