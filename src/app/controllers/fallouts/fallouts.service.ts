@@ -49,8 +49,6 @@ export class FalloutsService {
             }
         }
 
-        // params.set('action', 'opensearch');
-
         return this.http.get('http://localhost:3000/api/fallouts', { search: params })
             .map((response: Response) => {
                 const res = response.json();
