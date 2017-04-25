@@ -11,7 +11,9 @@ import { SearchFilter } from '../models/search-filter.model';
 
 export class SearchFilterComponent implements OnInit {
     @Input() tableType: String;
+    @Input() searchQuery: SearchFilter = {};
     @Output() searchFilterQuery = new EventEmitter<SearchFilter>();
+    @Output() resetClicked = new EventEmitter<any>();
 
     headings: String[];
     searchColumns: string[];
@@ -21,8 +23,6 @@ export class SearchFilterComponent implements OnInit {
     dueDate: boolean;
     reset: boolean;
     searchFilterCollapse: boolean;
-
-    date:any;
 
     formSearchFilter: SearchFilter;
 
@@ -85,22 +85,58 @@ export class SearchFilterComponent implements OnInit {
         this.reset = true;
     }
 
+    onResetClick() {
+        this.resetClicked.emit();
+    }
+
     onApply() {
         this.formSearchFilter = {
             orderBy: {
-                column: 'twat',
-                orderBy: 'no'
+                column: this.getColumnName(this.searchQuery.orderBy.column),
+                orderBy: this.searchQuery.orderBy.orderBy
+            },
+            creationTimestamp: {
+                from: this.searchQuery.creationTimestamp.from,
+                to: this.searchQuery.creationTimestamp.to
+            },
+            dueDate: {
+                from: this.searchQuery.dueDate.from,
+                to: this.searchQuery.dueDate.to
             },
             search: {
-                column: 'what column',
-                query: 'DO THINGS'
+                column: this.getColumnName(this.searchQuery.search.column),
+                query: this.searchQuery.search.query
             }
         };
-        
+
         this.searchFilterQuery.emit(this.formSearchFilter);
-        console.log(this.date);
     }
 
-    
+    getColumnName(column: string) {
+        switch (column) {
+            case 'ID':
+                return 'id';
+            case 'Source':
+                return 'source';
+            case 'Source Fallout ID':
+                return 'source_fallout_id';
+            case 'Error Code':
+                return 'error_code';
+            case 'Creation Timestamp':
+                return 'creation_timestamp';
+            case 'Due Date':
+                return 'due_date';
+            case 'Status':
+                return 'status';
+            case 'Fallout ID':
+                return 'source_fallout_id';
+            case 'Action ID':
+                return 'action_id';
+            case 'Source System':
+                return 'target_system';
+            case 'Retry Count':
+                return 'retry_count';
+        }
+    }
 
 }

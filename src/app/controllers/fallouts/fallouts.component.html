@@ -7,7 +7,7 @@
 	<div *ngIf="falloutsLoaded">
 		<div class="row">
 			<div class="col-xs-12">
-				<app-search-filter [tableType]="'fallout'" (searchFilterQuery)="onSearchFilter($event)"></app-search-filter>
+				<app-search-filter (resetClicked)="onResetClicked()" [tableType]="'fallout'" [searchQuery]="searchFilter" (searchFilterQuery)="onSearchFilter($event)"></app-search-filter>
 			</div>
 		</div>
 		<div class="row">
@@ -20,14 +20,19 @@
 				<div class="form-inline pull-right">
 					<div class="form-group">
 						<label for="rows">Results to display: </label>
-						<select class="form-control">
-							<option value="25">25</option>
+						<select [ngModel]="limit" class="form-control" (change)="onRows(rows.value)" #rows>
+							<option (change)="onRows()" value="25">25</option>
 							<option value="50">50</option>
 							<option value="100">100</option>
 							<option value="200">200</option>
 						</select>
 					</div>
 				</div>
+			</div>
+		</div>
+		<div class="row" style="padding-bottom: 50px">
+			<div class="col-xs-12">
+				<app-paginate [paginate]="paginate" (nextPage)="onPaginate($event)"></app-paginate>
 			</div>
 		</div>
 	</div>

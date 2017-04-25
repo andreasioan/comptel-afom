@@ -13,6 +13,7 @@ import { ResolutionsComponent } from './controllers/resolutions/resolutions.comp
 import { TableComponent } from './controllers/common/table/table.component';
 import { SearchFilterComponent } from './controllers/common/search-filter/search-filter.component';
 import { LoadingComponent } from './controllers/common/loading/loading.component';
+import { PaginateComponent } from './controllers/common/paginate/paginate.component';
 
 import { ChartsModule } from 'ng2-charts';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -31,7 +32,8 @@ import { routing } from './app.routing';
 		ResolutionsComponent,
 		TableComponent,
 		SearchFilterComponent,
-		LoadingComponent
+		LoadingComponent,
+		PaginateComponent
 	],
 	imports: [
 		BrowserModule,

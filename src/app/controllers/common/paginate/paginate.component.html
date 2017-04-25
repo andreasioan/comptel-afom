@@ -1,0 +1,19 @@
+<nav *ngIf="isLoaded" class="text-center" aria-label="Page navigation">
+	<ul *ngIf="paginate.pages > 1" class="pagination">
+		<li *ngIf="paginate.page != 1">
+			<a (click)="setPage(1)">First</a>
+		</li>
+		<li *ngIf="paginate.page != 1">
+			<a (click)="setPage(paginate.page - 1)">Previous</a>
+		</li>
+		<li *ngFor="let page of totalPages" [ngClass]="{active:paginate.page === page}">
+			<a (click)="setPage(page)">{{page}}</a>
+		</li>
+		<li *ngIf="paginate.page != paginate.pages">
+			<a (click)="setPage(paginate.page + 1)">Next</a>
+		</li>
+		<li *ngIf="paginate.page != paginate.pages">
+			<a (click)="setPage(paginate.pages)">Last</a>
+		</li>
+	</ul>
+</nav>
