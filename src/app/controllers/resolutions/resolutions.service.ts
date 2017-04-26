@@ -49,7 +49,7 @@ export class ResolutionsService {
             }
         }
 
-        return this.http.get('http://localhost:3000/api/resolutions', { search: params })
+        return this.http.get('https://comptel-api.herokuapp.com/api/resolutions', { search: params })
             .map((response: Response) => {
                 const res = response.json();
                 let transformedRows: Resolution[] = [];

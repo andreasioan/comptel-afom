@@ -49,7 +49,7 @@ export class FalloutsService {
             }
         }
 
-        return this.http.get('http://localhost:3000/api/fallouts', { search: params })
+        return this.http.get('https://comptel-api.herokuapp.com/api/fallouts', { search: params })
             .map((response: Response) => {
                 const res = response.json();
                 let transformedRows: Fallout[] = [];
