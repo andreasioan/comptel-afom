@@ -34,13 +34,13 @@ export class FalloutsService {
             }
 
             if (searchFilter.creationTimestamp.from && searchFilter.creationTimestamp.to) {
-                params.set('fromDate', searchFilter.creationTimestamp.from);
-                params.set('toDate', searchFilter.creationTimestamp.to);
+                params.set('createdatefrom', searchFilter.creationTimestamp.from);
+                params.set('createdateto', searchFilter.creationTimestamp.to);
             }
 
             if (searchFilter.dueDate.from && searchFilter.dueDate.to) {
-                params.set('fromDate', searchFilter.dueDate.from);
-                params.set('toDate', searchFilter.dueDate.to);
+                params.set('duedatefrom', searchFilter.dueDate.from);
+                params.set('duedateto', searchFilter.dueDate.to);
             }
 
             if (searchFilter.search.query && searchFilter.search.column) {
