@@ -26,7 +26,6 @@ export class ResolutionsComponent implements OnInit {
     constructor(private resolutionService: ResolutionsService) { }
 
     ngOnInit() {
-        this.getResolutions();
         this.onResetClicked();
     }
 

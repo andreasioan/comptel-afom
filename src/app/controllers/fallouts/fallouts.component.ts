@@ -26,7 +26,6 @@ export class FalloutsComponent implements OnInit {
     constructor(private falloutsService: FalloutsService) { }
 
     ngOnInit() {
-        this.getFallouts();
         this.onResetClicked();
     }
 
