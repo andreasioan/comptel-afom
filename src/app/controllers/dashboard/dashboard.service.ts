@@ -6,39 +6,39 @@ import 'rxjs/Rx';
 
 import { Fallout } from '../common/models/fallout.model';
 import { Resolution } from '../common/models/resolution.model';
+import { DashboardGet } from '../common/models/dashboard-get.model';
 
 @Injectable()
 export class DashboardService {
 
-    falloutRows: Fallout[];
-    resolutionsRows: Resolution[];
+    dashboard: DashboardGet;
 
     constructor(private http: Http) { }
 
-    getFallouts() {
-        return this.http.get('https://afom.hickey.io/rest/public.fallout_master')
+    getDashData() {
+        return this.http.get('https://comptel-api.herokuapp.com/api/dashboard')
             .map((response: Response) => {
-                const rows = response.json();
-                let transformedRows: Fallout[] = [];
-                for (let row of rows.models) {
-                    transformedRows.push(new Fallout(row.id, row.source_system, row.source_fallout_id, row.source_error_code, row.creation_date, row.due_date, row.status));
-                }
-                this.falloutRows = transformedRows;
-                return this.falloutRows.slice(0, 5);
-            })
-            .catch((error: Response) => Observable.throw(error.json()));
-    }
+                const res = response.json();
 
-    getResolutions() {
-        return this.http.get('https://afom.hickey.io/rest/public.resolution_action_orchestration')
-            .map((response: Response) => {
-                const rows = response.json();
-                let transformedRows: Resolution[] = [];
-                for (let row of rows.models) {
-                    transformedRows.push(new Resolution(row.id, row.source_fallout_id, row.action_id, row.target_system, row.creation_date, row.due_date, row.status, row.retry_count));
+                let fallouts: Fallout[] = [];
+                for (let row of res.fallouts) {
+                    fallouts.push(new Fallout(row.id, row.source, row.source_fallout_id, row.error_code, row.creation_timestamp, row.due_date, row.status));
                 }
-                this.resolutionsRows = transformedRows;
-                return this.resolutionsRows.slice(0, 5);
+
+                let resolutions: Resolution[] = [];
+                for (let row of res.resolutions) {
+                    resolutions.push(new Resolution(row.id, row.source_fallout_id, row.action_id, row.target_system, row.creation_timestamp, row.due_date, row.status, row.retry_count));
+                }
+
+                this.dashboard = {
+                    fallouts: fallouts,
+                    resolutions: resolutions,
+                    totalFallouts: res.total_fallouts,
+                    totalResolutions: res.total_resolutions,
+                    falloutsToday: res.fallouts_today,
+                    resolutionsToday: res.resolutions_today
+                };
+                return this.dashboard;
             })
             .catch((error: Response) => Observable.throw(error.json()));
     }

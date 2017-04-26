@@ -12,7 +12,7 @@ export class DoughnutChartComponent implements OnInit {
     ngOnInit() { }
 
     // Doughnut
-    public doughnutChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
+    public doughnutChartLabels: string[] = ['PNI', 'ORDERMANAGER', 'COM'];
     public doughnutChartData: number[] = [this.rand(), this.rand(), this.rand()];
     public doughnutChartType: string = 'doughnut';
 

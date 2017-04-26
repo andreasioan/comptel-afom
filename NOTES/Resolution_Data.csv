@@ -1,4 +1,4 @@
-id,source_fallout_id,action_id,target_system,creation_date,due_date,status,retry_count
+id,source_fallout_id,action_id,target_system,creation_timestamp,due_date,status,retry_count
 1,AFOM00001,ACT006,HFC-SRI,25/03/17 11:24,27/03/17 11:24,CLOSED-SUCCESSFUL,
 2,AFOM00002,ACT007,PNI,25/03/17 08:17,27/03/17 08:17,ERROR,
 3,AFOM00003,ACT007,PNI,23/03/17 09:43,25/03/17 09:43,RETRY-FAILURE,3

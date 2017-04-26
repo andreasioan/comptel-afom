@@ -54,7 +54,7 @@ export class ResolutionsService {
                 const res = response.json();
                 let transformedRows: Resolution[] = [];
                 for (let row of res.docs) {
-                    transformedRows.push(new Resolution(row.id, row.source_fallout_id, row.action_id, row.target_system, row.creation_date, row.due_date, row.status, row.retry_count));
+                    transformedRows.push(new Resolution(row.id, row.source_fallout_id, row.action_id, row.target_system, row.creation_timestamp, row.due_date, row.status, row.retry_count));
                 }
                 this.resolutions = transformedRows;
 

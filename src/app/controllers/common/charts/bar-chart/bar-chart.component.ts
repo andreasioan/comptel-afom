@@ -15,7 +15,7 @@ export class BarChartComponent implements OnInit {
         scaleShowVerticalLines: true,
         responsive: true
     };
-    barChartLabels: string[] = ['2007', '2008', '2009', '2010', '2011', '2012'];
+    barChartLabels: string[] = ['November', 'December', 'January', 'February', 'March', 'April'];
     barChartType: string = 'bar';
     barChartLegend: boolean = true;
 
@@ -25,6 +25,6 @@ export class BarChartComponent implements OnInit {
     ];
 
     rand() {
-        return Math.round(Math.random() * 100);
+        return Math.round(Math.random() * 1000);
     }
 }

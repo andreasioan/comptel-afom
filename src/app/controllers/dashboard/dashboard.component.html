@@ -13,11 +13,11 @@
 					<div class="col-xs-12">
 						<h3>Statistics</h3>
 						<p class="lead">
-							Fallouts Today: <strong>142</strong><br>
-							Resolutions Today: <strong>93</strong><br>
-							Total Fallouts: <strong>32,581</strong><br>
-							Total Resolutions: <strong>23,523</strong><br>
-							Total Unresolved fallouts: <strong>8,612</strong>
+							Fallouts Today: <strong>{{dashboard.falloutsToday}}</strong><br>
+							Resolutions Today: <strong>{{dashboard.resolutionsToday}}</strong><br>
+							Total Fallouts: <strong>{{dashboard.totalFallouts}}</strong><br>
+							Total Resolutions: <strong>{{dashboard.totalResolutions}}</strong><br>
+							Total Unresolved fallouts: <strong>{{dashboard.totalFallouts - dashboard.totalResolutions}}</strong>
 						</p>
 					</div>
 				</div>
@@ -29,7 +29,7 @@
 				</div>
 			</div>
 			<div class="col-sm-6">
-				<h3>Fallout types</h3>
+				<h3>Fallout Source</h3>
 				<app-doughnut-chart></app-doughnut-chart>
 			</div>
 		</div>
@@ -43,7 +43,7 @@
 					<span>Fallouts</span>
 					<button [routerLink]="['fallouts']" class='btn btn-default pull-right'>View more</button>
 				</h2>
-				<app-table [tableType]="'fallout'" [rows]="falloutRows"></app-table>
+				<app-table [tableType]="'fallout'" [rows]="dashboard.fallouts"></app-table>
 			</div>
 		</div>
 		<hr>
@@ -53,7 +53,7 @@
 					<span>Resolutions</span>
 					<button [routerLink]="['resolutions']" class='btn btn-default pull-right'>View more</button>
 				</h2>
-				<app-table [tableType]="'resolution'" [rows]="resolutionRows"></app-table>
+				<app-table [tableType]="'resolution'" [rows]="dashboard.resolutions"></app-table>
 			</div>
 		</div>
 	</div>
