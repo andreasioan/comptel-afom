@@ -18,19 +18,18 @@ export class SearchFilterComponent implements OnInit {
     headings: String[];
     searchColumns: string[];
 
-    orderBy: boolean;
     creationDate: boolean;
     dueDate: boolean;
     reset: boolean;
     searchFilterCollapse: boolean;
 
-    formSearchFilter: SearchFilter;
+    // formSearchFilter: SearchFilter;
 
     constructor() { }
 
     ngOnInit() {
         this.setFalse();
-        this.onOrderBy();
+        this.onCreationDate();
         this.searchFilterCollapse = false;
 
         let falloutHeadings = ['ID', 'Source', 'Source Fallout ID', 'Error Code', 'Creation Timestamp', 'Due Date', 'Status'];
@@ -59,15 +58,9 @@ export class SearchFilterComponent implements OnInit {
     }
 
     setFalse() {
-        this.orderBy = false;
         this.creationDate = false;
         this.dueDate = false;
         this.reset = false;
-    }
-
-    onOrderBy() {
-        this.setFalse();
-        this.orderBy = true;
     }
 
     onCreationDate() {
@@ -90,26 +83,20 @@ export class SearchFilterComponent implements OnInit {
     }
 
     onApply() {
-        this.formSearchFilter = {
-            orderBy: {
-                column: this.getColumnName(this.searchQuery.orderBy.column),
-                orderBy: this.searchQuery.orderBy.orderBy
-            },
-            creationTimestamp: {
-                from: this.searchQuery.creationTimestamp.from,
-                to: this.searchQuery.creationTimestamp.to
-            },
-            dueDate: {
-                from: this.searchQuery.dueDate.from,
-                to: this.searchQuery.dueDate.to
-            },
-            search: {
-                column: this.getColumnName(this.searchQuery.search.column),
-                query: this.searchQuery.search.query
-            }
+        this.searchQuery.creationTimestamp = {
+            from: this.searchQuery.creationTimestamp.from,
+            to: this.searchQuery.creationTimestamp.to
         };
-
-        this.searchFilterQuery.emit(this.formSearchFilter);
+        this.searchQuery.dueDate = {
+            from: this.searchQuery.dueDate.from,
+            to: this.searchQuery.dueDate.to
+        };
+        this.searchQuery.search = {
+            column: this.getColumnName(this.searchQuery.search.column),
+            query: this.searchQuery.search.query
+        }
+        
+        this.searchFilterQuery.emit(this.searchQuery);
     }
 
     getColumnName(column: string) {

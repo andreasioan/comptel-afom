@@ -4,6 +4,7 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 import { DetailsModalComponent } from './details-modal/details-modal.component';
 
 import { Detail } from '../models/detail.model';
+import { Fallout } from '../models/fallout.model';
 
 import { TableService } from './table.service';
 
@@ -21,6 +22,7 @@ export class TableComponent implements OnInit {
 
     @Input() tableType: String;
     @Input() rows: any[] = [];
+    @Input() allowSort: boolean  = true;
 
     headings: String[];
 
@@ -28,7 +30,7 @@ export class TableComponent implements OnInit {
     showModal: boolean = false;
     isDetailsLoaded: boolean = false;
     detailsRows: Detail[];
-    falloutId: string;
+    falloutDetail: Fallout;
 
     constructor(private tableService: TableService) { }
 
@@ -44,17 +46,17 @@ export class TableComponent implements OnInit {
         }
     }
 
-    showDetails(id: string) {
+    showDetails(fallout: Fallout) {
         this.showModal = true;
-        this.falloutId = id;
-        this.tableService.getDetail(id)
+        this.falloutDetail = fallout;
+        this.tableService.getDetail(fallout.ID) 
             .subscribe((data: Detail[]) => {
                 this.detailsRows = data;
                 this.isDetailsLoaded = true;
             });
 
         setTimeout(() => {
-            // Set timeout removes the a-synchronous nature. 
+            // Set timeout removes the a-synchronous nature - to allow the modal object to be craeted
             this.childModal.showChildModal();
         });
     }

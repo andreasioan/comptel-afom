@@ -6,7 +6,7 @@
 			</tr>
 		</thead>
 		<tbody *ngIf="tableType === 'fallout'">
-			<tr *ngFor="let row of rows" (click)="showDetails(row.ID)" class="clickable">
+			<tr *ngFor="let row of rows" (click)="showDetails(row)" class="clickable">
 				<td>{{row.ID}}</td>
 				<td>{{row.Source}}</td>
 				<td>{{row.SourceFalloutID}}</td>
@@ -31,4 +31,4 @@
 	</table>
 </div>
 
-<app-details-modal *ngIf="showModal" [falloutId]="falloutId" [rows]="detailsRows" [isLoaded]="isDetailsLoaded" (closeModal)="detailsClosed()"></app-details-modal>
+<app-details-modal *ngIf="showModal" [fallout]="falloutDetail" [rows]="detailsRows" [isLoaded]="isDetailsLoaded" (closeModal)="detailsClosed()"></app-details-modal>

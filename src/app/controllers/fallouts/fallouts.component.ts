@@ -65,8 +65,8 @@ export class FalloutsComponent implements OnInit {
     onResetClicked() {
         this.searchFilter = {
             orderBy: {
-                column: '',
-                orderBy: ''
+                column: 'id',
+                orderBy: 'desc'
             },
             creationTimestamp: {
                 from: '',

@@ -3,39 +3,61 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title pull-left">Details: {{falloutId}}</h4>
+				<h4 class="modal-title pull-left">Fallout Details</h4>
 				<button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-                <div *ngIf="!rows && isLoaded">
-                    <p>No Data</p>
-                </div>
-				<div *ngIf="isLoaded && rows.length > 0">
-					<!--start table-->
-					<div class="table-responsive">
-						<table class="table table-striped table-hover table-condensed">
-							<thead>
-								<tr>
-									<th>ID</th>
-                                    <th>Property Name</th>
-                                    <th>Property Value</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr *ngFor="let row of rows">
-									<td>{{row.id}}</td>
-									<td>{{row.propertyName}}</td>
-									<td>{{row.propertyValue}}</td>
-								</tr>
-							</tbody>
-						</table>
+				<div class="row">
+					<div class="col-sm-5">
+						<p><strong>Fallout ID:</strong> <u>{{fallout.ID}}</u></p> 
+                        <p><strong>Source:</strong> <u>{{fallout.Source}}</u></p> 
+                        <p><strong>Source Fallout ID:</strong> <u>{{fallout.SourceFalloutID}}</u></p> 
+                        <p><strong>Error Code:</strong> <u>{{fallout.ErrorCode}}</u></p> 
 					</div>
-					<!--end table-->
+                    <div class="col-sm-7">
+						<p><strong>Creation Timestamp:</strong> <u>{{fallout.CreationTimestamp}}</u></p> 
+                        <p><strong>Due Date:</strong> <u>{{fallout.DueDate}}</u></p> 
+                        <p><strong>Status:</strong> <u>{{fallout.Status}}</u></p> 
+					</div>
 				</div>
-				<div *ngIf="!isLoaded">
-					<app-loading></app-loading>
+				<hr>
+				<div class="row" *ngIf="!rows && isLoaded">
+					<div class="col-xs-12">
+						<p>This fallout has no extra details.</p>
+					</div>
+				</div>
+				<div class="row" *ngIf="isLoaded && rows.length > 0">
+					<div class="col-xs-12">
+						<!--start table-->
+						<div class="table-responsive">
+							<table class="table table-striped table-hover table-condensed">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Property Name</th>
+										<th>Property Value</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr *ngFor="let row of rows">
+										<td>{{row.id}}</td>
+										<td>{{row.propertyName}}</td>
+										<td>{{row.propertyValue}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!--end table-->
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<div *ngIf="!isLoaded">
+							<app-loading></app-loading>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

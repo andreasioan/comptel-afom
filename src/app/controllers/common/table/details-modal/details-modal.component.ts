@@ -3,6 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angu
 import { ModalDirective } from 'ngx-bootstrap/modal';
 
 import { Detail } from '../../models/detail.model';
+import { Fallout } from '../../models/fallout.model';
 
 @Component({
     moduleId: module.id,
@@ -14,7 +15,7 @@ export class DetailsModalComponent implements OnInit {
     @ViewChild('childModal') public childModal: ModalDirective;
     @Input() isLoaded: boolean = false;
     @Input() rows: Detail[];
-    @Input() falloutId: string;
+    @Input() fallout: Fallout;
     @Output() closeModal = new EventEmitter<any>();
 
     constructor() { }
