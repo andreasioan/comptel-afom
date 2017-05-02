@@ -1,16 +1,19 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 import { Fallout } from '../models/fallout.model';
 
 @Component({
     moduleId: module.id,
     selector: 'app-table',
-    templateUrl: 'table.component.html'
+    templateUrl: 'table.component.html',
+    styleUrls: ['table.component.css']
 })
 
 export class TableComponent implements OnInit {
     @Input() tableType: String;
     @Input() rows: any[] = [];
+    @ViewChild('childModal') public childModal: ModalDirective;
 
     headings: String[];
 
@@ -26,5 +29,13 @@ export class TableComponent implements OnInit {
         else if (this.tableType == 'resolution') {
             this.headings = resolutionHeadings
         }
+    }
+
+    public showChildModal(): void {
+        this.childModal.show();
+    }
+
+    public hideChildModal(): void {
+        this.childModal.hide();
     }
 }
