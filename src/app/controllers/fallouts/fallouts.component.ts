@@ -55,6 +55,13 @@ export class FalloutsComponent implements OnInit {
         this.falloutsLoaded = false;
     }
 
+    onSort(data: any) {
+        this.searchFilter.orderBy = data;
+        this.page = 1;
+        this.getFallouts();
+        this.falloutsLoaded = false;
+    }
+
     onRows(rows: number) {
         this.limit = rows;
         this.page = 1;

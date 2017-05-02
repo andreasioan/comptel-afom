@@ -97,8 +97,6 @@ export class SearchFilterComponent implements OnInit {
             query: this.searchQuery.search.query
         }
 
-        console.log(this.searchQuery);
-
         this.searchFilterQuery.emit(this.searchQuery);
     }
 }

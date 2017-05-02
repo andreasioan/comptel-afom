@@ -44,7 +44,7 @@ import { routing } from './app.routing';
 		routing, // Router
 		ChartsModule, //valor-ng2-charts
 		ModalModule.forRoot(), //valor-ng2-modal
-		CollapseModule.forRoot()
+		CollapseModule.forRoot() //valor-ng2-collapse
 	],
 	providers: [
 	],

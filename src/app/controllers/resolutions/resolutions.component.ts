@@ -55,6 +55,13 @@ export class ResolutionsComponent implements OnInit {
         this.resolutionsLoaded = false;
     }
 
+    onSort(data: any) {
+        this.searchFilter.orderBy = data;
+        this.page = 1;
+        this.getResolutions();
+        this.resolutionsLoaded = false;
+    }
+
     onRows(rows: number) {
         this.limit = rows;
         this.page = 1;
@@ -65,8 +72,8 @@ export class ResolutionsComponent implements OnInit {
     onResetClicked() {
         this.searchFilter = {
             orderBy: {
-                column: '',
-                orderBy: ''
+                column: 'id',
+                orderBy: 'desc'
             },
             creationTimestamp: {
                 from: '',

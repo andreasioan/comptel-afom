@@ -4,8 +4,8 @@
 			<tr>
 				<th *ngFor="let heading of headings">
 					<span (click)="onSort(heading)" [ngClass]="{'clickable':allowSort}">
-						<i class="fa fa-sort-desc" aria-hidden="true" *ngIf="columnName(heading) === sort.column && sort.orderBy === 'desc'"></i>
-						<i class="fa fa-sort-asc" aria-hidden="true" *ngIf="columnName(heading) === sort.column && sort.orderBy === 'asc'"></i>
+						<i class="fa fa-long-arrow-down" aria-hidden="true" *ngIf="allowSort && columnName(heading) === sort.column && sort.orderBy === 'desc'"></i>
+						<i class="fa fa-long-arrow-up" aria-hidden="true" *ngIf="allowSort && columnName(heading) === sort.column && sort.orderBy === 'asc'"></i>
 						{{heading}}
 					</span>
 				</th>

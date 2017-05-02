@@ -12,7 +12,7 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-12">
-				<app-table [tableType]="'resolution'" [rows]="resolutionRows"></app-table>
+				<app-table [tableType]="'resolution'" [rows]="resolutionRows" [sort]="searchFilter.orderBy" (sortColumn)="onSort($event)"></app-table>
 			</div>
 		</div>
 		<div class="row">

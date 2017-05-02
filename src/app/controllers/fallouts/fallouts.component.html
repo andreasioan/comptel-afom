@@ -18,7 +18,7 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-12">
-				<app-table [tableType]="'fallout'" [rows]="falloutRows" [sort]="searchFilter.orderBy"></app-table>
+				<app-table [tableType]="'fallout'" [rows]="falloutRows" [sort]="searchFilter.orderBy" (sortColumn)="onSort($event)"></app-table>
 			</div>
 		</div>
 		<div class="row">

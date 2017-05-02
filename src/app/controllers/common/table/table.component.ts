@@ -76,11 +76,15 @@ export class TableComponent implements OnInit {
 
     onSort(heading: string) {
         if (this.allowSort) {
+            let order: string = 'desc';
 
+            if(this.columnName(heading) == this.sort.column) {
+                order = this.sort.orderBy === 'desc' ? 'asc' : 'desc'
+            }
 
             let newSort = {
                 column: this.columnName(heading),
-                orderBy: 'else'
+                orderBy: order
             };
 
             this.sortColumn.emit(newSort);
