@@ -7,12 +7,18 @@
 	<div *ngIf="falloutsLoaded">
 		<div class="row">
 			<div class="col-xs-12">
-				<app-search-filter (resetClicked)="onResetClicked()" [tableType]="'fallout'" [searchQuery]="searchFilter" (searchFilterQuery)="onSearchFilter($event)"></app-search-filter>
+				<app-search-filter 
+					(resetClicked)="onResetClicked()" 
+					[tableType]="'fallout'" 
+					[searchQuery]="searchFilter" 
+					(searchFilterQuery)="onSearchFilter($event)"
+					>
+				</app-search-filter>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-xs-12">
-				<app-table [tableType]="'fallout'" [rows]="falloutRows"></app-table>
+				<app-table [tableType]="'fallout'" [rows]="falloutRows" [sort]="searchFilter.orderBy"></app-table>
 			</div>
 		</div>
 		<div class="row">

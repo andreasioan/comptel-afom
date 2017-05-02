@@ -39,7 +39,7 @@
 					<span>Fallouts</span>
 					<button [routerLink]="['fallouts']" class='btn btn-default pull-right'>View more</button>
 				</h2>
-				<app-table [tableType]="'fallout'" [rows]="dashboard.fallouts"></app-table>
+				<app-table [tableType]="'fallout'" [allowSort]="false" [rows]="dashboard.fallouts"></app-table>
 			</div>
 		</div>
 		<hr>
@@ -49,7 +49,7 @@
 					<span>Resolutions</span>
 					<button [routerLink]="['resolutions']" class='btn btn-default pull-right'>View more</button>
 				</h2>
-				<app-table [tableType]="'resolution'" [rows]="dashboard.resolutions"></app-table>
+				<app-table [tableType]="'resolution'" [allowSort]="false" [rows]="dashboard.resolutions"></app-table>
 			</div>
 		</div>
 	</div>
