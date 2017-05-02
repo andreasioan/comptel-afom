@@ -4,13 +4,7 @@ import { Component, OnInit } from '@angular/core';
 	moduleId: module.id,
 	selector: 'app-loading',
 	templateUrl: 'loading.component.html',
-	styles: [
-		`
-			p {
-				padding-top: 10px;
-			}
-		`
-	]
+	styleUrls: ['loading.component.css']
 })
 
 export class LoadingComponent implements OnInit {

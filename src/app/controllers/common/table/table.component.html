@@ -6,7 +6,7 @@
 			</tr>
 		</thead>
 		<tbody *ngIf="tableType === 'fallout'">
-			<tr *ngFor="let row of rows" (click)="showChildModal()" class="clickable">
+			<tr *ngFor="let row of rows" (click)="showDetails(row.ID)" class="clickable">
 				<td>{{row.ID}}</td>
 				<td>{{row.Source}}</td>
 				<td>{{row.SourceFalloutID}}</td>
@@ -17,7 +17,7 @@
 			</tr>
 		</tbody>
 		<tbody *ngIf="tableType === 'resolution'">
-			<tr *ngFor="let row of rows" (click)="showChildModal()" class="clickable">
+			<tr *ngFor="let row of rows">
 				<td>{{row.ID}}</td>
 				<td>{{row.FalloutID}}</td>
 				<td>{{row.ActionID}}</td>
@@ -31,19 +31,4 @@
 	</table>
 </div>
 
-<button type="button" class="btn btn-primary" (click)="showChildModal()">Open child modal</button>
-<div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-sm">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title pull-left">Child modal</h4>
-				<button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				I am a child modal, opened from parent component!
-			</div>
-		</div>
-	</div>
-</div>
+<app-details-modal *ngIf="showModal" [falloutId]="falloutId" [rows]="detailsRows" [isLoaded]="isDetailsLoaded" (closeModal)="detailsClosed()"></app-details-modal>

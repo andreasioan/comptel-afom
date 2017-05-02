@@ -13,11 +13,7 @@
 					<div class="col-xs-12">
 						<h3>Statistics</h3>
 						<p class="lead">
-							Fallouts Today: <strong>{{dashboard.falloutsToday}}</strong><br>
-							Resolutions Today: <strong>{{dashboard.resolutionsToday}}</strong><br>
-							Total Fallouts: <strong>{{dashboard.totalFallouts}}</strong><br>
-							Total Resolutions: <strong>{{dashboard.totalResolutions}}</strong><br>
-							Total Unresolved fallouts: <strong>{{dashboard.totalFallouts - dashboard.totalResolutions}}</strong>
+							Fallouts Today: <strong>{{dashboard.falloutsToday}}</strong><br> Resolutions Today: <strong>{{dashboard.resolutionsToday}}</strong><br>							Total Fallouts: <strong>{{dashboard.totalFallouts}}</strong><br> Total Resolutions: <strong>{{dashboard.totalResolutions}}</strong><br>							Total Unresolved fallouts: <strong>{{dashboard.totalFallouts - dashboard.totalResolutions}}</strong>
 						</p>
 					</div>
 				</div>
@@ -65,4 +61,6 @@
 		</p>
 	</div>
 </footer>
-<app-loading *ngIf="!pageLoaded"></app-loading>
+<div class="container">
+	<app-loading *ngIf="!pageLoaded"></app-loading>
+</div>

@@ -1,23 +1,36 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 
-import { Fallout } from '../models/fallout.model';
+import { DetailsModalComponent } from './details-modal/details-modal.component';
+
+import { Detail } from '../models/detail.model';
+
+import { TableService } from './table.service';
+
 
 @Component({
     moduleId: module.id,
     selector: 'app-table',
     templateUrl: 'table.component.html',
-    styleUrls: ['table.component.css']
+    styleUrls: ['table.component.css'],
+    providers: [TableService]
 })
 
 export class TableComponent implements OnInit {
+    @ViewChild(DetailsModalComponent) public childModal: DetailsModalComponent;
+
     @Input() tableType: String;
     @Input() rows: any[] = [];
-    @ViewChild('childModal') public childModal: ModalDirective;
 
     headings: String[];
 
-    constructor() { }
+    //modal
+    showModal: boolean = false;
+    isDetailsLoaded: boolean = false;
+    detailsRows: Detail[];
+    falloutId: string;
+
+    constructor(private tableService: TableService) { }
 
     ngOnInit() {
         let falloutHeadings = ['ID', 'Source', 'Source Fallout ID', 'Error Code', 'Creation Timestamp', 'Due Date', 'Status'];
@@ -31,11 +44,23 @@ export class TableComponent implements OnInit {
         }
     }
 
-    public showChildModal(): void {
-        this.childModal.show();
+    showDetails(id: string) {
+        this.showModal = true;
+        this.falloutId = id;
+        this.tableService.getDetail(id)
+            .subscribe((data: Detail[]) => {
+                this.detailsRows = data;
+                this.isDetailsLoaded = true;
+            });
+
+        setTimeout(() => {
+            // Set timeout removes the a-synchronous nature. 
+            this.childModal.showChildModal();
+        });
     }
 
-    public hideChildModal(): void {
-        this.childModal.hide();
+    detailsClosed() {
+        this.showModal = false;
+        this.isDetailsLoaded = false;
     }
 }

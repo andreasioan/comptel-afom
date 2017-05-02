@@ -14,6 +14,7 @@ import { TableComponent } from './controllers/common/table/table.component';
 import { SearchFilterComponent } from './controllers/common/search-filter/search-filter.component';
 import { LoadingComponent } from './controllers/common/loading/loading.component';
 import { PaginateComponent } from './controllers/common/paginate/paginate.component';
+import { DetailsModalComponent } from './controllers/common/table/details-modal/details-modal.component';
 
 import { ChartsModule } from 'ng2-charts';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -33,7 +34,8 @@ import { routing } from './app.routing';
 		TableComponent,
 		SearchFilterComponent,
 		LoadingComponent,
-		PaginateComponent
+		PaginateComponent,
+		DetailsModalComponent
 	],
 	imports: [
 		BrowserModule,
