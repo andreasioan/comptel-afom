@@ -17,7 +17,7 @@ export interface DashboardGet {
         closedSuccessfullCount: number
     },
     barChart: {
-        falloutsMonth0: number,falloutsMonth1: number,falloutsMonth2: number,falloutsMonth3: number,falloutsMonth4: number,falloutsMonth5: number,
-        resolutionsMonth0: number,resolutionsMonth1: number,resolutionsMonth2: number,resolutionsMonth3: number,resolutionsMonth4: number,resolutionsMonth5: number,
+        falloutsDay0: number,falloutsDay1: number,falloutsDay2: number,falloutsDay3: number,falloutsDay4: number,falloutsDay5: number,
+        resolutionsDay0: number,resolutionsDay1: number,resolutionsDay2: number,resolutionsDay3: number,resolutionsDay4: number,resolutionsDay5: number,
     }
 }

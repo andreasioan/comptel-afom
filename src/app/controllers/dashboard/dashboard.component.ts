@@ -56,23 +56,23 @@ export class DashboardComponent implements OnInit {
                 this.barData = [
                     {
                         data: [
-                            dashboard.barChart.falloutsMonth5,
-                            dashboard.barChart.falloutsMonth4,
-                            dashboard.barChart.falloutsMonth3,
-                            dashboard.barChart.falloutsMonth2,
-                            dashboard.barChart.falloutsMonth1,
-                            dashboard.barChart.falloutsMonth0,
+                            dashboard.barChart.falloutsDay5,
+                            dashboard.barChart.falloutsDay4,
+                            dashboard.barChart.falloutsDay3,
+                            dashboard.barChart.falloutsDay2,
+                            dashboard.barChart.falloutsDay1,
+                            dashboard.barChart.falloutsDay0,
                         ],
                         label: 'Fallouts'
                     },
                     {
                         data: [
-                            dashboard.barChart.resolutionsMonth5,
-                            dashboard.barChart.resolutionsMonth4,
-                            dashboard.barChart.resolutionsMonth3,
-                            dashboard.barChart.resolutionsMonth2,
-                            dashboard.barChart.resolutionsMonth1,
-                            dashboard.barChart.resolutionsMonth0,
+                            dashboard.barChart.resolutionsDay5,
+                            dashboard.barChart.resolutionsDay4,
+                            dashboard.barChart.resolutionsDay3,
+                            dashboard.barChart.resolutionsDay2,
+                            dashboard.barChart.resolutionsDay1,
+                            dashboard.barChart.resolutionsDay0,
                         ],
                         label: 'Resolutions'
                     }

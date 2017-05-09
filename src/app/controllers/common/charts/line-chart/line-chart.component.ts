@@ -5,7 +5,7 @@ import { Component, OnInit, Input } from '@angular/core';
     templateUrl: 'line-chart.component.html'
 })
 export class LineChartComponent implements OnInit {
-    @Input() data: any[] = [1];
+    @Input() data: any[] = [{data: [1], label: 'twat'}];
     @Input() headings: string[] = ['wot'];
 
     constructor() { }

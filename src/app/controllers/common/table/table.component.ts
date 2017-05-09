@@ -16,7 +16,6 @@ import { TableService } from './table.service';
     moduleId: module.id,
     selector: 'app-table',
     templateUrl: 'table.component.html',
-    styleUrls: ['table.component.css'],
     providers: [TableService]
 })
 

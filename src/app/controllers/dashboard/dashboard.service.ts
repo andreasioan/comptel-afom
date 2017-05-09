@@ -46,18 +46,18 @@ export class DashboardService {
                         closedSuccessfullCount: res.closed_successfull_count
                     },
                     barChart: {
-                        falloutsMonth0: res.fallouts_month_0_count, 
-                        falloutsMonth1: res.fallouts_month_1_count, 
-                        falloutsMonth2: res.fallouts_month_2_count, 
-                        falloutsMonth3: res.fallouts_month_3_count, 
-                        falloutsMonth4: res.fallouts_month_4_count, 
-                        falloutsMonth5: res.fallouts_month_5_count,
-                        resolutionsMonth0: res.resolutions_month_0_count, 
-                        resolutionsMonth1: res.resolutions_month_1_count, 
-                        resolutionsMonth2: res.resolutions_month_2_count, 
-                        resolutionsMonth3: res.resolutions_month_3_count, 
-                        resolutionsMonth4: res.resolutions_month_4_count, 
-                        resolutionsMonth5: res.resolutions_month_5_count,
+                        falloutsDay0: res.fallouts_day_0_count, 
+                        falloutsDay1: res.fallouts_day_1_count, 
+                        falloutsDay2: res.fallouts_day_2_count, 
+                        falloutsDay3: res.fallouts_day_3_count, 
+                        falloutsDay4: res.fallouts_day_4_count, 
+                        falloutsDay5: res.fallouts_day_5_count,
+                        resolutionsDay0: res.resolutions_day_0_count, 
+                        resolutionsDay1: res.resolutions_day_1_count, 
+                        resolutionsDay2: res.resolutions_day_2_count, 
+                        resolutionsDay3: res.resolutions_day_3_count, 
+                        resolutionsDay4: res.resolutions_day_4_count, 
+                        resolutionsDay5: res.resolutions_day_5_count,
                     }
                 };
                 return this.dashboard;

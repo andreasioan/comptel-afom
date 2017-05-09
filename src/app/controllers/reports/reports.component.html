@@ -6,19 +6,19 @@
 	</div>
 </div>
 <hr>
-<div class="container" *ngIf="isLoaded">
+<div class="container" *ngIf="isCreationDateLoaded">
 	<div class="row">
 		<div class="col-md-4">
 			<h2 class="featurette-heading"><span class="clickable">Creation Date</span> | <span class="text-muted clickable">Due Date</span></h2>
 			<p class="lead">Number of fallouts and resolutions by creation date</p>
 			<div class="btn-group" role="group" aria-label="...">
-				<button type="button" class="btn btn-default">5 Years</button>
-				<button type="button" class="btn btn-default">6 Months</button>
-				<button type="button" class="btn btn-default active">7 Days</button>
+				<button type="button" class="btn btn-default">Years</button>
+				<button type="button" class="btn btn-default">Months</button>
+				<button type="button" class="btn btn-default active">Days</button>
 			</div>
 		</div>
 		<div class="col-md-8">
-			<app-line-chart></app-line-chart>
+			<app-line-chart [data]="creationDateData" [headings]="creationDateHeadings"></app-line-chart>
 		</div>
 	</div>
 	<hr class="featurette-divider">
@@ -55,6 +55,6 @@
 	</div>
 	<hr class="featurette-divider">
 </div>
-<div class="container" *ngIf="!isLoaded">
+<div class="container" *ngIf="!isCreationDateLoaded">
 	<app-loading></app-loading>
 </div>
