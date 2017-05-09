@@ -21,7 +21,7 @@
 				<div class="row">
 					<div class="col-xs-12">
 						<h3><i class="fa fa-bar-chart" aria-hidden="true"></i> Fallouts | Resolutions</h3>
-						<app-bar-chart></app-bar-chart>
+						<app-bar-chart [data]="barData" [headings]="barHeadings"></app-bar-chart>
 					</div>
 				</div>
 			</div>
@@ -57,7 +57,7 @@
 </div>
 <footer class="text-muted" *ngIf="pageLoaded">
 	<div class="container">
-		<p><small><a href="mailto:a.j.ioannidis@hotmail.com">Andreas Ioannidis</a> | <a href="http://www.comptel.com/">Comptel</a> &copy;
+		<p><small><a href="mailto:7521588@student.swin.edu.au">Andreas Ioannidis</a> | <a href="http://www.comptel.com/">Comptel</a> &copy; <span class="pull-right">Note: All graphs start from 10 weeks back.</span>
 			2017</small>
 		</p>
 	</div>

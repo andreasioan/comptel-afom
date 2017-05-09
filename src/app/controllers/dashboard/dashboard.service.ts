@@ -44,6 +44,20 @@ export class DashboardService {
                         errorCount: res.error_count,
                         closedFailureCount: res.closed_failure_count,
                         closedSuccessfullCount: res.closed_successfull_count
+                    },
+                    barChart: {
+                        falloutsMonth0: res.fallouts_month_0_count, 
+                        falloutsMonth1: res.fallouts_month_1_count, 
+                        falloutsMonth2: res.fallouts_month_2_count, 
+                        falloutsMonth3: res.fallouts_month_3_count, 
+                        falloutsMonth4: res.fallouts_month_4_count, 
+                        falloutsMonth5: res.fallouts_month_5_count,
+                        resolutionsMonth0: res.resolutions_month_0_count, 
+                        resolutionsMonth1: res.resolutions_month_1_count, 
+                        resolutionsMonth2: res.resolutions_month_2_count, 
+                        resolutionsMonth3: res.resolutions_month_3_count, 
+                        resolutionsMonth4: res.resolutions_month_4_count, 
+                        resolutionsMonth5: res.resolutions_month_5_count,
                     }
                 };
                 return this.dashboard;

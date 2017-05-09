@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
     moduleId: module.id,
@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class BarChartComponent implements OnInit {
+    @Input() data: number[] = [1];
+    @Input() headings: string[] = ['wot']
+
     constructor() { }
 
     ngOnInit() { }
@@ -15,16 +18,6 @@ export class BarChartComponent implements OnInit {
         scaleShowVerticalLines: true,
         responsive: true
     };
-    barChartLabels: string[] = ['November', 'December', 'January', 'February', 'March', 'April'];
     barChartType: string = 'bar';
     barChartLegend: boolean = true;
-
-    barChartData: any[] = [
-        { data: [this.rand(), this.rand(), this.rand(), this.rand(), this.rand(), this.rand()], label: 'Fallouts' },
-        { data: [this.rand(), this.rand(), this.rand(), this.rand(), this.rand(), this.rand()], label: 'Resolutions' }
-    ];
-
-    rand() {
-        return Math.round(Math.random() * 1000);
-    }
 }

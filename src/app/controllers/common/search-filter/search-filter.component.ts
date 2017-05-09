@@ -6,8 +6,7 @@ import { getColumnName } from '../function/functions';
 @Component({
     moduleId: module.id,
     selector: 'app-search-filter',
-    templateUrl: 'search-filter.component.html',
-    styleUrls: ['search-filter.component.css']
+    templateUrl: 'search-filter.component.html'
 })
 
 export class SearchFilterComponent implements OnInit {
