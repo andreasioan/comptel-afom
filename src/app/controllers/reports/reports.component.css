@@ -1,5 +1,5 @@
 .featurette-divider {
-  margin: 40px 0; /* Space out the Bootstrap <hr> more */
+  margin: 20px 0; /* Space out the Bootstrap <hr> more */
 }
 
 /* Thin out the marketing headings */
@@ -10,6 +10,6 @@
 
 @media (min-width: 992px) {
   .featurette-heading {
-    margin-top: 60px;
+    margin-top: 20px;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
     moduleId: module.id,
@@ -7,16 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class DoughnutChartComponent implements OnInit {
+    @Input() data: number[];
+    @Input() headings: string[];
+
+    doughnutChartType: string = 'doughnut';
+
     constructor() { }
 
-    ngOnInit() { }
+    ngOnInit() { 
+
+    }
 
     // Doughnut
-    public doughnutChartLabels: string[] = ['Started', 'Created', 'Closed-Successful', 'Error', 'Closed-Failure'];
-    public doughnutChartData: number[] = [this.rand(), this.rand(), this.rand(), this.rand(), this.rand()];
-    public doughnutChartType: string = 'doughnut';
+    // public doughnutChartLabels: string[] = ['Started', 'Created', 'Closed-Successful', 'Error', 'Closed-Failure'];
+    // public doughnutChartData: number[] = [this.rand(), this.rand(), this.rand(), this.rand(), this.rand()];
+    // public 
 
-    rand(){
+    rand() {
         return Math.floor(Math.random() * 10000 - 1);
     }
 }

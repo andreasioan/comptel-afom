@@ -19,15 +19,25 @@ export class DashboardComponent implements OnInit {
     dashboard: DashboardGet;
     showDate: String;
 
+    donutData: number[];
+    donutHeadings: string[];
+
     constructor(private dashboardService: DashboardService) { }
 
     ngOnInit() {
         this.pageLoaded = false;
-
+        this.donutHeadings = ['Started', 'Created', 'Closed-Successful', 'Error', 'Closed-Failure'];
         this.dashboardService.getDashData()
             .subscribe((dashboard: DashboardGet) => {
                 this.dashboard = dashboard;
                 this.pageLoaded = true;
+                this.donutData = [
+                    dashboard.donutChart.startedCount,
+                    dashboard.donutChart.createdCount,
+                    dashboard.donutChart.closedSuccessfullCount,
+                    dashboard.donutChart.errorCount,
+                    dashboard.donutChart.closedFailureCount
+                ];
             });
 
         this.showDate = new Date().toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long' });

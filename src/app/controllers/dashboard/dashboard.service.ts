@@ -36,7 +36,15 @@ export class DashboardService {
                     totalFallouts: res.total_fallouts,
                     totalResolutions: res.total_resolutions,
                     falloutsToday: res.fallouts_today,
-                    resolutionsToday: res.resolutions_today
+                    resolutionsToday: res.resolutions_today,
+                    totalUnresolvesFallouts: res.total_unresolved_fallouts,
+                    donutChart: {
+                        startedCount: res.started_count,
+                        createdCount: res.created_count,
+                        errorCount: res.error_count,
+                        closedFailureCount: res.closed_failure_count,
+                        closedSuccessfullCount: res.closed_successfull_count
+                    }
                 };
                 return this.dashboard;
             })

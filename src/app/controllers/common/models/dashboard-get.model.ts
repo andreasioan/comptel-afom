@@ -7,5 +7,13 @@ export interface DashboardGet {
     totalFallouts: number,
     totalResolutions: number,
     falloutsToday: number,
-    resolutionsToday: number
+    resolutionsToday: number,
+    totalUnresolvesFallouts: number,
+    donutChart: {
+        startedCount: number,
+        createdCount: number, 
+        errorCount: number,
+        closedFailureCount: number,
+        closedSuccessfullCount: number
+    }
 }
