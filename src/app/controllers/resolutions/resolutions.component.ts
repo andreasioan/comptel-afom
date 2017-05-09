@@ -23,10 +23,13 @@ export class ResolutionsComponent implements OnInit {
     page: number = 1;
     searchFilter: SearchFilter;
 
+    showDate: string;
+
     constructor(private resolutionService: ResolutionsService) { }
 
     ngOnInit() {
         this.onResetClicked();
+        this.showDate = new Date().toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long' });
     }
 
     getResolutions() {
@@ -75,7 +78,7 @@ export class ResolutionsComponent implements OnInit {
                 column: 'id',
                 orderBy: 'desc'
             },
-            creationTimestamp: {
+            creationDate: {
                 from: '',
                 to: ''
             },

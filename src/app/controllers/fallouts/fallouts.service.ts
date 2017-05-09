@@ -33,9 +33,9 @@ export class FalloutsService {
                 }
             }
 
-            if (searchFilter.creationTimestamp.from && searchFilter.creationTimestamp.to) {
-                params.set('createdatefrom', searchFilter.creationTimestamp.from);
-                params.set('createdateto', searchFilter.creationTimestamp.to);
+            if (searchFilter.creationDate.from && searchFilter.creationDate.to) {
+                params.set('createdatefrom', searchFilter.creationDate.from);
+                params.set('createdateto', searchFilter.creationDate.to);
             }
 
             if (searchFilter.dueDate.from && searchFilter.dueDate.to) {
@@ -54,7 +54,7 @@ export class FalloutsService {
                 const res = response.json();
                 let transformedRows: Fallout[] = [];
                 for (let row of res.docs) {
-                    transformedRows.push(new Fallout(row.id, row.source, row.source_fallout_id, row.error_code, row.creation_timestamp, row.due_date, row.status));
+                    transformedRows.push(new Fallout(row.id, row.source_system, row.source_fallout_id, row.source_error_code, row.creation_date, row.due_date, row.status));
                 }
                 this.fallouts = transformedRows;
 

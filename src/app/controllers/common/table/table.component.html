@@ -17,8 +17,8 @@
 				<td>{{row.Source}}</td>
 				<td>{{row.SourceFalloutID}}</td>
 				<td>{{row.ErrorCode}}</td>
-				<td>{{row.CreationTimestamp}}</td>
-				<td>{{row.DueDate}}</td>
+				<td>{{row.CreationDate | niceDate}}</td>
+				<td>{{row.DueDate | niceDate}}</td>
 				<td>{{row.Status}}</td>
 			</tr>
 		</tbody>
@@ -28,13 +28,17 @@
 				<td>{{row.FalloutID}}</td>
 				<td>{{row.ActionID}}</td>
 				<td>{{row.SourceSystem}}</td>
-				<td>{{row.CreationTimestamp}}</td>
-				<td>{{row.DueDate}}</td>
+				<td>{{row.CreationDate | niceDate}}</td>
+				<td>{{row.DueDate | niceDate}}</td>
 				<td>{{row.Status}}</td>
 				<td>{{row.RetryCount}}</td>
+				<td *ngIf="row.ErrorCode"><button class="btn btn-danger btn-xs" (click)="onViewResolutionError(row)">View Error</button></td>
+				<td *ngIf="!row.ErrorCode"> -</td>
 			</tr>
 		</tbody>
 	</table>
 </div>
 
 <app-details-modal *ngIf="showModal" [fallout]="falloutDetail" [rows]="detailsRows" [isLoaded]="isDetailsLoaded" (closeModal)="detailsClosed()"></app-details-modal>
+
+<app-resolution-error-modal *ngIf="showResError" [resolution]="resolutionError" (closeModal)="onResErrorClose()"></app-resolution-error-modal>

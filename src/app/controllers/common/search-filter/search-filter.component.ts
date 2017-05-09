@@ -33,8 +33,8 @@ export class SearchFilterComponent implements OnInit {
         this.onCreationDate();
         this.searchFilterCollapse = false;
 
-        let falloutHeadings = ['ID', 'Source', 'Source Fallout ID', 'Error Code', 'Creation Timestamp', 'Due Date', 'Status'];
-        let resolutionHeadings = ['ID', 'Fallout ID', 'Action ID', 'Source System', 'Creation Timestamp', 'Due Date', 'Status', 'Retry Count'];
+        let falloutHeadings = ['ID', 'Source', 'Source Fallout ID', 'Error Code', 'Creation Date', 'Due Date', 'Status'];
+        let resolutionHeadings = ['ID', 'Fallout ID', 'Action ID', 'Source System', 'Creation Date', 'Due Date', 'Status', 'Retry Count'];
 
         if (this.tableType == 'fallout') {
             this.headings = falloutHeadings;
@@ -84,9 +84,9 @@ export class SearchFilterComponent implements OnInit {
     }
 
     onApply() {
-        this.searchQuery.creationTimestamp = {
-            from: this.searchQuery.creationTimestamp.from,
-            to: this.searchQuery.creationTimestamp.to
+        this.searchQuery.creationDate = {
+            from: this.searchQuery.creationDate.from,
+            to: this.searchQuery.creationDate.to
         };
         this.searchQuery.dueDate = {
             from: this.searchQuery.dueDate.from,

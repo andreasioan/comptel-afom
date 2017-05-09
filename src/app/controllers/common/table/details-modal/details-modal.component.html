@@ -11,15 +11,15 @@
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-sm-5">
-						<p><strong>Fallout ID:</strong> <u>{{fallout.ID}}</u></p> 
-                        <p><strong>Source:</strong> <u>{{fallout.Source}}</u></p> 
-                        <p><strong>Source Fallout ID:</strong> <u>{{fallout.SourceFalloutID}}</u></p> 
-                        <p><strong>Error Code:</strong> <u>{{fallout.ErrorCode}}</u></p> 
+						<p><strong>Fallout ID:</strong> {{fallout.ID}}</p> 
+                        <p><strong>Source:</strong> {{fallout.Source}}</p> 
+                        <p><strong>Source Fallout ID:</strong> {{fallout.SourceFalloutID}}</p> 
+                        <p><strong>Error Code:</strong> {{fallout.ErrorCode}}</p> 
 					</div>
                     <div class="col-sm-7">
-						<p><strong>Creation Timestamp:</strong> <u>{{fallout.CreationTimestamp}}</u></p> 
-                        <p><strong>Due Date:</strong> <u>{{fallout.DueDate}}</u></p> 
-                        <p><strong>Status:</strong> <u>{{fallout.Status}}</u></p> 
+						<p><strong>Creation Date:</strong> {{fallout.CreationDate | niceDate}}</p> 
+                        <p><strong>Due Date:</strong> {{fallout.DueDate | niceDate}}</p> 
+                        <p><strong>Status:</strong> {{fallout.Status}}</p> 
 					</div>
 				</div>
 				<hr>

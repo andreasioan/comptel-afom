@@ -10,11 +10,15 @@ import { BarChartComponent } from './controllers/common/charts/bar-chart/bar-cha
 import { DoughnutChartComponent } from './controllers/common/charts/doughnut-chart/doughnut-chart.component';
 import { FalloutsComponent } from './controllers/fallouts/fallouts.component';
 import { ResolutionsComponent } from './controllers/resolutions/resolutions.component';
+import {ReportsComponent} from './controllers/reports/reports.component';
 import { TableComponent } from './controllers/common/table/table.component';
 import { SearchFilterComponent } from './controllers/common/search-filter/search-filter.component';
 import { LoadingComponent } from './controllers/common/loading/loading.component';
 import { PaginateComponent } from './controllers/common/paginate/paginate.component';
 import { DetailsModalComponent } from './controllers/common/table/details-modal/details-modal.component';
+import { ResolutionErrorModalComponent } from './controllers/common/table/resolution-error-modal/resolution-error-modal.component';
+
+import { NiceDatePipe } from './controllers/common/pipes/moment.pipe';
 
 import { ChartsModule } from 'ng2-charts';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -35,7 +39,10 @@ import { routing } from './app.routing';
 		SearchFilterComponent,
 		LoadingComponent,
 		PaginateComponent,
-		DetailsModalComponent
+		DetailsModalComponent,
+		NiceDatePipe,
+		ResolutionErrorModalComponent,
+		ReportsComponent
 	],
 	imports: [
 		BrowserModule,

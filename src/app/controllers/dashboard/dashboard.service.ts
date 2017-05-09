@@ -22,12 +22,12 @@ export class DashboardService {
 
                 let fallouts: Fallout[] = [];
                 for (let row of res.fallouts) {
-                    fallouts.push(new Fallout(row.id, row.source, row.source_fallout_id, row.error_code, row.creation_timestamp, row.due_date, row.status));
+                    fallouts.push(new Fallout(row.id, row.source_system, row.source_fallout_id, row.source_error_code, row.creation_date, row.due_date, row.status));
                 }
 
                 let resolutions: Resolution[] = [];
                 for (let row of res.resolutions) {
-                    resolutions.push(new Resolution(row.id, row.source_fallout_id, row.action_id, row.target_system, row.creation_timestamp, row.due_date, row.status, row.retry_count));
+                    resolutions.push(new Resolution(row.id, row.source_fallout_id, row.action_id, row.target_system, row.creation_date, row.due_date, row.status, row.retry_count, row.error_code, row.error_desc));
                 }
 
                 this.dashboard = {

@@ -2,9 +2,11 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angu
 import { ModalDirective } from 'ngx-bootstrap/modal';
 
 import { DetailsModalComponent } from './details-modal/details-modal.component';
+import { ResolutionErrorModalComponent } from './resolution-error-modal/resolution-error-modal.component';
 
 import { Detail } from '../models/detail.model';
 import { Fallout } from '../models/fallout.model';
+import { Resolution } from '../models/resolution.model';
 import { getColumnName } from '../function/functions';
 
 import { TableService } from './table.service';
@@ -20,6 +22,7 @@ import { TableService } from './table.service';
 
 export class TableComponent implements OnInit {
     @ViewChild(DetailsModalComponent) public childModal: DetailsModalComponent;
+    @ViewChild(ResolutionErrorModalComponent) public resErrorModal: ResolutionErrorModalComponent;
 
     @Input() tableType: String;
     @Input() rows: any[] = [];
@@ -30,17 +33,21 @@ export class TableComponent implements OnInit {
     headings: String[];
 
 
-    //modal
+    //details modal
     showModal: boolean = false;
     isDetailsLoaded: boolean = false;
     detailsRows: Detail[];
     falloutDetail: Fallout;
 
+    //resolution error modal
+    showResError: boolean = false;
+    resolutionError: Resolution;
+
     constructor(private tableService: TableService) { }
 
     ngOnInit() {
-        let falloutHeadings = ['ID', 'Source', 'Source Fallout ID', 'Error Code', 'Creation Timestamp', 'Due Date', 'Status'];
-        let resolutionHeadings = ['ID', 'Fallout ID', 'Action ID', 'Source System', 'Creation Timestamp', 'Due Date', 'Status', 'Retry Count'];
+        let falloutHeadings = ['ID', 'Source', 'Source Fallout ID', 'Error Code', 'Creation Date', 'Due Date', 'Status'];
+        let resolutionHeadings = ['ID', 'Fallout ID', 'Action ID', 'Source System', 'Creation Date', 'Due Date', 'Status', 'Retry Count', 'Error'];
 
         if (this.tableType == 'fallout') {
             this.headings = falloutHeadings;
@@ -78,7 +85,7 @@ export class TableComponent implements OnInit {
         if (this.allowSort) {
             let order: string = 'desc';
 
-            if(this.columnName(heading) == this.sort.column) {
+            if (this.columnName(heading) == this.sort.column) {
                 order = this.sort.orderBy === 'desc' ? 'asc' : 'desc'
             }
 
@@ -89,5 +96,18 @@ export class TableComponent implements OnInit {
 
             this.sortColumn.emit(newSort);
         }
+    }
+
+    onViewResolutionError(resolution: Resolution) {
+        this.showResError = true;
+        this.resolutionError = resolution;
+        setTimeout(() => {
+            this.resErrorModal.showChildModal();
+        });
+    }
+
+    onResErrorClose() {
+        this.showResError = false;
+        this.resolutionError = null;
     }
 }

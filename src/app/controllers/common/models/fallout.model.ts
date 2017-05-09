@@ -4,7 +4,7 @@ export class Fallout {
         public Source: string,
         public SourceFalloutID: string,
         public ErrorCode: string,
-        public CreationTimestamp: string,
+        public CreationDate: string,
         public DueDate: string,
         public Status: string
     ){}

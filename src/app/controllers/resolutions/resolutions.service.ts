@@ -33,9 +33,9 @@ export class ResolutionsService {
                 }
             }
 
-            if (searchFilter.creationTimestamp.from && searchFilter.creationTimestamp.to) {
-                params.set('fromDate', searchFilter.creationTimestamp.from);
-                params.set('toDate', searchFilter.creationTimestamp.to);
+            if (searchFilter.creationDate.from && searchFilter.creationDate.to) {
+                params.set('fromDate', searchFilter.creationDate.from);
+                params.set('toDate', searchFilter.creationDate.to);
             }
 
             if (searchFilter.dueDate.from && searchFilter.dueDate.to) {
@@ -54,7 +54,7 @@ export class ResolutionsService {
                 const res = response.json();
                 let transformedRows: Resolution[] = [];
                 for (let row of res.docs) {
-                    transformedRows.push(new Resolution(row.id, row.source_fallout_id, row.action_id, row.target_system, row.creation_timestamp, row.due_date, row.status, row.retry_count));
+                    transformedRows.push(new Resolution(row.id, row.source_fallout_id, row.action_id, row.target_system, row.creation_date, row.due_date, row.status, row.retry_count, row.error_code, row.error_desc));
                 }
                 this.resolutions = transformedRows;
 

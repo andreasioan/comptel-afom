@@ -23,10 +23,14 @@ export class FalloutsComponent implements OnInit {
     page: number = 1;
     searchFilter: SearchFilter;
 
+    showDate: string;
+
     constructor(private falloutsService: FalloutsService) { }
 
     ngOnInit() {
         this.onResetClicked();
+
+        this.showDate = new Date().toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long' });
     }
 
     getFallouts() {
@@ -75,7 +79,7 @@ export class FalloutsComponent implements OnInit {
                 column: 'id',
                 orderBy: 'desc'
             },
-            creationTimestamp: {
+            creationDate: {
                 from: '',
                 to: ''
             },

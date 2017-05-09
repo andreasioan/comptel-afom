@@ -3,7 +3,7 @@ export interface SearchFilter {
         column: string,
         orderBy: string
     };
-    creationTimestamp?: {
+    creationDate?: {
         from: string,
         to: string
     };

@@ -8,8 +8,8 @@ function getColumnName(column: string) {
             return 'source_fallout_id';
         case 'Error Code':
             return 'error_code';
-        case 'Creation Timestamp':
-            return 'creation_timestamp';
+        case 'Creation Date':
+            return 'creation_date';
         case 'Due Date':
             return 'due_date';
         case 'Status':
@@ -22,6 +22,8 @@ function getColumnName(column: string) {
             return 'target_system';
         case 'Retry Count':
             return 'retry_count';
+        case 'Error Desc':
+            return 'error_desc'
     }
 }
 
