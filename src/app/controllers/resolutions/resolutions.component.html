@@ -4,39 +4,40 @@
 			<h1><i class="fa fa-thumbs-up" aria-hidden="true"></i> Resolutions <small>{{showDate}}</small></h1>
 		</div>
 	</div>
-	<div *ngIf="resolutionsLoaded">
-		<div class="row">
-			<div class="col-xs-12">
-				<app-search-filter (resetClicked)="onResetClicked()" [tableType]="'resolution'" [searchQuery]="searchFilter" (searchFilterQuery)="onSearchFilter($event)"></app-search-filter>
-			</div>
+</div>
+<hr>
+<div class="container" *ngIf="resolutionsLoaded">
+	<div class="row">
+		<div class="col-xs-12">
+			<app-search-filter (resetClicked)="onResetClicked()" [tableType]="'resolution'" [searchQuery]="searchFilter" (searchFilterQuery)="onSearchFilter($event)"></app-search-filter>
 		</div>
-		<div class="row">
-			<div class="col-xs-12">
-				<app-table [tableType]="'resolution'" [rows]="resolutionRows" [sort]="searchFilter.orderBy" (sortColumn)="onSort($event)"></app-table>
-			</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<app-table [tableType]="'resolution'" [rows]="resolutionRows" [sort]="searchFilter.orderBy" (sortColumn)="onSort($event)"></app-table>
 		</div>
-		<div class="row">
-			<div class="col-xs-12">
-				<div class="form-inline pull-right">
-					<div class="form-group">
-						<label for="rows">Results to display: </label>
-						<select [ngModel]="limit" class="form-control" (change)="onRows(rows.value)" #rows>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="form-inline pull-right">
+				<div class="form-group">
+					<label for="rows">Results to display: </label>
+					<select [ngModel]="limit" class="form-control" (change)="onRows(rows.value)" #rows>
 							<option (change)="onRows()" value="25">25</option>
 							<option value="50">50</option>
 							<option value="100">100</option>
 							<option value="200">200</option>
 						</select>
-					</div>
 				</div>
 			</div>
 		</div>
-		<div class="row" style="padding-bottom: 50px">
-			<div class="col-xs-12">
-				<app-paginate [paginate]="paginate" (nextPage)="onPaginate($event)"></app-paginate>
-			</div>
+	</div>
+	<div class="row" style="padding-bottom: 50px">
+		<div class="col-xs-12">
+			<app-paginate [paginate]="paginate" (nextPage)="onPaginate($event)"></app-paginate>
 		</div>
 	</div>
 </div>
-<div class="container">
-	<app-loading *ngIf="!resolutionsLoaded"></app-loading>
+<div class="container" *ngIf="!resolutionsLoaded">
+	<app-loading></app-loading>
 </div>

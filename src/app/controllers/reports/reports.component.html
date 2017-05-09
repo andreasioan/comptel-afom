@@ -4,14 +4,40 @@
 			<h1><i class="fa fa-line-chart" aria-hidden="true"></i> Reports <small>{{showDate}}</small></h1>
 		</div>
 	</div>
+</div>
+<hr>
+<div class="container" *ngIf="isLoaded">
 	<div class="row">
-		<div class="col-sm-4">
-			<h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-			<p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo
-				cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+		<div class="col-md-4">
+			<h2 class="featurette-heading">Creation Date</h2>
+			<p class="lead">Number of fallouts and resolutions for the past 7 days by creation date</p>
+			<div class="btn-group" role="group" aria-label="...">
+				<button type="button" class="btn btn-default active">7 Days</button>
+				<button type="button" class="btn btn-default">6 Months</button>
+				<button type="button" class="btn btn-default">5 Years</button>
+			</div>
 		</div>
-		<div class="col-sm-8">
+		<div class="col-md-8">
 			<app-bar-chart></app-bar-chart>
 		</div>
 	</div>
+	<hr class="featurette-divider">
+	<div class="row">
+		<div class="col-md-4">
+			<h2 class="featurette-heading">Creation Date</h2>
+			<p class="lead">Number of fallouts and resolutions for the past 7 days by creation date</p>
+			<div class="btn-group" role="group" aria-label="...">
+				<button type="button" class="btn btn-default active">7 Days</button>
+				<button type="button" class="btn btn-default">6 Months</button>
+				<button type="button" class="btn btn-default">5 Years</button>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<app-line-chart></app-line-chart>
+		</div>
+	</div>
+	<hr class="featurette-divider">
+</div>
+<div class="container" *ngIf="!isLoaded">
+	<app-loading></app-loading>
 </div>

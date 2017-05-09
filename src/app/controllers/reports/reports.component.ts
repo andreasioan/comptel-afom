@@ -9,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
 
 export class ReportsComponent implements OnInit {
     showDate: string;
+    isLoaded: boolean = false;
 
     constructor() { }
 
-    ngOnInit() { 
+    ngOnInit() {
+        setTimeout(() => {
+            this.isLoaded = true;
+        }, 300);
         this.showDate = new Date().toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long' });
     }
 }

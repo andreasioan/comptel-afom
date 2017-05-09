@@ -17,6 +17,7 @@ import { LoadingComponent } from './controllers/common/loading/loading.component
 import { PaginateComponent } from './controllers/common/paginate/paginate.component';
 import { DetailsModalComponent } from './controllers/common/table/details-modal/details-modal.component';
 import { ResolutionErrorModalComponent } from './controllers/common/table/resolution-error-modal/resolution-error-modal.component';
+import { LineChartComponent} from './controllers/common/charts/line-chart/line-chart.component';
 
 import { NiceDatePipe } from './controllers/common/pipes/moment.pipe';
 
@@ -42,7 +43,8 @@ import { routing } from './app.routing';
 		DetailsModalComponent,
 		NiceDatePipe,
 		ResolutionErrorModalComponent,
-		ReportsComponent
+		ReportsComponent,
+		LineChartComponent
 	],
 	imports: [
 		BrowserModule,

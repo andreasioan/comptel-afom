@@ -5,6 +5,7 @@
 		</div>
 	</div>
 </div>
+<hr>
 <div class="stats" *ngIf="pageLoaded">
 	<div class="container">
 		<div class="row">
@@ -61,6 +62,6 @@
 		</p>
 	</div>
 </footer>
-<div class="container">
-	<app-loading *ngIf="!pageLoaded"></app-loading>
+<div class="container" *ngIf="!pageLoaded">
+	<app-loading ></app-loading>
 </div>

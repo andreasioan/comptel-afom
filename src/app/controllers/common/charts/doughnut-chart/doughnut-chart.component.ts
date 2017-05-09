@@ -12,8 +12,8 @@ export class DoughnutChartComponent implements OnInit {
     ngOnInit() { }
 
     // Doughnut
-    public doughnutChartLabels: string[] = ['Started', 'Created', 'Closed-Successful'];
-    public doughnutChartData: number[] = [this.rand(), this.rand(), this.rand()];
+    public doughnutChartLabels: string[] = ['Started', 'Created', 'Closed-Successful', 'Error', 'Closed-Failure'];
+    public doughnutChartData: number[] = [this.rand(), this.rand(), this.rand(), this.rand(), this.rand()];
     public doughnutChartType: string = 'doughnut';
 
     rand(){
