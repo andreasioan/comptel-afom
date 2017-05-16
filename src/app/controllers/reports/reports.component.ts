@@ -20,6 +20,10 @@ export class ReportsComponent implements OnInit {
     creationDateHeadings: any[];
     isDateLoaded: boolean;
     dateType: string;
+    sourceSystem: string = 'All';
+    sourceSystems = ['All', 'COM', 'PNI', 'ORDERMANAGER'];
+    targetSystem: string = 'All';
+    targetSystems = ['All', 'PNI', 'HFC-SRI', 'FTTN-SRI'];
 
     falloutDate: any[];
     falloutHeadings: any[] = [];
@@ -39,11 +43,11 @@ export class ReportsComponent implements OnInit {
         this.showDate = new Date().toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long' });
     }
 
-    setDate(length: any, dateType?: string) {
+    setDate(length?: any, dateType?: string) {
         this.dateType = dateType ? dateType : this.dateType;
         this.isDateLoaded = false;
-        this.creationDateLength = length;
-        this.reportsService.getDates(length, this.dateType)
+        this.creationDateLength = length ? length : this.creationDateLength;
+        this.reportsService.getDates(this.creationDateLength, this.dateType, this.sourceSystem, this.targetSystem)
             .subscribe((data) => {
                 this.creationDateData = data;
                 this.creationDateHeadings = this.setDateHeadings();

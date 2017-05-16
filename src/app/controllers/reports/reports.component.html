@@ -9,18 +9,47 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-4">
-			<h2 class="featurette-heading">
-				<span [ngClass]="{'text-muted clickable': dateType === 'due_date'}" (click)="setDate('days', 'creation_date')">Creation Date</span>				|
-				<span [ngClass]="{'text-muted clickable': dateType === 'creation_date'}" (click)="setDate('days', 'due_date')">Due Date</span>
-			</h2>
-			<p class="lead">Number of fallouts and resolutions by <span *ngIf="dateType === 'creation_date'">creation</span><span *ngIf="dateType === 'due_date'">due</span>				date</p>
-			<div class="btn-group" role="group" aria-label="...">
-				<a class="btn btn-default" [ngClass]="{'active':creationDateLength === 'years'}" (click)="setDate('years')">Years</a>
-				<a class="btn btn-default" [ngClass]="{'active':creationDateLength === 'months'}" (click)="setDate('months')">Months</a>
-				<a class="btn btn-default" [ngClass]="{'active':creationDateLength === 'days'}" (click)="setDate('days')">Days</a>
-				<a class="btn btn-default" [ngClass]="{'active':creationDateLength === 'hours'}" (click)="setDate('hours')">Hours</a>
+			<div class="row">
+				<div class="col-xs-12">
+					<h2 class="featurette-heading">
+						<span [ngClass]="{'text-muted clickable': dateType === 'due_date'}" (click)="setDate('days', 'creation_date')">Creation Date</span> |
+						<span [ngClass]="{'text-muted clickable': dateType === 'creation_date'}" (click)="setDate('days', 'due_date')">Due Date</span>
+					</h2>
+					<p class="lead">Number of fallouts and resolutions by <span *ngIf="dateType === 'creation_date'">creation</span><span *ngIf="dateType === 'due_date'">due</span>						date</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="dateType">View past 7:</label>
+					<br>
+					<div class="btn-group" role="group" id="dateType">
+						<a class="btn btn-default" [ngClass]="{'active':creationDateLength === 'years'}" (click)="setDate('years')">Years</a>
+						<a class="btn btn-default" [ngClass]="{'active':creationDateLength === 'months'}" (click)="setDate('months')">Months</a>
+						<a class="btn btn-default" [ngClass]="{'active':creationDateLength === 'days'}" (click)="setDate('days')">Days</a>
+						<a class="btn btn-default" [ngClass]="{'active':creationDateLength === 'hours'}" (click)="setDate('hours')">Hours</a>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="sourceSystem">Filter by fallout source system:</label>
+					<select [(ngModel)]="sourceSystem" class="form-control" name="sourceFilter" id="sourceFilter" (change)="setDate();">
+						<option *ngFor="let system of sourceSystems" [value]="system">{{system}}</option>
+					</select>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="targetSystem">Filter by resolution target system:</label>
+					<select [(ngModel)]="targetSystem" class="form-control" name="targetFilter" id="targetFilter" (change)="setDate();">
+						<option *ngFor="let system of targetSystems" [value]="system">{{system}}</option>
+					</select>
+				</div>
 			</div>
 		</div>
+		<br>
 		<div class="col-md-8">
 			<app-line-chart *ngIf="isDateLoaded" [data]="creationDateData" [headings]="creationDateHeadings"></app-line-chart>
 			<div *ngIf="!isDateLoaded" class="space">
@@ -35,7 +64,8 @@
 				<div class="col-xs-12">
 					<h2 class="featurette-heading"><span class="clickable">Fallout Error Codes</span> | <span class="text-muted clickable">Status</span></h2>
 					<p class="lead">Overall number of fallout error codes</p>
-					<div class="btn-group" role="group" aria-label="...">
+					<label for="errorRange">View error range: </label>
+					<div class="btn-group" role="group" id="errorRange">
 						<button type="button" class="btn btn-default" [ngClass]="{'active':falloutCode === 1001}" (click)="setFallout(1001)">1001-1015</button>
 						<button type="button" class="btn btn-default" [ngClass]="{'active':falloutCode === 1101}" (click)="setFallout(1101)">1101-1115</button>
 						<button type="button" class="btn btn-default" [ngClass]="{'active':falloutCode === 1201}" (click)="setFallout(1201)">1201-1215</button>

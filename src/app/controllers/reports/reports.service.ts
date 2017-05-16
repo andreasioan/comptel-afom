@@ -9,10 +9,16 @@ export class ReportsService {
 
     constructor(private http: Http) { }
 
-    getDates(length: string, dateType: string) {
+    getDates(length: string, dateType: string, source: string, target: string) {
         let params = new URLSearchParams();
         params.set('length', length);
         params.set('datetype', dateType);
+        if(source != 'All') {
+            params.set('source', source);
+        }
+        if(target != 'All') {
+            params.set('target', target);
+        }
 
         return this.http.get('https://comptel-api.herokuapp.com/api/reports/dates', { search: params })
             .map((response: Response) => {

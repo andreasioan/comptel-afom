@@ -45,8 +45,8 @@ export class TableComponent implements OnInit {
     constructor(private tableService: TableService) { }
 
     ngOnInit() {
-        let falloutHeadings = ['ID', 'Source', 'Source Fallout ID', 'Error Code', 'Creation Date', 'Due Date', 'Status'];
-        let resolutionHeadings = ['ID', 'Fallout ID', 'Action ID', 'Source System', 'Creation Date', 'Due Date', 'Status', 'Retry Count', 'Error'];
+        let falloutHeadings = ['ID', 'Source System', 'Source Fallout ID', 'Error Code', 'Creation Date', 'Due Date', 'Status'];
+        let resolutionHeadings = ['ID', 'Fallout ID', 'Action ID', 'Target System', 'Creation Date', 'Due Date', 'Status', 'Retry Count', 'Error'];
 
         if (this.tableType == 'fallout') {
             this.headings = falloutHeadings;
