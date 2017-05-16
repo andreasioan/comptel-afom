@@ -7,7 +7,7 @@ function getColumnName(column: string) {
         case 'Source Fallout ID':
             return 'source_fallout_id';
         case 'Error Code':
-            return 'error_code';
+            return 'source_error_code';
         case 'Creation Date':
             return 'creation_date';
         case 'Due Date':

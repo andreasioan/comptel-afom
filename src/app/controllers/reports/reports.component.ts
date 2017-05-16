@@ -18,14 +18,23 @@ export class ReportsComponent implements OnInit {
     creationDateLength: Moment.unitOfTime.DurationConstructor = 'days';
     creationDateData: any[];
     creationDateHeadings: any[];
-
     isDateLoaded: boolean;
     dateType: string;
+
+    falloutDate: any[];
+    falloutHeadings: any[] = [];
+    isFalloutLoaded: boolean;
+    falloutCode: number;
+    isFalloutAverageLoaded: boolean;
+    falloutAverageData: any[];
+    falloutAverageHeadings: any[];
 
     constructor(private reportsService: ReportsService) { }
 
     ngOnInit() {
         this.setDate('days', 'creation_date');
+        this.setFallout(1001);
+        this.setFalloutAverage();
 
         this.showDate = new Date().toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long' });
     }
@@ -34,14 +43,13 @@ export class ReportsComponent implements OnInit {
         this.dateType = dateType ? dateType : this.dateType;
         this.isDateLoaded = false;
         this.creationDateLength = length;
-        this.reportsService.getCreationDate(length, this.dateType)
+        this.reportsService.getDates(length, this.dateType)
             .subscribe((data) => {
                 this.creationDateData = data;
                 this.creationDateHeadings = this.setDateHeadings();
                 this.isDateLoaded = true;
             });
     }
-
     setDateHeadings() {
         let creationDateFormat: string = 'dddd';
 
@@ -71,4 +79,32 @@ export class ReportsComponent implements OnInit {
         ];
         return headings;
     }
+
+    setFallout(code: number) {
+        this.isFalloutLoaded = false;
+        this.falloutCode = code;
+        this.reportsService.getFallout(this.falloutCode)
+            .subscribe((data) => {
+                this.falloutDate = data;
+                this.setFalloutHeadings();
+                this.isFalloutLoaded = true;
+            });
+    }
+    setFalloutHeadings() {
+        let temp = [];
+        for (let i = 0; i < 15; i++) {
+            temp.push(this.falloutCode + i);
+        }
+        this.falloutHeadings = temp;
+    }
+    setFalloutAverage() {
+        this.isFalloutAverageLoaded = false;
+        this.reportsService.getFalloutAverage()
+            .subscribe((data) => {
+                this.falloutAverageData = data;
+                this.falloutAverageHeadings = ['1001 - 1015', '1101 - 1115', '1201 - 1215'];
+                this.isFalloutAverageLoaded = true;
+            });
+    }
+
 }

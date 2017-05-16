@@ -10,11 +10,10 @@
 	<div class="row">
 		<div class="col-md-4">
 			<h2 class="featurette-heading">
-				<span [ngClass]="{'text-muted clickable': dateType === 'due_date'}" (click)="setDate('days', 'creation_date')">Creation Date</span>
-				 | 
+				<span [ngClass]="{'text-muted clickable': dateType === 'due_date'}" (click)="setDate('days', 'creation_date')">Creation Date</span>				|
 				<span [ngClass]="{'text-muted clickable': dateType === 'creation_date'}" (click)="setDate('days', 'due_date')">Due Date</span>
 			</h2>
-			<p class="lead">Number of fallouts and resolutions by <span *ngIf="dateType === 'creation_date'">creation</span><span *ngIf="dateType === 'due_date'">due</span> date</p>
+			<p class="lead">Number of fallouts and resolutions by <span *ngIf="dateType === 'creation_date'">creation</span><span *ngIf="dateType === 'due_date'">due</span>				date</p>
 			<div class="btn-group" role="group" aria-label="...">
 				<a class="btn btn-default" [ngClass]="{'active':creationDateLength === 'years'}" (click)="setDate('years')">Years</a>
 				<a class="btn btn-default" [ngClass]="{'active':creationDateLength === 'months'}" (click)="setDate('months')">Months</a>
@@ -32,17 +31,32 @@
 	<hr class="featurette-divider">
 	<div class="row">
 		<div class="col-md-4">
-			<br>
-			<h2 class="featurette-heading"><span class="clickable">Falluout Error Codes</span> | <span class="text-muted clickable">Status</span></h2>
-			<p class="lead">Overall number of fallout error codes</p>
-			<div class="btn-group" role="group" aria-label="...">
-				<button type="button" class="btn btn-default active">1001-1015</button>
-				<button type="button" class="btn btn-default">1101-1115</button>
-				<button type="button" class="btn btn-default">1201-1215</button>
+			<div class="row">
+				<div class="col-xs-12">
+					<h2 class="featurette-heading"><span class="clickable">Fallout Error Codes</span> | <span class="text-muted clickable">Status</span></h2>
+					<p class="lead">Overall number of fallout error codes</p>
+					<div class="btn-group" role="group" aria-label="...">
+						<button type="button" class="btn btn-default" [ngClass]="{'active':falloutCode === 1001}" (click)="setFallout(1001)">1001-1015</button>
+						<button type="button" class="btn btn-default" [ngClass]="{'active':falloutCode === 1101}" (click)="setFallout(1101)">1101-1115</button>
+						<button type="button" class="btn btn-default" [ngClass]="{'active':falloutCode === 1201}" (click)="setFallout(1201)">1201-1215</button>
+					</div>
+				</div>
 			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<app-doughnut-chart *ngIf="isFalloutAverageLoaded" [data]="falloutAverageData" [headings]="falloutAverageHeadings"></app-doughnut-chart>
+					<div *ngIf="!isFalloutAverageLoaded" class="space">
+						<app-loading></app-loading>
+					</div>
+				</div>
+			</div>
+
 		</div>
 		<div class="col-md-6 col-md-offset-1">
-			<app-doughnut-chart></app-doughnut-chart>
+			<app-doughnut-chart *ngIf="isFalloutLoaded" [data]="falloutDate" [headings]="falloutHeadings"></app-doughnut-chart>
+			<div *ngIf="!isFalloutLoaded" class="space">
+				<app-loading></app-loading>
+			</div>
 		</div>
 	</div>
 	<hr class="featurette-divider">
