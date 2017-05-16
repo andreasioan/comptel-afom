@@ -9,12 +9,17 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-4">
-			<h2 class="featurette-heading"><span class="clickable">Creation Date</span> | <span class="text-muted clickable">Due Date</span></h2>
-			<p class="lead">Number of fallouts and resolutions by creation date</p>
+			<h2 class="featurette-heading">
+				<span [ngClass]="{'text-muted clickable': dateType === 'due_date'}" (click)="setDate('days', 'creation_date')">Creation Date</span>
+				 | 
+				<span [ngClass]="{'text-muted clickable': dateType === 'creation_date'}" (click)="setDate('days', 'due_date')">Due Date</span>
+			</h2>
+			<p class="lead">Number of fallouts and resolutions by <span *ngIf="dateType === 'creation_date'">creation</span><span *ngIf="dateType === 'due_date'">due</span> date</p>
 			<div class="btn-group" role="group" aria-label="...">
 				<a class="btn btn-default" [ngClass]="{'active':creationDateLength === 'years'}" (click)="setDate('years')">Years</a>
 				<a class="btn btn-default" [ngClass]="{'active':creationDateLength === 'months'}" (click)="setDate('months')">Months</a>
 				<a class="btn btn-default" [ngClass]="{'active':creationDateLength === 'days'}" (click)="setDate('days')">Days</a>
+				<a class="btn btn-default" [ngClass]="{'active':creationDateLength === 'hours'}" (click)="setDate('hours')">Hours</a>
 			</div>
 		</div>
 		<div class="col-md-8">

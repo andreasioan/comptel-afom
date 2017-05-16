@@ -19,37 +19,36 @@ export class ReportsComponent implements OnInit {
     creationDateData: any[];
     creationDateHeadings: any[];
 
-    isLoading: boolean = true;
-
     isDateLoaded: boolean;
-    dateType: string = 'creation';
+    dateType: string;
 
     constructor(private reportsService: ReportsService) { }
 
     ngOnInit() {
-        this.setDate('days');
+        this.setDate('days', 'creation_date');
 
         this.showDate = new Date().toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long' });
     }
 
-    setDate(length: any) {
+    setDate(length: any, dateType?: string) {
+        this.dateType = dateType ? dateType : this.dateType;
         this.isDateLoaded = false;
         this.creationDateLength = length;
-        if (this.dateType === 'creation') {
-            this.reportsService.getCreationDate(length)
-                .subscribe((data) => {
-                    this.creationDateData = data;
-                    this.creationDateHeadings = this.setDateHeadings();
-                    this.isDateLoaded = true;
-        
-                });
-        }
+        this.reportsService.getCreationDate(length, this.dateType)
+            .subscribe((data) => {
+                this.creationDateData = data;
+                this.creationDateHeadings = this.setDateHeadings();
+                this.isDateLoaded = true;
+            });
     }
 
     setDateHeadings() {
         let creationDateFormat: string = 'dddd';
 
         switch (this.creationDateLength) {
+            case 'hours':
+                creationDateFormat = 'hh:00';
+                break;
             case 'days':
                 creationDateFormat = 'dddd';
                 break;

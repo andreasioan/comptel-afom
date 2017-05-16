@@ -9,12 +9,11 @@ export class ReportsService {
 
     constructor(private http: Http) { }
 
-    getCreationDate(length?: string) {
+    getCreationDate(length: string, dateType: string) {
         let params = new URLSearchParams();
 
-        if(length) {
-            params.set('length', length);
-        }
+        params.set('length', length);
+        params.set('datetype', dateType);
 
         return this.http.get('https://comptel-api.herokuapp.com/api/reports/creationdate', { search: params })
             .map((response: Response) => {
