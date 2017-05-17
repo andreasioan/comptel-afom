@@ -1,4 +1,4 @@
-function getColumnName(column: string) {
+export function getColumnName(column: string) {
     switch (column) {
         case 'ID':
             return 'id';
@@ -26,5 +26,3 @@ function getColumnName(column: string) {
             return 'error_desc'
     }
 }
-
-export { getColumnName };
