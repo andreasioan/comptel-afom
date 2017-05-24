@@ -33,6 +33,13 @@
 			<br>
 			<div class="row">
 				<div class="col-xs-12">
+					<label for="startDate">Start Date:</label>
+					<input class="form-control" type="date" name="startDate" value="2017-06-06">
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-xs-12">
 					<label for="sourceSystem">Filter by fallout source system:</label>
 					<select [(ngModel)]="sourceSystem" class="form-control" name="sourceFilter" id="sourceFilter" (change)="setDate();">
 						<option *ngFor="let system of sourceSystems" [value]="system">{{system}}</option>

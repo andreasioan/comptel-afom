@@ -13,9 +13,9 @@
 		<div id="navbar" class="collapse navbar-collapse navbar-right" [collapse]="isCollapsed">
 			<ul class="nav navbar-nav">
 				<li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['']" (click)="isCollapsed = true"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a></li>
+				<li routerLinkActive="active"><a [routerLink]="['reports']" (click)="isCollapsed = true"><i class="fa fa-line-chart" aria-hidden="true"></i> Reports</a></li>
 				<li routerLinkActive="active"><a [routerLink]="['fallouts']" (click)="isCollapsed = true"><i class="fa fa-rocket" aria-hidden="true"></i> Fallouts</a></li>
 				<li routerLinkActive="active"><a [routerLink]="['resolutions']" (click)="isCollapsed = true"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Resolutions</a></li>
-				<li routerLinkActive="active"><a [routerLink]="['reports']" (click)="isCollapsed = true"><i class="fa fa-line-chart" aria-hidden="true"></i> Reports</a></li>
 			</ul>
 		</div>
 	</div>
