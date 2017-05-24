@@ -25,20 +25,13 @@ export class ReportsComponent implements OnInit {
     targetSystem: string = 'All';
     targetSystems = ['All', 'PNI', 'HFC-SRI', 'FTTN-SRI'];
 
-    falloutDate: any[];
-    falloutHeadings: any[] = [];
-    isFalloutLoaded: boolean;
-    falloutCode: number;
-    isFalloutAverageLoaded: boolean;
-    falloutAverageData: any[];
-    falloutAverageHeadings: any[];
-
     constructor(private reportsService: ReportsService) { }
 
     ngOnInit() {
         this.setDate('days', 'creation_date');
-        this.setFallout(1001);
+        this.setFallout(1001, 'error');
         this.setFalloutAverage();
+        this.setResolution('error');
 
         this.showDate = new Date().toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long' });
     }
@@ -84,20 +77,53 @@ export class ReportsComponent implements OnInit {
         return headings;
     }
 
-    setFallout(code: number) {
+    falloutData: any[];
+    falloutHeadings: any[] = [];
+    isFalloutLoaded: boolean;
+    falloutCode: number;
+    isFalloutAverageLoaded: boolean;
+    falloutAverageData: any[];
+    falloutAverageHeadings: any[];
+    falloutType: string;
+    falloutSourceSystem: string = 'All';
+
+    setFallout(code?: number, falloutType?: string) {
+        falloutType === 'error' ? this.setFalloutAverage() : null;
+        falloutType === 'status' ? this.falloutSourceSystem = 'All' : null;
+        this.falloutType = falloutType ? falloutType : this.falloutType;
         this.isFalloutLoaded = false;
-        this.falloutCode = code;
-        this.reportsService.getFallout(this.falloutCode)
-            .subscribe((data) => {
-                this.falloutDate = data;
-                this.setFalloutHeadings();
-                this.isFalloutLoaded = true;
-            });
+        this.falloutCode = code ? code : this.falloutCode;
+        if (this.falloutType === 'error') {
+            // this.setFalloutAverage();
+            this.reportsService.getFallout(this.falloutCode, null)
+                .subscribe((data) => {
+                    this.falloutData = data;
+                    this.setFalloutHeadings();
+                    this.isFalloutLoaded = true;
+                });
+        } else if (this.falloutType === 'status') {
+            this.reportsService.getFallout(null, this.falloutSourceSystem)
+                .subscribe((data) => {
+                    this.falloutData = data;
+                    this.setFalloutHeadings();
+                    this.isFalloutLoaded = true;
+                });
+        }
     }
     setFalloutHeadings() {
         let temp = [];
-        for (let i = 0; i < 15; i++) {
-            temp.push(this.falloutCode + i);
+        if (this.falloutType === 'error') {
+            for (let i = 0; i < 15; i++) {
+                temp.push(this.falloutCode + i);
+            }
+        } else if (this.falloutType === 'status') {
+            temp = [
+                'Started',
+                'Created',
+                'Error',
+                'Closed-Failure',
+                'Closed-Successful'
+            ];
         }
         this.falloutHeadings = temp;
     }
@@ -109,6 +135,33 @@ export class ReportsComponent implements OnInit {
                 this.falloutAverageHeadings = ['1001 - 1015', '1101 - 1115', '1201 - 1215'];
                 this.isFalloutAverageLoaded = true;
             });
+    }
+
+    resolutionData: any[];
+    resolutionHeadings: any[];
+    isResolutionLoaded: boolean;
+    resolutionType: string;
+    resolutionTargetSystem: string = 'All';
+    resolutionStatusSystem: string = 'All';
+
+    setResolution(resolutionType?: string) {
+        resolutionType ? this.resolutionType = resolutionType : null;
+        this.isResolutionLoaded = false;
+        if (this.resolutionType === 'error') {
+            this.reportsService.getResolution(this.resolutionTargetSystem, null)
+                .subscribe((data) => {
+                    this.resolutionData = data;
+                    this.resolutionHeadings = ['ERR001', 'ERR002', 'ERR003'];
+                    this.isResolutionLoaded = true;
+                });
+        } else if (this.resolutionType === 'status') {
+            this.reportsService.getResolution(null, this.resolutionStatusSystem)
+                .subscribe((data) => {
+                    this.resolutionData = data;
+                    this.resolutionHeadings = ['Started', 'Closed-Failure', 'Retry-Started', 'Retry-Success', 'Closed-Successful', 'Retry-Failure', 'Error',];
+                    this.isResolutionLoaded = true;
+                });
+        }
     }
 
 }

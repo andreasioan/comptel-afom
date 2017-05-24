@@ -13,10 +13,10 @@ export class ReportsService {
         let params = new URLSearchParams();
         params.set('length', length);
         params.set('datetype', dateType);
-        if(source != 'All') {
+        if (source != 'All') {
             params.set('source', source);
         }
-        if(target != 'All') {
+        if (target != 'All') {
             params.set('target', target);
         }
 
@@ -54,31 +54,50 @@ export class ReportsService {
             .catch((error: Response) => Observable.throw(error.json()));
     }
 
-    getFallout(code?: number) {
+    getFallout(code: number, source: string) {
         let params = new URLSearchParams();
-        params.set('code', code.toString());
+
+        if (code) {
+            params.set('code', code.toString());
+        }
+        if (source) {
+            params.set('source', source);
+        }
 
         return this.http.get('https://comptel-api.herokuapp.com/api/reports/fallout', { search: params })
             .map((response: Response) => {
-                const res = response.json();
-                let data = [
-                    res.error_code_0,
-                    res.error_code_1,
-                    res.error_code_2,
-                    res.error_code_3,
-                    res.error_code_4,
-                    res.error_code_5,
-                    res.error_code_6,
-                    res.error_code_7,
-                    res.error_code_8,
-                    res.error_code_9,
-                    res.error_code_10,
-                    res.error_code_11,
-                    res.error_code_12,
-                    res.error_code_13,
-                    res.error_code_14,
-                ];
-                return data;
+                if (code) {
+                    const res = response.json();
+                    let data = [
+                        res.error_code_0,
+                        res.error_code_1,
+                        res.error_code_2,
+                        res.error_code_3,
+                        res.error_code_4,
+                        res.error_code_5,
+                        res.error_code_6,
+                        res.error_code_7,
+                        res.error_code_8,
+                        res.error_code_9,
+                        res.error_code_10,
+                        res.error_code_11,
+                        res.error_code_12,
+                        res.error_code_13,
+                        res.error_code_14,
+                    ];
+                    return data;
+                } else {
+                    const res = response.json();
+                    let data = [
+                        res.started_count,
+                        res.created_count,
+                        res.error_count,
+                        res.closed_failure_count,
+                        res.closed_successfull_count
+                    ];
+                    return data
+                }
+
             })
             .catch((error: Response) => Observable.throw(error.json()));
     }
@@ -95,6 +114,34 @@ export class ReportsService {
                 return data;
             })
             .catch((error: Response) => Observable.throw(error.json()))
+    }
+
+    getResolution(target: string, statusTarget) {
+        let params = new URLSearchParams();
+
+        if (target) {
+            params.set('target', target);
+        }
+        if(statusTarget) {
+            params.set('startusTarget', statusTarget);
+        }
+
+        return this.http.get('https://comptel-api.herokuapp.com/api/reports/resolution', { search: params })
+            .map((response: Response) => {
+                if (target) {
+                    const res = response.json();
+                    let data = [
+                        res.error_code_0,
+                        res.error_code_1,
+                        res.error_code_2
+                    ];
+                    return data;
+                } else {
+
+                }
+
+            })
+            .catch((error: Response) => Observable.throw(error.json()));
     }
 
 }

@@ -12,7 +12,7 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<h2 class="featurette-heading">
-						<span [ngClass]="{'text-muted clickable': dateType === 'due_date'}" (click)="setDate('days', 'creation_date')">Creation Date</span> |
+						<span [ngClass]="{'text-muted clickable': dateType === 'due_date'}" (click)="setDate('days', 'creation_date')">Creation Date</span>						|
 						<span [ngClass]="{'text-muted clickable': dateType === 'creation_date'}" (click)="setDate('days', 'due_date')">Due Date</span>
 					</h2>
 					<p class="lead">Number of fallouts and resolutions by <span *ngIf="dateType === 'creation_date'">creation</span><span *ngIf="dateType === 'due_date'">due</span>						date</p>
@@ -69,7 +69,23 @@
 		<div class="col-md-4">
 			<div class="row">
 				<div class="col-xs-12">
-					<h2 class="featurette-heading"><span class="clickable">Fallout Error Codes</span> | <span class="text-muted clickable">Status</span></h2>
+					<h2 class="featurette-heading">
+						<span [ngClass]="{'text-muted clickable': falloutType === 'status'}" (click)="setFallout(1001, 'error')">Fallout Errors</span>						|
+						<span [ngClass]="{'text-muted clickable': falloutType === 'error'}" (click)="setFallout(null, 'status')">Status</span>
+					</h2>
+				</div>
+			</div>
+			<div class="row" *ngIf="falloutType === 'status'">
+				<div class="col-xs-12">
+					<p class="lead">Overall number of fallout status's</p>
+					<label for="sourceSystem">Filter by source system:</label>
+					<select [(ngModel)]="falloutSourceSystem" class="form-control" name="sourceFilter" id="sourceFilter" (change)="setFallout()">
+						<option *ngFor="let system of sourceSystems" [value]="system">{{system}}</option>
+					</select>
+				</div>
+			</div>
+			<div class="row" *ngIf="falloutType === 'error'">
+				<div class="col-xs-12">
 					<p class="lead">Overall number of fallout error codes</p>
 					<label for="errorRange">View error range: </label>
 					<div class="btn-group" role="group" id="errorRange">
@@ -79,7 +95,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row" *ngIf="falloutType === 'error'">
 				<div class="col-xs-12">
 					<app-doughnut-chart *ngIf="isFalloutAverageLoaded" [data]="falloutAverageData" [headings]="falloutAverageHeadings"></app-doughnut-chart>
 					<div *ngIf="!isFalloutAverageLoaded" class="space">
@@ -90,7 +106,7 @@
 
 		</div>
 		<div class="col-md-6 col-md-offset-1">
-			<app-doughnut-chart *ngIf="isFalloutLoaded" [data]="falloutDate" [headings]="falloutHeadings"></app-doughnut-chart>
+			<app-doughnut-chart *ngIf="isFalloutLoaded" [data]="falloutData" [headings]="falloutHeadings"></app-doughnut-chart>
 			<div *ngIf="!isFalloutLoaded" class="space">
 				<app-loading></app-loading>
 			</div>
@@ -101,16 +117,33 @@
 		<div class="col-md-4">
 			<br>
 			<h2 class="featurette-heading"><span class="clickable">Resolution Errors</span> | <span class="text-muted clickable">Status</span></h2>
-			<p class="lead">Overall number of fallout error codes</p>
-			<div class="btn-group" role="group" aria-label="...">
-				<button type="button" class="btn btn-default active">1001-1015</button>
-				<button type="button" class="btn btn-default">1101-1115</button>
-				<button type="button" class="btn btn-default">1201-1215</button>
-			</div>
+			<p class="lead">Overall number of resolution error codes</p>
+			<label for="targetSystem">Filter by target system:</label>
+			<select [(ngModel)]="resolutionTargetSystem" class="form-control" name="targetFilter" id="targetFilter" (change)="setResolution()">
+				<option *ngFor="let system of targetSystems" [value]="system">{{system}}</option>
+			</select>
 		</div>
 		<div class="col-md-6 col-md-offset-1">
-			<app-doughnut-chart></app-doughnut-chart>
+			<app-doughnut-chart *ngIf="isResolutionLoaded" [data]="resolutionData" [headings]="resolutionHeadings"></app-doughnut-chart>
+			<div *ngIf="!isResolutionLoaded" class="space">
+				<app-loading></app-loading>
+			</div>
 		</div>
 	</div>
 	<hr class="featurette-divider">
+	<div class="row">
+		<div class="col-xs-4">
+			<app-doughnut-chart></app-doughnut-chart>
+		</div>
+		<div class="col-xs-4">
+			<app-doughnut-chart></app-doughnut-chart>
+		</div>
+		<div class="col-xs-4">
+			<app-doughnut-chart></app-doughnut-chart>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
 </div>
