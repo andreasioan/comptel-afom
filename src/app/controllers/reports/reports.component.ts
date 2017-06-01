@@ -20,10 +20,27 @@ export class ReportsComponent implements OnInit {
     creationDateHeadings: any[];
     isDateLoaded: boolean;
     dateType: string;
-    sourceSystem: string = 'All';
+    sourceSystem = 'All';
     sourceSystems = ['All', 'COM', 'PNI', 'ORDERMANAGER'];
-    targetSystem: string = 'All';
+    targetSystem = 'All';
     targetSystems = ['All', 'PNI', 'HFC-SRI', 'FTTN-SRI'];
+
+    falloutData: any[];
+    falloutHeadings: any[] = [];
+    isFalloutLoaded: boolean;
+    falloutCode: number;
+    isFalloutAverageLoaded: boolean;
+    falloutAverageData: any[];
+    falloutAverageHeadings: any[];
+    falloutType: string;
+    falloutSourceSystem = 'All';
+
+    resolutionData: any[];
+    resolutionHeadings: any[];
+    isResolutionLoaded: boolean;
+    resolutionType: string;
+    resolutionTargetSystem = 'All';
+    resolutionStatusSystem = 'All';
 
     constructor(private reportsService: ReportsService) { }
 
@@ -48,7 +65,7 @@ export class ReportsComponent implements OnInit {
             });
     }
     setDateHeadings() {
-        let creationDateFormat: string = 'dddd';
+        let creationDateFormat = 'dddd';
 
         switch (this.creationDateLength) {
             case 'hours':
@@ -65,7 +82,7 @@ export class ReportsComponent implements OnInit {
                 break;
         }
 
-        let headings = [
+        const headings = [
             Moment(new Date()).subtract(10, 'weeks').subtract(6, this.creationDateLength).format(creationDateFormat),
             Moment(new Date()).subtract(10, 'weeks').subtract(5, this.creationDateLength).format(creationDateFormat),
             Moment(new Date()).subtract(10, 'weeks').subtract(4, this.creationDateLength).format(creationDateFormat),
@@ -77,19 +94,14 @@ export class ReportsComponent implements OnInit {
         return headings;
     }
 
-    falloutData: any[];
-    falloutHeadings: any[] = [];
-    isFalloutLoaded: boolean;
-    falloutCode: number;
-    isFalloutAverageLoaded: boolean;
-    falloutAverageData: any[];
-    falloutAverageHeadings: any[];
-    falloutType: string;
-    falloutSourceSystem: string = 'All';
-
     setFallout(code?: number, falloutType?: string) {
-        falloutType === 'error' ? this.setFalloutAverage() : null;
-        falloutType === 'status' ? this.falloutSourceSystem = 'All' : null;
+        if (falloutType === 'error') {
+            this.setFalloutAverage();
+        }
+        if (falloutType === 'status') {
+            this.falloutSourceSystem = 'All';
+        }
+
         this.falloutType = falloutType ? falloutType : this.falloutType;
         this.isFalloutLoaded = false;
         this.falloutCode = code ? code : this.falloutCode;
@@ -137,12 +149,6 @@ export class ReportsComponent implements OnInit {
             });
     }
 
-    resolutionData: any[];
-    resolutionHeadings: any[];
-    isResolutionLoaded: boolean;
-    resolutionType: string;
-    resolutionTargetSystem: string = 'All';
-    resolutionStatusSystem: string = 'All';
 
     setResolution(resolutionType?: string) {
         if (resolutionType) {
