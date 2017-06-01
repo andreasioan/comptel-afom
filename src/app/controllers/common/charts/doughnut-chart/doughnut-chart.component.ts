@@ -10,10 +10,9 @@ export class DoughnutChartComponent implements OnInit {
     @Input() data: number[] = [1];
     @Input() headings: string[] = ['num'];
 
-    doughnutChartType: string = 'doughnut';
+    doughnutChartType = 'doughnut';
 
     constructor() { }
 
-    ngOnInit() { 
-    }
+    ngOnInit() { }
 }
