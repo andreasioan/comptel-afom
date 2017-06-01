@@ -6,14 +6,13 @@ import { Component, OnInit } from '@angular/core';
 	templateUrl: 'loading.component.html',
 	styleUrls: ['loading.component.css']
 })
-
 export class LoadingComponent implements OnInit {
-	loading: string = 'Loading, please wait...';
+	loading = 'Loading, please wait...';
 
 	constructor() { }
 
 	ngOnInit() {
-		setTimeout(() => { 
+		setTimeout(() => {
 			this.loading = 'This is taking longer than usual...';
 		}, 5000);
 	}

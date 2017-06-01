@@ -6,79 +6,79 @@ import { DashboardGet } from '../common/models/dashboard-get.model';
 
 import { DashboardService } from './dashboard.service';
 
-import * as Moment from 'moment'
+import * as Moment from 'moment';
 
 @Component({
-    moduleId: module.id,
-    selector: 'app-dashboard',
-    templateUrl: 'dashboard.component.html',
-    styleUrls: ['dashboard.component.css'],
-    providers: [DashboardService]
+	moduleId: module.id,
+	selector: 'app-dashboard',
+	templateUrl: 'dashboard.component.html',
+	styleUrls: ['dashboard.component.css'],
+	providers: [DashboardService]
 })
 
 export class DashboardComponent implements OnInit {
-    pageLoaded: boolean = false;
-    dashboard: DashboardGet;
-    showDate: String;
+	pageLoaded = false;
+	dashboard: DashboardGet;
+	showDate: String;
 
-    donutData: number[];
-    donutHeadings: string[];
+	donutData: number[];
+	donutHeadings: string[];
 
-    barData: any[];
-    barHeadings: string[];
+	barData: any[];
+	barHeadings: string[];
 
-    constructor(private dashboardService: DashboardService) { }
+	constructor(private dashboardService: DashboardService) { }
 
-    ngOnInit() {
-        this.pageLoaded = false;
-        this.donutHeadings = ['Started', 'Created', 'Closed-Successful', 'Error', 'Closed-Failure'];
-        this.barHeadings = [
-            Moment(new Date()).subtract(10, 'weeks').subtract(6, 'days').format('dddd'),
-            Moment(new Date()).subtract(10, 'weeks').subtract(5, 'days').format('dddd'),
-            Moment(new Date()).subtract(10, 'weeks').subtract(4, 'days').format('dddd'),
-            Moment(new Date()).subtract(10, 'weeks').subtract(3, 'days').format('dddd'),
-            Moment(new Date()).subtract(10, 'weeks').subtract(2, 'days').format('dddd'),
-            Moment(new Date()).subtract(10, 'weeks').subtract(1, 'days').format('dddd')
-        ];
-        this.dashboardService.getDashData()
-            .subscribe((dashboard: DashboardGet) => {
-                this.dashboard = dashboard;
-                this.pageLoaded = true;
+	ngOnInit() {
+		this.pageLoaded = false;
+		this.donutHeadings = ['Started', 'Created', 'Closed-Successful', 'Error', 'Closed-Failure'];
+		this.barHeadings = [
+			Moment(new Date()).subtract(10, 'weeks').subtract(6, 'days').format('dddd'),
+			Moment(new Date()).subtract(10, 'weeks').subtract(5, 'days').format('dddd'),
+			Moment(new Date()).subtract(10, 'weeks').subtract(4, 'days').format('dddd'),
+			Moment(new Date()).subtract(10, 'weeks').subtract(3, 'days').format('dddd'),
+			Moment(new Date()).subtract(10, 'weeks').subtract(2, 'days').format('dddd'),
+			Moment(new Date()).subtract(10, 'weeks').subtract(1, 'days').format('dddd')
+		];
+		this.dashboardService.getDashData()
+			.subscribe((dashboard: DashboardGet) => {
+				this.dashboard = dashboard;
+				this.pageLoaded = true;
 
-                this.donutData = [
-                    dashboard.donutChart.startedCount,
-                    dashboard.donutChart.createdCount,
-                    dashboard.donutChart.closedSuccessfullCount,
-                    dashboard.donutChart.errorCount,
-                    dashboard.donutChart.closedFailureCount
-                ];
+				this.donutData = [
+					dashboard.donutChart.startedCount,
+					dashboard.donutChart.createdCount,
+					dashboard.donutChart.closedSuccessfullCount,
+					dashboard.donutChart.errorCount,
+					dashboard.donutChart.closedFailureCount
+				];
 
-                this.barData = [
-                    {
-                        data: [
-                            dashboard.barChart.falloutsDay5,
-                            dashboard.barChart.falloutsDay4,
-                            dashboard.barChart.falloutsDay3,
-                            dashboard.barChart.falloutsDay2,
-                            dashboard.barChart.falloutsDay1,
-                            dashboard.barChart.falloutsDay0,
-                        ],
-                        label: 'Fallouts'
-                    },
-                    {
-                        data: [
-                            dashboard.barChart.resolutionsDay5,
-                            dashboard.barChart.resolutionsDay4,
-                            dashboard.barChart.resolutionsDay3,
-                            dashboard.barChart.resolutionsDay2,
-                            dashboard.barChart.resolutionsDay1,
-                            dashboard.barChart.resolutionsDay0,
-                        ],
-                        label: 'Resolutions'
-                    }
-                ]
-            });
+				this.barData = [
+					{
+						data: [
+							dashboard.barChart.falloutsDay5,
+							dashboard.barChart.falloutsDay4,
+							dashboard.barChart.falloutsDay3,
+							dashboard.barChart.falloutsDay2,
+							dashboard.barChart.falloutsDay1,
+							dashboard.barChart.falloutsDay0,
+						],
+						label: 'Fallouts'
+					},
+					{
+						data: [
+							dashboard.barChart.resolutionsDay5,
+							dashboard.barChart.resolutionsDay4,
+							dashboard.barChart.resolutionsDay3,
+							dashboard.barChart.resolutionsDay2,
+							dashboard.barChart.resolutionsDay1,
+							dashboard.barChart.resolutionsDay0,
+						],
+						label: 'Resolutions'
+					}
+				];
+			});
 
-        this.showDate = new Date().toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long' });
-    }
+		this.showDate = new Date().toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long' });
+	}
 }

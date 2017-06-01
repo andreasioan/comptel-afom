@@ -1,23 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    moduleId: module.id,
-    selector: 'app-header',
-    templateUrl: 'header.component.html'
+	moduleId: module.id,
+	selector: 'app-header',
+	templateUrl: 'header.component.html'
 })
 
 export class HeaderComponent implements OnInit {
-    constructor() { }
+	public isCollapsed = true;
 
-    ngOnInit() { }
+	constructor() { }
 
-    public isCollapsed: boolean = true;
+	ngOnInit() { }
 
-    public collapsed(event: any): void {
+	public collapsed(event: any): void {
+	}
 
-    }
+	public expanded(event: any): void {
 
-    public expanded(event: any): void {
-
-    }
+	}
 }

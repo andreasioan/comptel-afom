@@ -6,31 +6,31 @@ import { Detail } from '../../models/detail.model';
 import { Fallout } from '../../models/fallout.model';
 
 @Component({
-    moduleId: module.id,
-    selector: 'app-details-modal',
-    templateUrl: 'details-modal.component.html'
+	moduleId: module.id,
+	selector: 'app-details-modal',
+	templateUrl: 'details-modal.component.html'
 })
 
 export class DetailsModalComponent implements OnInit {
-    @ViewChild('childModal') public childModal: ModalDirective;
-    @Input() isLoaded: boolean = false;
-    @Input() rows: Detail[];
-    @Input() fallout: Fallout;
-    @Output() closeModal = new EventEmitter<any>();
+	@ViewChild('childModal') public childModal: ModalDirective;
+	@Input() isLoaded = false;
+	@Input() rows: Detail[];
+	@Input() fallout: Fallout;
+	@Output() closeModal = new EventEmitter<any>();
 
-    constructor() { }
+	constructor() { }
 
-    ngOnInit() { }
+	ngOnInit() { }
 
-    public showChildModal(): void {
-        this.childModal.show();
-    }
+	public showChildModal(): void {
+		this.childModal.show();
+	}
 
-    public hideChildModal(): void {
-        this.childModal.hide();
-    }
+	public hideChildModal(): void {
+		this.childModal.hide();
+	}
 
-    public onHidden() {
-        this.closeModal.emit();
-    }
+	public onHidden() {
+		this.closeModal.emit();
+	}
 }
