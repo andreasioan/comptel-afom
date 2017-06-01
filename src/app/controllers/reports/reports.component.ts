@@ -145,7 +145,10 @@ export class ReportsComponent implements OnInit {
     resolutionStatusSystem: string = 'All';
 
     setResolution(resolutionType?: string) {
-        resolutionType ? this.resolutionType = resolutionType : null;
+        if (resolutionType) {
+            this.resolutionType = resolutionType;
+        }
+
         this.isResolutionLoaded = false;
         if (this.resolutionType === 'error') {
             this.reportsService.getResolution(this.resolutionTargetSystem, null)
@@ -158,10 +161,17 @@ export class ReportsComponent implements OnInit {
             this.reportsService.getResolution(null, this.resolutionStatusSystem)
                 .subscribe((data) => {
                     this.resolutionData = data;
-                    this.resolutionHeadings = ['Started', 'Closed-Failure', 'Retry-Started', 'Retry-Success', 'Closed-Successful', 'Retry-Failure', 'Error',];
+                    this.resolutionHeadings = [
+                        'Started',
+                        'Closed-Failure',
+                        'Retry-Started',
+                        'Retry-Success',
+                        'Closed-Successful',
+                        'Retry-Failure',
+                        'Error'
+                    ];
                     this.isResolutionLoaded = true;
                 });
         }
     }
-
 }
