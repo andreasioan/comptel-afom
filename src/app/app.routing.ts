@@ -6,11 +6,11 @@ import { ResolutionsComponent } from './controllers/resolutions/resolutions.comp
 import { ReportsComponent } from './controllers/reports/reports.component';
 
 const APP_ROUTES: Routes = [
-    { path: '', component: DashboardComponent, pathMatch: 'full' },
-    { path: 'fallouts', component: FalloutsComponent },
-    { path: 'resolutions', component: ResolutionsComponent },
-    { path: 'reports', component: ReportsComponent },
-    { path: '**', redirectTo: ''}
+	{ path: '', component: DashboardComponent, pathMatch: 'full' },
+	{ path: 'fallouts', component: FalloutsComponent },
+	{ path: 'resolutions', component: ResolutionsComponent },
+	{ path: 'reports', component: ReportsComponent },
+	{ path: '**', redirectTo: ''}
 ];
 
 export const routing = RouterModule.forRoot(APP_ROUTES);
