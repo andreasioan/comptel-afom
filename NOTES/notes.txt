@@ -1,0 +1,41 @@
+VISUAL STUDIO CODE SETTINGS SYNC 
+Version: 2.8.1
+
+Upload Summary
+
+--------------------
+GITHUB TOKEN: c336252f9e1a5b9a7f41bb077c0b24edc1070dbb
+GITHUB GIST: fd95e83639b4aaea47e14eb700232fc6
+GITHUB GIST TYPE: Secret
+
+--------------------
+
+If current theme / file icon extension is not installed. Restart will be Required to Apply Theme and File Icon.
+
+
+Files Upload.
+
+extensions.json
+material-icon-theme.json
+settings.json
+vsicons.settings.json
+
+
+EXTENSIONS ADDED :
+
+Angular2 - Version :2.3.2
+beautify - Version :1.1.1
+bootstrap-3-snippets - Version :0.0.9
+code-settings-sync - Version :2.8.1
+cpptools - Version :0.11.3
+csharp - Version :1.10.0
+debugger-for-chrome - Version :3.1.2
+html-snippets - Version :0.1.0
+java - Version :0.5.0
+material-icon-theme - Version :2.0.7
+Material-theme - Version :2.8.2
+tslint - Version :0.15.0
+vscode-docker - Version :0.0.15
+vscode-eslint - Version :1.2.11
+vscode-icons - Version :7.8.1
+vscode-npm-script - Version :0.1.9
