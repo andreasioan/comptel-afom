@@ -80,11 +80,15 @@ export class ResolutionsComponent implements OnInit {
 			},
 			creationDate: {
 				from: '',
-				to: ''
+				to: '',
+				type: 'day',
+				day: ''
 			},
 			dueDate: {
 				from: '',
-				to: ''
+				to: '',
+				type: 'day',
+				day: ''
 			},
 			search: {
 				column: '',

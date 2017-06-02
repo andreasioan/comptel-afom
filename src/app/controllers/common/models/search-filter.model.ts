@@ -4,12 +4,16 @@ export interface SearchFilter {
 		orderBy: string
 	};
 	creationDate?: {
-		from: string,
-		to: string
+		from?: string,
+		to?: string,
+		type?: string,
+		day?: string
 	};
 	dueDate?: {
-		from: string,
-		to: string
+		from?: string,
+		to?: string,
+		type?: string,
+		day?: string
 	};
 	search?: {
 		query: string,

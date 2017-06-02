@@ -16,13 +16,16 @@ export class SearchFilterComponent implements OnInit {
 	@Output() searchFilterQuery = new EventEmitter<SearchFilter>();
 	@Output() resetClicked = new EventEmitter<any>();
 
-	headings: String[];
+	// headings: String[];
 	searchColumns: string[];
 
 	creationDate: boolean;
 	dueDate: boolean;
+	sourceSystem: boolean;
+	status: boolean;
 	reset: boolean;
 	searchFilterCollapse: boolean;
+	dateTypes: any[] = [];
 
 	// formSearchFilter: SearchFilter;
 
@@ -33,23 +36,28 @@ export class SearchFilterComponent implements OnInit {
 		this.onCreationDate();
 		this.searchFilterCollapse = false;
 
-		const falloutHeadings = ['ID', 'Source', 'Source Fallout ID', 'Error Code', 'Creation Date', 'Due Date', 'Status'];
-		const resolutionHeadings = ['ID', 'Fallout ID', 'Action ID', 'Source System', 'Creation Date', 'Due Date', 'Status', 'Retry Count'];
+		// const falloutHeadings = ['ID', 'Source', 'Source Fallout ID', 'Error Code', 'Creation Date', 'Due Date', 'Status'];
+		// const resolutionHeadings = ['ID', 'Fallout ID', 'Action ID', 'Source System', 'Creation Date', 'Due Date', 'Status', 'Retry Count'];
 
-		if (this.tableType === 'fallout') {
-			this.headings = falloutHeadings;
-		} else if (this.tableType === 'resolution') {
-			this.headings = resolutionHeadings;
-		}
+		// if (this.tableType === 'fallout') {
+		// 	this.headings = falloutHeadings;
+		// } else if (this.tableType === 'resolution') {
+		// 	this.headings = resolutionHeadings;
+		// }
 
-		const falloutSearch = ['ID', 'Source', 'Source Fallout ID', 'Error Code', 'Status'];
-		const resolutionSearch = ['ID', 'Fallout ID', 'Action ID', 'Source System', 'Status', 'Retry Count'];
+		const falloutSearch = ['ID', 'Source Fallout ID', 'Error Code'];
+		const resolutionSearch = ['ID', 'Fallout ID', 'Action ID'];
 
 		if (this.tableType === 'fallout') {
 			this.searchColumns = falloutSearch;
 		} else if (this.tableType === 'resolution') {
 			this.searchColumns = resolutionSearch;
 		}
+
+		this.dateTypes = [
+			{ value: 'day', display: 'Single Day' },
+			{ value: 'range', display: 'Range' }
+		];
 	}
 
 	searchFilter() {
@@ -82,19 +90,8 @@ export class SearchFilterComponent implements OnInit {
 	}
 
 	onApply() {
-		this.searchQuery.creationDate = {
-			from: this.searchQuery.creationDate.from,
-			to: this.searchQuery.creationDate.to
-		};
-		this.searchQuery.dueDate = {
-			from: this.searchQuery.dueDate.from,
-			to: this.searchQuery.dueDate.to
-		};
-		this.searchQuery.search = {
-			column: getColumnName(this.searchQuery.search.column),
-			query: this.searchQuery.search.query
-		};
-
+		this.searchQuery.search.query.toUpperCase();
+		this.searchQuery.search.column = getColumnName(this.searchQuery.search.column);
 		this.searchFilterQuery.emit(this.searchQuery);
 	}
 }

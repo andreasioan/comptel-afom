@@ -13,7 +13,7 @@
 	<div id="collapseOne" class="panel-collapse collapse" [ngClass]="{'in':searchFilterCollapse}">
 		<div class="panel-body">
 			<div class="row">
-				<div class="col-sm-6">
+				<div class="col-sm-7">
 					<div class="row navTabs">
 						<div class="col-xs-12">
 							<ul class="nav nav-tabs">
@@ -25,7 +25,28 @@
 					</div>
 					<!--Creation Date-->
 					<div class="row" [hidden]="!creationDate">
-						<div class="col-xs-12">
+						<div class="col-xs-4">
+							<fieldset>
+								<legend>Date Range</legend>
+								<div class="radio" *ngFor="let dateType of dateTypes">
+									<label>
+										<input type="radio" name="creationDateType" [(ngModel)]="searchQuery.creationDate.type" [value]="dateType.value">
+										<strong>{{dateType.display}}</strong>
+									</label>
+								</div>
+							</fieldset>
+						</div>
+						<div class="col-xs-8" [hidden]="searchQuery.creationDate.type === 'range'">
+							<div class="form-horizontal">
+								<div class="form-group">
+									<label for="date" class="col-sm-2 control-label">Day:</label>
+									<div class="col-sm-10">
+										<input [(ngModel)]="searchQuery.creationDate.day" type="date" class="form-control" id="date">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-8" [hidden]="searchQuery.creationDate.type === 'day'">
 							<div class="form-horizontal">
 								<div class="form-group">
 									<label for="date" class="col-sm-2 control-label">From:</label>
@@ -41,12 +62,32 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> 
 					<!--End Creation Date-->
 					<!--Due Date-->
 					<div class="row" [hidden]="!dueDate">
-
-						<div class="col-xs-12">
+						<div class="col-xs-4">
+							<fieldset>
+								<legend>Date Range</legend>
+								<div class="radio" *ngFor="let dateType of dateTypes">
+									<label>
+										<input type="radio" name="dueDateType" [(ngModel)]="searchQuery.dueDate.type" [value]="dateType.value">
+										<strong>{{dateType.display}}</strong>
+									</label>
+								</div>
+							</fieldset>
+						</div>
+						<div class="col-xs-8" [hidden]="searchQuery.dueDate.type === 'range'">
+							<div class="form-horizontal">
+								<div class="form-group">
+									<label for="date" class="col-sm-2 control-label">Day:</label>
+									<div class="col-sm-10">
+										<input [(ngModel)]="searchQuery.dueDate.day" type="date" class="form-control" id="date">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-8" [hidden]="searchQuery.dueDate.type === 'day'">
 							<div class="form-horizontal">
 								<div class="form-group">
 									<label for="date" class="col-sm-2 control-label">From:</label>
@@ -73,30 +114,34 @@
 					</div>
 					<!--End Reset-->
 				</div>
-				<hr class="visible-xs"> <!--Divider on mobile-->
-				<div class="col-sm-6"> <!--Search-->
+				<hr class="visible-xs">
+				<!--Divider on mobile-->
+				<div class="col-sm-5">
+					<!--Search-->
 					<div class="form-horizontal">
 						<div class="form-group">
-							<label for="searchFild" class="col-sm-2 control-label">Search:</label>
-							<div class="col-sm-10">
+							<label for="searchFild" class="col-sm-3 control-label">Search:</label>
+							<div class="col-sm-9">
 								<input [(ngModel)]="searchQuery.search.query" type="text" class="form-control" id="searchFild" placeholder="Search">
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="selectColumn" class="col-sm-2 control-label">Column:</label>
-							<div class="col-sm-10">
-								<select [(ngModel)]="searchQuery.search.column" id="selectColumn" class="form-control">
+							<label for="selectColumn" class="col-sm-3 control-label">Column:</label>
+							<div class="col-sm-9">
+								<select [(ngModel)]="searchQuery.search.column" id="selectColumn" class="form-control" >
+									<option value="" disabled selected hidden>Search in column:</option>
                                     <option *ngFor="let column of searchColumns" value="{{column}}">{{column}}</option>
                                 </select>
 							</div>
 						</div>
 						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-9">
+							<div class="col-sm-offset-3 col-sm-8">
 								<button (click)="onApply()" class="btn btn-success">Apply <i class="fa fa-check-circle" aria-hidden="true"></i></button>
 							</div>
 						</div>
 					</div>
-				</div> <!--Search-->
+				</div>
+				<!--Search-->
 			</div>
 		</div>
 	</div>

@@ -1,3 +1,7 @@
 .navTabs {
     padding-bottom: 1.5rem;
 }
+
+legend {
+    margin-bottom: 0px
+}

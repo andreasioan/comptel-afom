@@ -33,14 +33,26 @@ export class FalloutsService {
 				}
 			}
 
-			if (searchFilter.creationDate.from && searchFilter.creationDate.to) {
-				params.set('createdatefrom', searchFilter.creationDate.from);
-				params.set('createdateto', searchFilter.creationDate.to);
+			if (searchFilter.creationDate.type === 'range') {
+				if (searchFilter.creationDate.from && searchFilter.creationDate.to) {
+					params.set('createdatefrom', searchFilter.creationDate.from);
+					params.set('createdateto', searchFilter.creationDate.to);
+				}
+			} else if (searchFilter.creationDate.type === 'day') {
+				if (searchFilter.creationDate.day) {
+					params.set('createdateday', searchFilter.creationDate.day);
+				}
 			}
 
-			if (searchFilter.dueDate.from && searchFilter.dueDate.to) {
-				params.set('duedatefrom', searchFilter.dueDate.from);
-				params.set('duedateto', searchFilter.dueDate.to);
+			if (searchFilter.dueDate.type === 'range') {
+				if (searchFilter.dueDate.from && searchFilter.dueDate.to) {
+					params.set('duedatefrom', searchFilter.dueDate.from);
+					params.set('duedateto', searchFilter.dueDate.to);
+				}
+			} else if (searchFilter.dueDate.type === 'day') {
+				if (searchFilter.dueDate.day) {
+					params.set('duedateday', searchFilter.dueDate.day);
+				}
 			}
 
 			if (searchFilter.search.query && searchFilter.search.column) {
