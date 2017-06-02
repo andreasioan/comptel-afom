@@ -7,7 +7,7 @@ Upload Summary
 GITHUB TOKEN: c336252f9e1a5b9a7f41bb077c0b24edc1070dbb
 GITHUB GIST: fd95e83639b4aaea47e14eb700232fc6
 GITHUB GIST TYPE: Secret
-
+yes
 --------------------
 
 If current theme / file icon extension is not installed. Restart will be Required to Apply Theme and File Icon.
