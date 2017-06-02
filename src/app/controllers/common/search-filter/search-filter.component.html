@@ -1,13 +1,5 @@
 <div class="panel panel-primary">
 	<div class="panel-heading clickable" (click)="searchFilter()">
-		<!--<div class="row">
-			<div class="col-xs-6">
-				<h3 class="panel-title">Filter</h3>
-			</div>
-			<div class="col-xs-6">
-				<h3 class="panel-title">Search</h3>
-			</div>
-		</div>-->
 		<h3 class="panel-title">Search & Filter</h3>
 	</div>
 	<div id="collapseOne" class="panel-collapse collapse" [ngClass]="{'in':searchFilterCollapse}">
@@ -19,6 +11,8 @@
 							<ul class="nav nav-tabs">
 								<li role="presentation" class="clickable" [ngClass]="{'active':creationDate}"><a (click)="onCreationDate()"><i class="fa fa-calendar" aria-hidden="true"></i> Creation Date</a></li>
 								<li role="presentation" class="clickable" [ngClass]="{'active':dueDate}"><a (click)="onDueDate()"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Due Date</a></li>
+								<li role="presentation" class="clickable" [ngClass]="{'active':system}"><a (click)="onSystem()"><i class="fa fa-server" aria-hidden="true"></i> System</a></li>
+								<li role="presentation" class="clickable" [ngClass]="{'active':status}"><a (click)="onStatus()"><i class="fa fa-heartbeat" aria-hidden="true"></i> Status</a></li>
 								<li role="presentation" class="clickable" [ngClass]="{'active':reset}"><a (click)="onReset()"><i class="fa fa-refresh" aria-hidden="true"></i> Reset</a></li>
 							</ul>
 						</div>
@@ -62,13 +56,13 @@
 								</div>
 							</div>
 						</div>
-					</div> 
+					</div>
 					<!--End Creation Date-->
 					<!--Due Date-->
 					<div class="row" [hidden]="!dueDate">
 						<div class="col-xs-4">
 							<fieldset>
-								<legend>Date Range</legend>
+								<legend>Due Date Range</legend>
 								<div class="radio" *ngFor="let dateType of dateTypes">
 									<label>
 										<input type="radio" name="dueDateType" [(ngModel)]="searchQuery.dueDate.type" [value]="dateType.value">
@@ -105,6 +99,39 @@
 						</div>
 					</div>
 					<!--End Due Date-->
+					<!--System-->
+					<div class="row" [hidden]="!system">
+						<div class="col-xs-12">
+							<form class="forsm-inline">
+								<div class="form-group">
+									<label for="system" *ngIf="tableType === 'fallout'">Filter by Source System: </label>
+									<label for="system" *ngIf="tableType === 'resolution'">Filter by Target System: </label>
+									<select type="text" class="form-control" id="system">
+										<option value="" disabled selected hidden>Select a system</option>
+										<option value="">All</option>
+										<option *ngFor="let system of systems" value="system">{{system}}</option>
+									</select>
+								</div>
+							</form>
+						</div>
+					</div>
+					<!--End System-->
+					<!--Status-->
+					<div class="row" [hidden]="!status">
+						<div class="col-xs-12">
+							<form class="forsm-inline">
+								<div class="form-group">
+									<label for="system">Filter by Status: </label>
+									<select type="text" class="form-control" id="system">
+										<option value="" disabled selected hidden>Select a status</option>
+										<option value="">All</option>
+										<option *ngFor="let status of statuses" value="status">{{status}}</option>
+									</select>
+								</div>
+							</form>
+						</div>
+					</div>
+					<!--End Status-->
 					<!--Reset-->
 					<div class="row" [hidden]="!reset">
 						<div class="col-xs-12">
@@ -128,8 +155,8 @@
 						<div class="form-group">
 							<label for="selectColumn" class="col-sm-3 control-label">Column:</label>
 							<div class="col-sm-9">
-								<select [(ngModel)]="searchQuery.search.column" id="selectColumn" class="form-control" >
-									<option value="" disabled selected hidden>Search in column:</option>
+								<select [(ngModel)]="searchQuery.search.column" id="selectColumn" class="form-control">
+									<option value="" disabled selected hidden>Search in column</option>
                                     <option *ngFor="let column of searchColumns" value="{{column}}">{{column}}</option>
                                 </select>
 							</div>

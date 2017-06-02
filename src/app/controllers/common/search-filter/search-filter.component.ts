@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { SearchFilter } from '../models/search-filter.model';
-import { getColumnName } from '../function/functions';
+import { getColumnName, getColumnDisplayName } from '../functions/column-names';
 
 @Component({
 	moduleId: module.id,
@@ -21,10 +21,12 @@ export class SearchFilterComponent implements OnInit {
 
 	creationDate: boolean;
 	dueDate: boolean;
-	sourceSystem: boolean;
+	system: boolean;
 	status: boolean;
 	reset: boolean;
 	searchFilterCollapse: boolean;
+	systems: any[] = [];
+	statuses: any[] = [];
 	dateTypes: any[] = [];
 
 	// formSearchFilter: SearchFilter;
@@ -48,16 +50,28 @@ export class SearchFilterComponent implements OnInit {
 		const falloutSearch = ['ID', 'Source Fallout ID', 'Error Code'];
 		const resolutionSearch = ['ID', 'Fallout ID', 'Action ID'];
 
+		const falloutStatuses = ['STARTED', 'CREATED', 'CLOSED-SUCCESSFUL', 'CLOSED-FAILURE', 'ERROR'];
+		const resolutionStatuses = ['STARTED', 'RETRY-STARTED', 'RETRY-SUCCESS', 'RETRY-FAILURE', 'CLOSED-SUCCESSFUL', 'CLOSED-FAILURE', 'ERROR'];
+
+		const falloutSystems = ['COM', 'PNI', 'ORDERMANAGER'];
+		const resolutionSystems = ['PNI', 'HFC-SRI', 'FTTN-SRI'];
+
 		if (this.tableType === 'fallout') {
 			this.searchColumns = falloutSearch;
+			this.systems = falloutSystems;
+			this.statuses = falloutStatuses;
 		} else if (this.tableType === 'resolution') {
 			this.searchColumns = resolutionSearch;
+			this.systems = resolutionSystems;
+			this.statuses = resolutionStatuses;
 		}
 
 		this.dateTypes = [
 			{ value: 'day', display: 'Single Day' },
 			{ value: 'range', display: 'Range' }
 		];
+
+		this.searchQuery.search.column = getColumnDisplayName(this.searchQuery.search.column);
 	}
 
 	searchFilter() {
@@ -67,6 +81,8 @@ export class SearchFilterComponent implements OnInit {
 	setFalse() {
 		this.creationDate = false;
 		this.dueDate = false;
+		this.system = false;
+		this.status = false;
 		this.reset = false;
 	}
 
@@ -78,6 +94,16 @@ export class SearchFilterComponent implements OnInit {
 	onDueDate() {
 		this.setFalse();
 		this.dueDate = true;
+	}
+
+	onSystem() {
+		this.setFalse();
+		this.system = true;
+	}
+
+	onStatus() {
+		this.setFalse();
+		this.status = true;
 	}
 
 	onReset() {

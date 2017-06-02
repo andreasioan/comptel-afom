@@ -7,7 +7,7 @@ import { ResolutionErrorModalComponent } from './resolution-error-modal/resoluti
 import { Detail } from '../models/detail.model';
 import { Fallout } from '../models/fallout.model';
 import { Resolution } from '../models/resolution.model';
-import { getColumnName } from '../function/functions';
+import { getColumnName } from '../functions/column-names';
 
 import { TableService } from './table.service';
 

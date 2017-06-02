@@ -36,8 +36,8 @@ export class PaginateComponent implements OnInit {
 				startPage = this.paginate.pages - 9;
 				endPage = this.paginate.pages;
 			} else {
-				startPage = this.paginate.page - 5;
-				endPage = this.paginate.page + 4;
+				startPage = this.paginate.page - 4;
+				endPage = this.paginate.page + 5;
 			}
 		}
 
