@@ -7,6 +7,6 @@ import * as Moment from 'moment';
 })
 export class NiceDatePipe implements PipeTransform {
 	transform(origDate: string): string {
-		return Moment(origDate).format('DD/MM/YY HH:mm');
+		return Moment(origDate).utc().format('DD/MM/YY HH:mm');
 	}
 }
