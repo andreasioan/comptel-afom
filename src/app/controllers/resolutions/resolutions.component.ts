@@ -93,7 +93,9 @@ export class ResolutionsComponent implements OnInit {
 			search: {
 				column: '',
 				query: ''
-			}
+			},
+			system: '',
+			status: ''
 		};
 
 		this.limit = 25;

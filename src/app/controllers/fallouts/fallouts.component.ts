@@ -94,7 +94,9 @@ export class FalloutsComponent implements OnInit {
 			search: {
 				column: '',
 				query: ''
-			}
+			},
+			system: '',
+			status: ''
 		};
 
 		this.limit = 25;

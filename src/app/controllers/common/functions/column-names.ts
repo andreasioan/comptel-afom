@@ -24,6 +24,7 @@ export function getColumnName(column: string) {
 			return 'retry_count';
 		case 'Error Desc':
 			return 'error_desc';
+		default: return column;
 	}
 }
 
@@ -53,5 +54,6 @@ export function getColumnDisplayName(column: string) {
 			return 'Retry Count';
 		case 'error_desc':
 			return 'Error Desc';
+		default: return column;
 	}
 }

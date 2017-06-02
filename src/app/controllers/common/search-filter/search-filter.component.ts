@@ -16,7 +16,6 @@ export class SearchFilterComponent implements OnInit {
 	@Output() searchFilterQuery = new EventEmitter<SearchFilter>();
 	@Output() resetClicked = new EventEmitter<any>();
 
-	// headings: String[];
 	searchColumns: string[];
 
 	creationDate: boolean;
@@ -29,23 +28,12 @@ export class SearchFilterComponent implements OnInit {
 	statuses: any[] = [];
 	dateTypes: any[] = [];
 
-	// formSearchFilter: SearchFilter;
-
 	constructor() { }
 
 	ngOnInit() {
 		this.setFalse();
 		this.onCreationDate();
 		this.searchFilterCollapse = false;
-
-		// const falloutHeadings = ['ID', 'Source', 'Source Fallout ID', 'Error Code', 'Creation Date', 'Due Date', 'Status'];
-		// const resolutionHeadings = ['ID', 'Fallout ID', 'Action ID', 'Source System', 'Creation Date', 'Due Date', 'Status', 'Retry Count'];
-
-		// if (this.tableType === 'fallout') {
-		// 	this.headings = falloutHeadings;
-		// } else if (this.tableType === 'resolution') {
-		// 	this.headings = resolutionHeadings;
-		// }
 
 		const falloutSearch = ['ID', 'Source Fallout ID', 'Error Code'];
 		const resolutionSearch = ['ID', 'Fallout ID', 'Action ID'];
@@ -71,7 +59,9 @@ export class SearchFilterComponent implements OnInit {
 			{ value: 'range', display: 'Range' }
 		];
 
-		this.searchQuery.search.column = getColumnDisplayName(this.searchQuery.search.column);
+		if (this.searchQuery.search.column) {
+			this.searchQuery.search.column = getColumnDisplayName(this.searchQuery.search.column);
+		}
 	}
 
 	searchFilter() {

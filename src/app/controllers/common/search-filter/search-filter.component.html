@@ -102,33 +102,29 @@
 					<!--System-->
 					<div class="row" [hidden]="!system">
 						<div class="col-xs-12">
-							<form class="forsm-inline">
-								<div class="form-group">
-									<label for="system" *ngIf="tableType === 'fallout'">Filter by Source System: </label>
-									<label for="system" *ngIf="tableType === 'resolution'">Filter by Target System: </label>
-									<select type="text" class="form-control" id="system">
-										<option value="" disabled selected hidden>Select a system</option>
-										<option value="">All</option>
-										<option *ngFor="let system of systems" value="system">{{system}}</option>
-									</select>
-								</div>
-							</form>
+							<div class="form-group">
+								<label for="system" *ngIf="tableType === 'fallout'">Filter by Source System: </label>
+								<label for="system" *ngIf="tableType === 'resolution'">Filter by Target System: </label>
+								<select [(ngModel)]="searchQuery.system" type="text" class="form-control" id="system">
+									<option value="" disabled selected hidden>Select a system</option>
+									<option value="">All</option>
+									<option *ngFor="let system of systems" [value]="system">{{system}}</option>
+								</select>
+							</div>
 						</div>
 					</div>
 					<!--End System-->
 					<!--Status-->
 					<div class="row" [hidden]="!status">
 						<div class="col-xs-12">
-							<form class="forsm-inline">
-								<div class="form-group">
-									<label for="system">Filter by Status: </label>
-									<select type="text" class="form-control" id="system">
-										<option value="" disabled selected hidden>Select a status</option>
-										<option value="">All</option>
-										<option *ngFor="let status of statuses" value="status">{{status}}</option>
-									</select>
-								</div>
-							</form>
+							<div class="form-group">
+								<label for="system">Filter by Status: </label>
+								<select [(ngModel)]="searchQuery.status" type="text" class="form-control" id="system">
+									<option value="" disabled selected hidden>Select a status</option>
+									<option value="">All</option>
+									<option *ngFor="let status of statuses" [value]="status">{{status}}</option>
+								</select>
+							</div>
 						</div>
 					</div>
 					<!--End Status-->

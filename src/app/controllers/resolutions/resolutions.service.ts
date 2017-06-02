@@ -6,6 +6,7 @@ import 'rxjs/Rx';
 
 import { Resolution } from '../common/models/resolution.model';
 import { SearchFilter } from '../common/models/search-filter.model';
+import { getColumnName } from '../common/functions/column-names';
 
 @Injectable()
 export class ResolutionsService {
@@ -33,19 +34,39 @@ export class ResolutionsService {
 				}
 			}
 
-			if (searchFilter.creationDate.from && searchFilter.creationDate.to) {
-				params.set('fromDate', searchFilter.creationDate.from);
-				params.set('toDate', searchFilter.creationDate.to);
+			if (searchFilter.creationDate.type === 'range') {
+				if (searchFilter.creationDate.from && searchFilter.creationDate.to) {
+					params.set('createdatefrom', searchFilter.creationDate.from);
+					params.set('createdateto', searchFilter.creationDate.to);
+				}
+			} else if (searchFilter.creationDate.type === 'day') {
+				if (searchFilter.creationDate.day) {
+					params.set('createdateday', searchFilter.creationDate.day);
+				}
 			}
 
-			if (searchFilter.dueDate.from && searchFilter.dueDate.to) {
-				params.set('fromDate', searchFilter.dueDate.from);
-				params.set('toDate', searchFilter.dueDate.to);
+			if (searchFilter.dueDate.type === 'range') {
+				if (searchFilter.dueDate.from && searchFilter.dueDate.to) {
+					params.set('duedatefrom', searchFilter.dueDate.from);
+					params.set('duedateto', searchFilter.dueDate.to);
+				}
+			} else if (searchFilter.dueDate.type === 'day') {
+				if (searchFilter.dueDate.day) {
+					params.set('duedateday', searchFilter.dueDate.day);
+				}
 			}
 
 			if (searchFilter.search.query && searchFilter.search.column) {
-				params.set('in', searchFilter.search.column);
+				params.set('in', getColumnName(searchFilter.search.column));
 				params.set('search', searchFilter.search.query.toUpperCase());
+			}
+
+			if (searchFilter.system) {
+				params.set('system', searchFilter.system);
+			}
+
+			if (searchFilter.status) {
+				params.set('status', searchFilter.status);
 			}
 		}
 

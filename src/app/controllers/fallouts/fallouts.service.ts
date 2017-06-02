@@ -6,6 +6,7 @@ import 'rxjs/Rx';
 
 import { Fallout } from '../common/models/fallout.model';
 import { SearchFilter } from '../common/models/search-filter.model';
+import { getColumnName } from '../common/functions/column-names';
 
 @Injectable()
 export class FalloutsService {
@@ -56,8 +57,16 @@ export class FalloutsService {
 			}
 
 			if (searchFilter.search.query && searchFilter.search.column) {
-				params.set('in', searchFilter.search.column);
+				params.set('in', getColumnName(searchFilter.search.column));
 				params.set('search', searchFilter.search.query.toUpperCase());
+			}
+
+			if (searchFilter.system) {
+				params.set('system', searchFilter.system);
+			}
+
+			if (searchFilter.status) {
+				params.set('status', searchFilter.status);
 			}
 		}
 
