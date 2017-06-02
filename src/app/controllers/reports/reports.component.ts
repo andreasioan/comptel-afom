@@ -82,15 +82,11 @@ export class ReportsComponent implements OnInit {
 				break;
 		}
 
-		const headings = [
-			Moment(new Date()).subtract(10, 'weeks').subtract(6, this.creationDateLength).format(creationDateFormat),
-			Moment(new Date()).subtract(10, 'weeks').subtract(5, this.creationDateLength).format(creationDateFormat),
-			Moment(new Date()).subtract(10, 'weeks').subtract(4, this.creationDateLength).format(creationDateFormat),
-			Moment(new Date()).subtract(10, 'weeks').subtract(3, this.creationDateLength).format(creationDateFormat),
-			Moment(new Date()).subtract(10, 'weeks').subtract(2, this.creationDateLength).format(creationDateFormat),
-			Moment(new Date()).subtract(10, 'weeks').subtract(1, this.creationDateLength).format(creationDateFormat),
-			Moment(new Date()).subtract(10, 'weeks').format(creationDateFormat)
-		];
+		const headings: any[] = [];
+
+		for (let i = 6; i >= 0; i--) {
+			headings.push(Moment(new Date()).subtract(10, 'weeks').subtract(i, this.creationDateLength).format(creationDateFormat));
+		}
 		return headings;
 	}
 
@@ -148,7 +144,6 @@ export class ReportsComponent implements OnInit {
 				this.isFalloutAverageLoaded = true;
 			});
 	}
-
 
 	setResolution(resolutionType?: string) {
 		if (resolutionType) {

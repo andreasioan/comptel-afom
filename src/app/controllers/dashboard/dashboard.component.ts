@@ -25,21 +25,16 @@ export class DashboardComponent implements OnInit {
 	donutHeadings: string[];
 
 	barData: any[];
-	barHeadings: string[];
+	barHeadings: string[] = [];
 
 	constructor(private dashboardService: DashboardService) { }
 
 	ngOnInit() {
 		this.pageLoaded = false;
 		this.donutHeadings = ['Started', 'Created', 'Closed-Successful', 'Error', 'Closed-Failure'];
-		this.barHeadings = [
-			Moment(new Date()).subtract(10, 'weeks').subtract(6, 'days').format('dddd'),
-			Moment(new Date()).subtract(10, 'weeks').subtract(5, 'days').format('dddd'),
-			Moment(new Date()).subtract(10, 'weeks').subtract(4, 'days').format('dddd'),
-			Moment(new Date()).subtract(10, 'weeks').subtract(3, 'days').format('dddd'),
-			Moment(new Date()).subtract(10, 'weeks').subtract(2, 'days').format('dddd'),
-			Moment(new Date()).subtract(10, 'weeks').subtract(1, 'days').format('dddd')
-		];
+		for (let i = 6; i > 0; i--) {
+			this.barHeadings.push(Moment(new Date()).subtract(10, 'weeks').subtract(i, 'days').format('dddd'));
+		}
 		this.dashboardService.getDashData()
 			.subscribe((dashboard: DashboardGet) => {
 				this.dashboard = dashboard;
