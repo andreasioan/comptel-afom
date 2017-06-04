@@ -54,9 +54,9 @@ export class ReportsService {
 			.catch((error: Response) => Observable.throw(error.json()));
 	}
 
-	getFallout(code: number, source: string) {
+	getFallout(code: number, source: string, length: any) {
 		const params = new URLSearchParams();
-
+		params.set('length', length);
 		if (code) {
 			params.set('code', code.toString());
 		}
@@ -102,8 +102,10 @@ export class ReportsService {
 			.catch((error: Response) => Observable.throw(error.json()));
 	}
 
-	getFalloutAverage() {
-		return this.http.get('https://comptel-api.herokuapp.com/api/reports/falloutaverage')
+	getFalloutAverage(length: any) {
+		const params = new URLSearchParams();
+		params.set('length', length);
+		return this.http.get('https://comptel-api.herokuapp.com/api/reports/falloutaverage', { search: params })
 			.map((response: Response) => {
 				const res = response.json();
 				const data = [
@@ -116,19 +118,15 @@ export class ReportsService {
 			.catch((error: Response) => Observable.throw(error.json()));
 	}
 
-	getResolution(target: string, statusTarget) {
+	getResolution(target: string, type: string, length: any) {
 		const params = new URLSearchParams();
-
-		if (target) {
-			params.set('target', target);
-		}
-		if (statusTarget) {
-			params.set('startusTarget', statusTarget);
-		}
+		params.set('length', length);
+		params.set('target', target);
+		params.set('type', type);
 
 		return this.http.get('https://comptel-api.herokuapp.com/api/reports/resolution', { search: params })
 			.map((response: Response) => {
-				if (target) {
+				if (type === 'error') {
 					const res = response.json();
 					const data = [
 						res.error_code_0,
@@ -136,10 +134,45 @@ export class ReportsService {
 						res.error_code_2
 					];
 					return data;
-				} else {
-
+				} else if (type === 'status') {
+					const res = response.json();
+					const data = [
+						res.started_count,
+						res.closed_failure_count,
+						res.retry_started_count,
+						res.retry_success_count,
+						res.closed_successful_count,
+						res.retry_failure_count,
+						res.error_count
+					];
+					return data;
 				}
 
+			})
+			.catch((error: Response) => Observable.throw(error.json()));
+	}
+
+	getSourceData() {
+		return this.http.get('https://comptel-api.herokuapp.com/api/reports/sourcedata')
+			.map((response: Response) => {
+				const res = response.json();
+				const falloutData = [
+					res.fallout_COM,
+					res.fallout_PNI,
+					res.fallout_ORDERMANAGER
+				];
+				const resolutionData = [
+					res.resolution_PNI,
+					res.resolution_HFC,
+					res.resolution_FTTN
+				];
+
+				const data = {
+					falloutData: falloutData,
+					resolutionData: resolutionData
+				};
+
+				return data;
 			})
 			.catch((error: Response) => Observable.throw(error.json()));
 	}
