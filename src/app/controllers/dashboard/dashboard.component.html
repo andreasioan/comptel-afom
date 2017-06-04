@@ -1,0 +1,67 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard <small>{{showDate}}</small></h1>
+		</div>
+	</div>
+</div>
+<hr>
+<div class="stats" *ngIf="pageLoaded">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="row">
+					<div class="col-xs-12">
+						<h3><i class="fa fa-th-list" aria-hidden="true"></i> Statistics</h3>
+						<p class="lead">
+							Fallouts Today: <strong>{{dashboard.falloutsToday}}</strong><br> Resolutions Today: <strong>{{dashboard.resolutionsToday}}</strong><br>							Total Fallouts: <strong>{{dashboard.totalFallouts}}</strong><br> Total Resolutions: <strong>{{dashboard.totalResolutions}}</strong><br>							Total Unresolved fallouts: <strong>{{dashboard.totalUnresolvesFallouts}}</strong>
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<h3><i class="fa fa-bar-chart" aria-hidden="true"></i> Fallouts | Resolutions</h3>
+						<app-bar-chart [data]="barData" [headings]="barHeadings"></app-bar-chart>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<h3><i class="fa fa-pie-chart" aria-hidden="true"></i> Fallouts Status</h3>
+				<app-doughnut-chart [data]="donutData" [headings]="donutHeadings"></app-doughnut-chart>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="data" *ngIf="pageLoaded">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h2>
+					<span><i class="fa fa-rocket" aria-hidden="true"></i> Fallouts</span>
+					<button [routerLink]="['fallouts']" class='btn btn-default pull-right'>View more</button>
+				</h2>
+				<app-table [tableType]="'fallout'" [allowSort]="false" [rows]="dashboard.fallouts"></app-table>
+			</div>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-sm-12">
+				<h2>
+					<span><i class="fa fa-thumbs-up" aria-hidden="true"></i> Resolutions</span>
+					<button [routerLink]="['resolutions']" class='btn btn-default pull-right'>View more</button>
+				</h2>
+				<app-table [tableType]="'resolution'" [allowSort]="false" [rows]="dashboard.resolutions"></app-table>
+			</div>
+		</div>
+	</div>
+</div>
+<footer class="text-muted" *ngIf="pageLoaded">
+	<div class="container">
+		<p><small><a href="mailto:7521588@student.swin.edu.au">Andreas Ioannidis</a> | <a href="http://www.comptel.com/">Comptel</a> &copy; <span class="pull-right">Note: All graphs start from 10 weeks back.</span>
+			2017</small>
+		</p>
+	</div>
+</footer>
+<div class="container" *ngIf="!pageLoaded">
+	<app-loading ></app-loading>
+</div>

@@ -1,0 +1,19 @@
+.stats {
+	background-color: #fff;
+	padding-bottom: 3rem;
+}
+
+.data {
+	background-color: #f7f7f7;
+	padding-top: 3rem;
+	padding-bottom: 3rem;
+}
+
+footer {
+	padding-top: 3rem;
+	padding-bottom: 3rem;
+}
+
+footer p {
+	margin-bottom: .25rem;
+}

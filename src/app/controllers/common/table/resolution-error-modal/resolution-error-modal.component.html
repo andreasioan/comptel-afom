@@ -1,0 +1,29 @@
+<div (onHidden)="onHidden()" bsModal #childModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="resolutionErrorModal"
+    aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title pull-left"><i class="fa fa-file-text" aria-hidden="true"></i> Resolution Error</h4>
+				<button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
+					<i class="fa fa-window-close" aria-hidden="true"></i>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+                    <div class="col-xs-12">
+                        <p><strong>ID:</strong> {{resolution.ID}}</p>
+                        <p><strong>Fallout ID:</strong> {{resolution.FalloutID}}</p>
+                        <p><strong>Action ID:</strong> {{resolution.ActionID}}</p>
+                        <p><strong>Source System:</strong> {{resolution.SourceSystem}}</p>
+                        <p><strong>Creation Date:</strong> {{resolution.CreationDate | niceDate}}</p>
+                        <p><strong>Due Date:</strong> {{resolution.DueDate | niceDate}}</p>
+                        <p><strong>Status:</strong> {{resolution.Status}}</p>
+                        <p><strong>Retry Count:</strong> {{resolution.RetryCount}}</p>
+                        <p><strong>Error Code:</strong> <u>{{resolution.ErrorCode}}</u></p>
+                        <p><strong>Error Desc:</strong> <u>{{resolution.ErrorDesc}}</u></p>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>

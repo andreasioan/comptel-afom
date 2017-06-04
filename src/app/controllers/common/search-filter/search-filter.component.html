@@ -1,0 +1,171 @@
+<div class="panel panel-primary">
+	<div class="panel-heading clickable" (click)="searchFilter()">
+		<h3 class="panel-title">Search & Filter</h3>
+	</div>
+	<div id="collapseOne" class="panel-collapse collapse" [ngClass]="{'in':searchFilterCollapse}">
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-sm-7">
+					<div class="row navTabs">
+						<div class="col-xs-12">
+							<ul class="nav nav-tabs">
+								<li role="presentation" class="clickable" [ngClass]="{'active':creationDate}"><a (click)="onCreationDate()"><i class="fa fa-calendar" aria-hidden="true"></i> Creation Date</a></li>
+								<li role="presentation" class="clickable" [ngClass]="{'active':dueDate}"><a (click)="onDueDate()"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Due Date</a></li>
+								<li role="presentation" class="clickable" [ngClass]="{'active':system}"><a (click)="onSystem()"><i class="fa fa-server" aria-hidden="true"></i> System</a></li>
+								<li role="presentation" class="clickable" [ngClass]="{'active':status}"><a (click)="onStatus()"><i class="fa fa-heartbeat" aria-hidden="true"></i> Status</a></li>
+								<li role="presentation" class="clickable" [ngClass]="{'active':reset}"><a (click)="onReset()"><i class="fa fa-refresh" aria-hidden="true"></i> Reset</a></li>
+							</ul>
+						</div>
+					</div>
+					<!--Creation Date-->
+					<div class="row" [hidden]="!creationDate">
+						<div class="col-xs-4">
+							<fieldset>
+								<legend>Date Range</legend>
+								<div class="radio" *ngFor="let dateType of dateTypes">
+									<label>
+										<input type="radio" name="creationDateType" [(ngModel)]="searchQuery.creationDate.type" [value]="dateType.value">
+										<strong>{{dateType.display}}</strong>
+									</label>
+								</div>
+							</fieldset>
+						</div>
+						<div class="col-xs-8" [hidden]="searchQuery.creationDate.type === 'range'">
+							<div class="form-horizontal">
+								<div class="form-group">
+									<label for="date" class="col-sm-2 control-label">Day:</label>
+									<div class="col-sm-10">
+										<input [(ngModel)]="searchQuery.creationDate.day" type="date" class="form-control" id="date">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-8" [hidden]="searchQuery.creationDate.type === 'day'">
+							<div class="form-horizontal">
+								<div class="form-group">
+									<label for="date" class="col-sm-2 control-label">From:</label>
+									<div class="col-sm-10">
+										<input [(ngModel)]="searchQuery.creationDate.from" type="date" class="form-control" id="date">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="date" class="col-sm-2 control-label">To:</label>
+									<div class="col-sm-10">
+										<input [(ngModel)]="searchQuery.creationDate.to" type="date" class="form-control" id="date">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--End Creation Date-->
+					<!--Due Date-->
+					<div class="row" [hidden]="!dueDate">
+						<div class="col-xs-4">
+							<fieldset>
+								<legend>Due Date Range</legend>
+								<div class="radio" *ngFor="let dateType of dateTypes">
+									<label>
+										<input type="radio" name="dueDateType" [(ngModel)]="searchQuery.dueDate.type" [value]="dateType.value">
+										<strong>{{dateType.display}}</strong>
+									</label>
+								</div>
+							</fieldset>
+						</div>
+						<div class="col-xs-8" [hidden]="searchQuery.dueDate.type === 'range'">
+							<div class="form-horizontal">
+								<div class="form-group">
+									<label for="date" class="col-sm-2 control-label">Day:</label>
+									<div class="col-sm-10">
+										<input [(ngModel)]="searchQuery.dueDate.day" type="date" class="form-control" id="date">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-8" [hidden]="searchQuery.dueDate.type === 'day'">
+							<div class="form-horizontal">
+								<div class="form-group">
+									<label for="date" class="col-sm-2 control-label">From:</label>
+									<div class="col-sm-10">
+										<input [(ngModel)]="searchQuery.dueDate.from" type="date" class="form-control" id="date">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="date" class="col-sm-2 control-label">To:</label>
+									<div class="col-sm-10">
+										<input [(ngModel)]="searchQuery.dueDate.to" type="date" class="form-control" id="date">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--End Due Date-->
+					<!--System-->
+					<div class="row" [hidden]="!system">
+						<div class="col-xs-12">
+							<div class="form-group">
+								<label for="system" *ngIf="tableType === 'fallout'">Filter by Source System: </label>
+								<label for="system" *ngIf="tableType === 'resolution'">Filter by Target System: </label>
+								<select [(ngModel)]="searchQuery.system" type="text" class="form-control" id="system">
+									<option value="" disabled selected hidden>Select a system</option>
+									<option value="">All</option>
+									<option *ngFor="let system of systems" [value]="system">{{system}}</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<!--End System-->
+					<!--Status-->
+					<div class="row" [hidden]="!status">
+						<div class="col-xs-12">
+							<div class="form-group">
+								<label for="system">Filter by Status: </label>
+								<select [(ngModel)]="searchQuery.status" type="text" class="form-control" id="system">
+									<option value="" disabled selected hidden>Select a status</option>
+									<option value="">All</option>
+									<option *ngFor="let status of statuses" [value]="status">{{status}}</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<!--End Status-->
+					<!--Reset-->
+					<div class="row" [hidden]="!reset">
+						<div class="col-xs-12">
+							<p>Reset all search & filter options?</p>
+							<button (click)="onResetClick()" class="btn btn-danger">Reset</button>
+						</div>
+					</div>
+					<!--End Reset-->
+				</div>
+				<hr class="visible-xs">
+				<!--Divider on mobile-->
+				<div class="col-sm-5">
+					<!--Search-->
+					<div class="form-horizontal">
+						<div class="form-group">
+							<label for="searchFild" class="col-sm-3 control-label">Search:</label>
+							<div class="col-sm-9">
+								<input [(ngModel)]="searchQuery.search.query" type="text" class="form-control" id="searchFild" placeholder="Search">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="selectColumn" class="col-sm-3 control-label">Column:</label>
+							<div class="col-sm-9">
+								<select [(ngModel)]="searchQuery.search.column" id="selectColumn" class="form-control">
+									<option value="" disabled selected hidden>Search in column</option>
+                                    <option *ngFor="let column of searchColumns" value="{{column}}">{{column}}</option>
+                                </select>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-3 col-sm-8">
+								<button (click)="onApply()" class="btn btn-success">Apply <i class="fa fa-check-circle" aria-hidden="true"></i></button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--Search-->
+			</div>
+		</div>
+	</div>
+</div>

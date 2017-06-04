@@ -1,0 +1,209 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<h1><i class="fa fa-line-chart" aria-hidden="true"></i> Reports <small>{{showDate}}</small></h1>
+		</div>
+	</div>
+</div>
+<hr>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="row">
+				<div class="col-xs-12">
+					<h2 class="featurette-heading">
+						<span [ngClass]="{'text-muted clickable': dateType === 'due_date', 'underline': dateType === 'creation_date'}" (click)="setDate('days', 'creation_date')">Creation Date</span>						|
+						<span [ngClass]="{'text-muted clickable': dateType === 'creation_date', 'underline': dateType === 'due_date'}" (click)="setDate('days', 'due_date')">Due Date</span>
+					</h2>
+					<p class="lead">Number of fallouts and resolutions by <span *ngIf="dateType === 'creation_date'">creation</span><span *ngIf="dateType === 'due_date'">due</span>						date</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="dateType">View past 7:</label>
+					<br>
+					<div class="btn-group" role="group" id="dateType">
+						<a class="btn btn-default" [ngClass]="{'active':creationDateLength === 'years'}" (click)="setDate('years')">Years</a>
+						<a class="btn btn-default" [ngClass]="{'active':creationDateLength === 'months'}" (click)="setDate('months')">Months</a>
+						<a class="btn btn-default" [ngClass]="{'active':creationDateLength === 'days'}" (click)="setDate('days')">Days</a>
+						<a class="btn btn-default" [ngClass]="{'active':creationDateLength === 'hours'}" (click)="setDate('hours')">Hours</a>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="startDate">Start Date:</label>
+					<input disabled class="form-control" type="date" name="startDate" value="2017-06-06">
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="sourceSystem">Filter by fallout source system:</label>
+					<select [(ngModel)]="sourceSystem" class="form-control" name="sourceFilter" id="sourceFilter" (change)="setDate();">
+						<option *ngFor="let system of sourceSystems" [value]="system">{{system}}</option>
+					</select>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="targetSystem">Filter by resolution target system:</label>
+					<select [(ngModel)]="targetSystem" class="form-control" name="targetFilter" id="targetFilter" (change)="setDate();">
+						<option *ngFor="let system of targetSystems" [value]="system">{{system}}</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="col-md-8">
+			<app-line-chart *ngIf="isDateLoaded" [data]="creationDateData" [headings]="creationDateHeadings"></app-line-chart>
+			<div *ngIf="!isDateLoaded" class="space">
+				<app-loading></app-loading>
+			</div>
+		</div>
+	</div>
+	<hr class="featurette-divider">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="row">
+				<div class="col-xs-12">
+					<h2 class="featurette-heading">
+						<span [ngClass]="{'text-muted clickable': falloutType === 'status', 'underline': falloutType === 'error'}" (click)="setFallout(1001, 'error', 'months')">Fallout Errors</span>						|
+						<span [ngClass]="{'text-muted clickable': falloutType === 'error', 'underline': falloutType === 'status'}" (click)="setFallout(null, 'status', 'months')">Status</span>
+					</h2>
+					<p *ngIf="falloutType === 'status'" class="lead">Overall number of fallout statuses</p>
+					<p *ngIf="falloutType === 'error'" class="lead">Overall number of fallout error codes</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="dateType">View past 7:</label>
+					<br>
+					<div class="btn-group" role="group" id="dateType">
+						<a class="btn btn-default" [ngClass]="{'active':falloutLength === 'years'}" (click)="setFallout(null, null, 'years'); setFalloutAverage()">Years</a>
+						<a class="btn btn-default" [ngClass]="{'active':falloutLength === 'months'}" (click)="setFallout(null, null, 'months'); setFalloutAverage()">Months</a>
+						<a class="btn btn-default" [ngClass]="{'active':falloutLength === 'days'}" (click)="setFallout(null, null, 'days'); setFalloutAverage()">Days</a>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row" *ngIf="falloutType === 'status'">
+				<div class="col-xs-12">
+					<label for="sourceSystem">Filter by source system:</label>
+					<select [(ngModel)]="falloutSourceSystem" class="form-control" name="sourceFilter" id="sourceFilter" (change)="setFallout()">
+						<option *ngFor="let system of sourceSystems" [value]="system">{{system}}</option>
+					</select>
+				</div>
+			</div>
+			<div class="row" *ngIf="falloutType === 'error'">
+				<div class="col-xs-12">
+					<label for="errorRange">View error range: </label>
+					<div class="btn-group" role="group" id="errorRange">
+						<button type="button" class="btn btn-default" [ngClass]="{'active':falloutCode === 1001}" (click)="setFallout(1001)">1001-1015</button>
+						<button type="button" class="btn btn-default" [ngClass]="{'active':falloutCode === 1101}" (click)="setFallout(1101)">1101-1115</button>
+						<button type="button" class="btn btn-default" [ngClass]="{'active':falloutCode === 1201}" (click)="setFallout(1201)">1201-1215</button>
+					</div>
+				</div>
+			</div>
+			<div class="row" *ngIf="falloutType === 'error'">
+				<div class="col-xs-12">
+					<app-doughnut-chart *ngIf="isFalloutAverageLoaded" [data]="falloutAverageData" [headings]="falloutAverageHeadings"></app-doughnut-chart>
+					<div *ngIf="!isFalloutAverageLoaded" class="space">
+						<app-loading></app-loading>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="col-md-6 col-md-offset-1">
+			<app-doughnut-chart *ngIf="isFalloutLoaded" [data]="falloutData" [headings]="falloutHeadings"></app-doughnut-chart>
+			<div *ngIf="!isFalloutLoaded" class="space">
+				<app-loading></app-loading>
+			</div>
+		</div>
+	</div>
+	<hr class="featurette-divider">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="row">
+				<div class="col-xs-12">
+					<h2 class="featurette-heading">
+						<span [ngClass]="{'text-muted clickable': resolutionType === 'status', 'underline': resolutionType === 'error'}" (click)="setResolution('error', 'All', 'months')">Resolution Errors</span>						|
+						<span [ngClass]="{'text-muted clickable': resolutionType === 'error', 'underline': resolutionType === 'status'}" (click)="setResolution('status', 'All', 'months')">Status</span>
+					</h2>
+					<p class="lead">Overall number of resolution error codes</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="dateType">View past 7:</label>
+					<br>
+					<div class="btn-group" role="group" id="dateType">
+						<a class="btn btn-default" [ngClass]="{'active':resolutionLength === 'years'}" (click)="setResolution(null, null, 'years')">Years</a>
+						<a class="btn btn-default" [ngClass]="{'active':resolutionLength === 'months'}" (click)="setResolution(null, null, 'months')">Months</a>
+						<a class="btn btn-default" [ngClass]="{'active':resolutionLength === 'days'}" (click)="setResolution(null, null, 'days')">Days</a>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="targetSystem">Filter by target system:</label>
+					<select [(ngModel)]="resolutionSystem" class="form-control" name="targetFilter" id="targetFilter" (change)="setResolution()">
+						<option *ngFor="let system of targetSystems" [value]="system">{{system}}</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6 col-md-offset-1">
+			<app-doughnut-chart *ngIf="isResolutionLoaded" [data]="resolutionData" [headings]="resolutionHeadings"></app-doughnut-chart>
+			<div *ngIf="!isResolutionLoaded" class="space">
+				<app-loading></app-loading>
+			</div>
+		</div>
+	</div>
+	<hr class="featurette-divider">
+	<div class="row">
+		<div class="col-sm-4 col-sm-offset-1">
+			<div class="row">
+				<div class="col-xs-12">
+					<h3 class="lead text-center">Number of Fallouts by Source System</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<app-doughnut-chart *ngIf="isSourceLoaded" [data]="falloutSourceData" [headings]="falloutSourceHeadings"></app-doughnut-chart>
+					<div *ngIf="!isSourceLoaded" class="space">
+						<app-loading></app-loading>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4 col-sm-offset-2">
+			<div class="row">
+				<div class="col-xs-12">
+					<h3 class="lead text-center">Number of Resolutions by Target System</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<app-doughnut-chart *ngIf="isSourceLoaded" [data]="resolutionSourceData" [headings]="resolutionSourceHeadings"></app-doughnut-chart>
+					<div *ngIf="!isSourceLoaded" class="space">
+						<app-loading></app-loading>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="pre-footer"></div>
+<footer class="text-muted">
+	<div class="container">
+		<p>
+			<small><a href="mailto:7521588@student.swin.edu.au">Andreas Ioannidis</a> | <a href="http://www.comptel.com/">Comptel</a> &copy; <span class="pull-right">Note: All graphs start from 10 weeks back.</span>
+			2017</small>
+		</p>
+	</div>
+</footer>

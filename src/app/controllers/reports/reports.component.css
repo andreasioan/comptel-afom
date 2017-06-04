@@ -1,0 +1,44 @@
+.featurette-divider {
+	margin: 20px 0;
+	/* Space out the Bootstrap <hr> more */
+}
+
+
+/* Thin out the marketing headings */
+
+.featurette-heading {
+	font-weight: 300;
+	line-height: 1;
+}
+
+.space {
+	padding-top: 6rem;
+	padding-bottom: 6rem;
+}
+
+.underline {
+	border-bottom: 1px solid #898989;
+}
+
+.pre-footer {
+  padding-bottom: 6rem;
+}
+
+/*footer {
+	background-color: #f7f7f7;
+  padding-top: 6rem;
+}*/
+
+footer {
+  background-color: #f7f7f7;
+	padding-top: 3rem;
+	padding-bottom: 3rem;
+}
+
+footer p {
+	margin-bottom: .25rem;
+}
+
+.todo {
+  text-decoration: line-through;
+}
