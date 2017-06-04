@@ -60,7 +60,11 @@ export class SearchFilterComponent implements OnInit {
 		];
 
 		if (this.searchQuery.search.column) {
-			this.searchQuery.search.column = getColumnDisplayName(this.searchQuery.search.column);
+			if (this.tableType === 'resolution' && this.searchQuery.search.column === 'source_fallout_id') {
+				this.searchQuery.search.column = 'Fallout ID';
+			} else {
+				this.searchQuery.search.column = getColumnDisplayName(this.searchQuery.search.column);
+			}
 		}
 	}
 
