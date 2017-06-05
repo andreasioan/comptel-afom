@@ -2,6 +2,8 @@
 
 Distinction project for the Swinburne unit Interface Design and Development COS30043
 
+Report can be found here: https://github.com/andreasioan/comptel-afom/blob/master/Comptel%20AFOM%20Report.pdf
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 
 ## Development server
